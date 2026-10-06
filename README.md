@@ -49,7 +49,7 @@ The first term is a configuration choice. Only the second term is the brand.
 Audit the panel before trusting the number.
 
 Full results, intervals, the per-engine split, limitations, and the findings
-that were tested and discarded along the way: **[STUDY URL]**.
+that were tested and discarded along the way: **[ai-visibility-audit-rho.vercel.app/study](https://ai-visibility-audit-rho.vercel.app/study/)**.
 
 Collection: 360 answers (30 prompts × 4 engines × 3 samples), zero failures
 after one resume, roughly $20 in API spend, 1 October 2026. Models:

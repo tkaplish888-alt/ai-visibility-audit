@@ -2,7 +2,7 @@
 
 *I built a monitor that said a coding bootcamp showed up in 61% of AI answers about its category. Then I measured how much of that number was the monitor.*
 
-Tonishqa Kaplish · October 2026 · [Code and data](https://github.com/tkaplish888-alt/ai-visibility-audit)
+Tonishqa Kaplish · October 2026 · [Interactive version](https://ai-visibility-audit-rho.vercel.app/study/) · [Code and data](https://github.com/tkaplish888-alt/ai-visibility-audit)
 
 ---
 
