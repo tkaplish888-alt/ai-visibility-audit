@@ -1,0 +1,982 @@
+{
+  "title": "Where a 61% AI visibility score came from",
+  "standfirst": "A brand monitor said one bootcamp appeared in 61% of AI answers about its category. This measures how much of that number was the monitor.",
+  "n": 270,
+  "n_citations": 2541,
+  "n_prompts": 30,
+  "engines": [
+    "anthropic",
+    "openai",
+    "perplexity"
+  ],
+  "engines_label": "Claude, ChatGPT, Perplexity",
+  "window": "2026-10-01",
+  "brands": [
+    {
+      "brand": "Springboard",
+      "n": 270,
+      "mentions": 94,
+      "mention_rate": 0.34814814814814815,
+      "mention_ci": [
+        0.2938152889504847,
+        0.40674137491942275
+      ],
+      "own_citations": 52,
+      "citation_rate": 0.1925925925925926,
+      "citation_ci": [
+        0.1500011217056762,
+        0.24380871003096577
+      ],
+      "share_of_voice": 0.23902439024390243,
+      "owned_ratio": 0.5531914893617021
+    },
+    {
+      "brand": "App Academy",
+      "n": 270,
+      "mentions": 67,
+      "mention_rate": 0.24814814814814815,
+      "mention_ci": [
+        0.20040051197409375,
+        0.3029617598101431
+      ],
+      "own_citations": 21,
+      "citation_rate": 0.07777777777777778,
+      "citation_ci": [
+        0.0514317008500925,
+        0.11596975478818686
+      ],
+      "share_of_voice": 0.15818815331010452,
+      "owned_ratio": 0.31343283582089554
+    },
+    {
+      "brand": "General Assembly",
+      "n": 270,
+      "mentions": 66,
+      "mention_rate": 0.24444444444444444,
+      "mention_ci": [
+        0.19700283109484795,
+        0.2990559446862159
+      ],
+      "own_citations": 19,
+      "citation_rate": 0.07037037037037037,
+      "citation_ci": [
+        0.0455101034111534,
+        0.10728436022077999
+      ],
+      "share_of_voice": 0.089198606271777,
+      "owned_ratio": 0.2878787878787879
+    },
+    {
+      "brand": "Hack Reactor",
+      "n": 270,
+      "mentions": 57,
+      "mention_rate": 0.2111111111111111,
+      "mention_ci": [
+        0.16665903900723084,
+        0.26366827274527604
+      ],
+      "own_citations": 18,
+      "citation_rate": 0.06666666666666667,
+      "citation_ci": [
+        0.04258246318506562,
+        0.10290850444369476
+      ],
+      "share_of_voice": 0.15261324041811847,
+      "owned_ratio": 0.3157894736842105
+    },
+    {
+      "brand": "Flatiron School",
+      "n": 270,
+      "mentions": 55,
+      "mention_rate": 0.2037037037037037,
+      "mention_ci": [
+        0.15997755914906622,
+        0.2557427605970947
+      ],
+      "own_citations": 22,
+      "citation_rate": 0.08148148148148149,
+      "citation_ci": [
+        0.05442287493714734,
+        0.12028207670430502
+      ],
+      "share_of_voice": 0.154006968641115,
+      "owned_ratio": 0.4
+    },
+    {
+      "brand": "Nucamp",
+      "n": 270,
+      "mentions": 50,
+      "mention_rate": 0.18518518518518517,
+      "mention_ci": [
+        0.14338219314391326,
+        0.2358206465863827
+      ],
+      "own_citations": 101,
+      "citation_rate": 0.37407407407407406,
+      "citation_ci": [
+        0.3185022472779475,
+        0.43317888861417086
+      ],
+      "share_of_voice": 0.07804878048780488,
+      "owned_ratio": 2.02
+    },
+    {
+      "brand": "TripleTen",
+      "n": 270,
+      "mentions": 47,
+      "mention_rate": 0.17407407407407408,
+      "mention_ci": [
+        0.1335047591843032,
+        0.2237875925364738
+      ],
+      "own_citations": 74,
+      "citation_rate": 0.2740740740740741,
+      "citation_ci": [
+        0.224318634822575,
+        0.3301681089838727
+      ],
+      "share_of_voice": 0.0808362369337979,
+      "owned_ratio": 1.574468085106383
+    },
+    {
+      "brand": "Fullstack Academy",
+      "n": 270,
+      "mentions": 32,
+      "mention_rate": 0.11851851851851852,
+      "mention_ci": [
+        0.08521541485978879,
+        0.16252449681339343
+      ],
+      "own_citations": 22,
+      "citation_rate": 0.08148148148148149,
+      "citation_ci": [
+        0.05442287493714734,
+        0.12028207670430502
+      ],
+      "share_of_voice": 0.0313588850174216,
+      "owned_ratio": 0.6875
+    },
+    {
+      "brand": "BrainStation",
+      "n": 270,
+      "mentions": 10,
+      "mention_rate": 0.037037037037037035,
+      "mention_ci": [
+        0.02024003752175542,
+        0.06682296208162104
+      ],
+      "own_citations": 3,
+      "citation_rate": 0.011111111111111112,
+      "citation_ci": [
+        0.0037858400928526426,
+        0.03215268748831291
+      ],
+      "share_of_voice": 0.016724738675958188,
+      "owned_ratio": 0.3
+    },
+    {
+      "brand": "Codecademy",
+      "n": 270,
+      "mentions": 0,
+      "mention_rate": 0.0,
+      "mention_ci": [
+        0.0,
+        0.014028039571646583
+      ],
+      "own_citations": 0,
+      "citation_rate": 0.0,
+      "citation_ci": [
+        0.0,
+        0.014028039571646583
+      ],
+      "share_of_voice": 0.0,
+      "owned_ratio": null
+    }
+  ],
+  "pooled_intent": [
+    {
+      "key": "named",
+      "label": "Names the brand",
+      "example": "Hack Reactor vs App Academy?",
+      "k": 54,
+      "n": 54,
+      "rate": 1.0,
+      "ci": [
+        0.9335841332189981,
+        1.0000000000000002
+      ]
+    },
+    {
+      "key": "commercial",
+      "label": "Commercial",
+      "example": "Best bootcamp for a career changer?",
+      "k": 355,
+      "n": 1080,
+      "rate": 0.3287037037037037,
+      "ci": [
+        0.30133811760997165,
+        0.3572835850447336
+      ]
+    },
+    {
+      "key": "transactional",
+      "label": "Transactional",
+      "example": "How do I pay for a bootcamp?",
+      "k": 39,
+      "n": 270,
+      "rate": 0.14444444444444443,
+      "ci": [
+        0.10749753218462645,
+        0.19136721298192239
+      ]
+    },
+    {
+      "key": "informational",
+      "label": "Informational",
+      "example": "Are bootcamps still worth it in 2026?",
+      "k": 28,
+      "n": 1080,
+      "rate": 0.025925925925925925,
+      "ci": [
+        0.01799720566843779,
+        0.03721529032728704
+      ]
+    }
+  ],
+  "monitor": {
+    "named_prompts": 12,
+    "total_prompts": 30,
+    "named_answers": 57,
+    "named_hits": 57,
+    "other_answers": 90,
+    "other_hits": 33,
+    "total_answers": 147,
+    "total_hits": 90,
+    "all_runs_named": 482
+  },
+  "top_domains": [
+    {
+      "domain": "coursereport.com",
+      "source_type": "review_aggregator",
+      "owned_by": null,
+      "n": 120
+    },
+    {
+      "domain": "hakia.com",
+      "source_type": "review_aggregator",
+      "owned_by": null,
+      "n": 113
+    },
+    {
+      "domain": "nucamp.co",
+      "source_type": "owned",
+      "owned_by": "Nucamp",
+      "n": 101
+    },
+    {
+      "domain": "metana.io",
+      "source_type": "competitor_content",
+      "owned_by": null,
+      "n": 82
+    },
+    {
+      "domain": "tripleten.com",
+      "source_type": "owned",
+      "owned_by": "TripleTen",
+      "n": 74
+    },
+    {
+      "domain": "scrimba.com",
+      "source_type": "competitor_content",
+      "owned_by": null,
+      "n": 70
+    },
+    {
+      "domain": "careerkarma.com",
+      "source_type": "review_aggregator",
+      "owned_by": null,
+      "n": 60
+    },
+    {
+      "domain": "forbes.com",
+      "source_type": "editorial",
+      "owned_by": null,
+      "n": 57
+    },
+    {
+      "domain": "cirr.org",
+      "source_type": "industry_body",
+      "owned_by": null,
+      "n": 47
+    },
+    {
+      "domain": "rockstardeveloperuniversity.com",
+      "source_type": "competitor_content",
+      "owned_by": null,
+      "n": 45
+    },
+    {
+      "domain": "assignmentdude.com",
+      "source_type": "commercial_service",
+      "owned_by": null,
+      "n": 40
+    },
+    {
+      "domain": "springboard.com",
+      "source_type": "owned",
+      "owned_by": "Springboard",
+      "n": 39
+    },
+    {
+      "domain": "bestcolleges.com",
+      "source_type": "review_aggregator",
+      "owned_by": null,
+      "n": 36
+    },
+    {
+      "domain": "computerscience.org",
+      "source_type": "editorial",
+      "owned_by": null,
+      "n": 32
+    },
+    {
+      "domain": "en.wikipedia.org",
+      "source_type": "editorial",
+      "owned_by": null,
+      "n": 32
+    }
+  ],
+  "by_intent": {
+    "commercial": [
+      {
+        "brand": "Springboard",
+        "n": 108,
+        "mention_rate": 0.7037037037037037
+      },
+      {
+        "brand": "General Assembly",
+        "n": 108,
+        "mention_rate": 0.46296296296296297
+      },
+      {
+        "brand": "Nucamp",
+        "n": 108,
+        "mention_rate": 0.4444444444444444
+      },
+      {
+        "brand": "TripleTen",
+        "n": 108,
+        "mention_rate": 0.4166666666666667
+      },
+      {
+        "brand": "App Academy",
+        "n": 108,
+        "mention_rate": 0.37962962962962965
+      },
+      {
+        "brand": "Hack Reactor",
+        "n": 108,
+        "mention_rate": 0.3055555555555556
+      },
+      {
+        "brand": "Flatiron School",
+        "n": 108,
+        "mention_rate": 0.25
+      },
+      {
+        "brand": "Fullstack Academy",
+        "n": 108,
+        "mention_rate": 0.25
+      },
+      {
+        "brand": "BrainStation",
+        "n": 108,
+        "mention_rate": 0.07407407407407407
+      },
+      {
+        "brand": "Codecademy",
+        "n": 108,
+        "mention_rate": 0.0
+      }
+    ],
+    "comparative": [
+      {
+        "brand": "Flatiron School",
+        "n": 27,
+        "mention_rate": 0.6666666666666666
+      },
+      {
+        "brand": "Springboard",
+        "n": 27,
+        "mention_rate": 0.37037037037037035
+      },
+      {
+        "brand": "App Academy",
+        "n": 27,
+        "mention_rate": 0.3333333333333333
+      },
+      {
+        "brand": "General Assembly",
+        "n": 27,
+        "mention_rate": 0.3333333333333333
+      },
+      {
+        "brand": "Hack Reactor",
+        "n": 27,
+        "mention_rate": 0.3333333333333333
+      },
+      {
+        "brand": "Fullstack Academy",
+        "n": 27,
+        "mention_rate": 0.037037037037037035
+      },
+      {
+        "brand": "BrainStation",
+        "n": 27,
+        "mention_rate": 0.0
+      },
+      {
+        "brand": "Codecademy",
+        "n": 27,
+        "mention_rate": 0.0
+      },
+      {
+        "brand": "Nucamp",
+        "n": 27,
+        "mention_rate": 0.0
+      },
+      {
+        "brand": "TripleTen",
+        "n": 27,
+        "mention_rate": 0.0
+      }
+    ],
+    "informational": [
+      {
+        "brand": "App Academy",
+        "n": 108,
+        "mention_rate": 0.08333333333333333
+      },
+      {
+        "brand": "Springboard",
+        "n": 108,
+        "mention_rate": 0.046296296296296294
+      },
+      {
+        "brand": "Hack Reactor",
+        "n": 108,
+        "mention_rate": 0.037037037037037035
+      },
+      {
+        "brand": "Flatiron School",
+        "n": 108,
+        "mention_rate": 0.027777777777777776
+      },
+      {
+        "brand": "General Assembly",
+        "n": 108,
+        "mention_rate": 0.027777777777777776
+      },
+      {
+        "brand": "Fullstack Academy",
+        "n": 108,
+        "mention_rate": 0.018518518518518517
+      },
+      {
+        "brand": "TripleTen",
+        "n": 108,
+        "mention_rate": 0.018518518518518517
+      },
+      {
+        "brand": "BrainStation",
+        "n": 108,
+        "mention_rate": 0.0
+      },
+      {
+        "brand": "Codecademy",
+        "n": 108,
+        "mention_rate": 0.0
+      },
+      {
+        "brand": "Nucamp",
+        "n": 108,
+        "mention_rate": 0.0
+      }
+    ],
+    "transactional": [
+      {
+        "brand": "Hack Reactor",
+        "n": 27,
+        "mention_rate": 0.4074074074074074
+      },
+      {
+        "brand": "App Academy",
+        "n": 27,
+        "mention_rate": 0.2962962962962963
+      },
+      {
+        "brand": "Flatiron School",
+        "n": 27,
+        "mention_rate": 0.25925925925925924
+      },
+      {
+        "brand": "General Assembly",
+        "n": 27,
+        "mention_rate": 0.14814814814814814
+      },
+      {
+        "brand": "Springboard",
+        "n": 27,
+        "mention_rate": 0.1111111111111111
+      },
+      {
+        "brand": "BrainStation",
+        "n": 27,
+        "mention_rate": 0.07407407407407407
+      },
+      {
+        "brand": "Fullstack Academy",
+        "n": 27,
+        "mention_rate": 0.07407407407407407
+      },
+      {
+        "brand": "Nucamp",
+        "n": 27,
+        "mention_rate": 0.07407407407407407
+      },
+      {
+        "brand": "Codecademy",
+        "n": 27,
+        "mention_rate": 0.0
+      },
+      {
+        "brand": "TripleTen",
+        "n": 27,
+        "mention_rate": 0.0
+      }
+    ]
+  },
+  "significance": [
+    {
+      "a": "Springboard",
+      "b": "App Academy",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.24814814814814815,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Springboard",
+      "b": "General Assembly",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.24444444444444444,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Springboard",
+      "b": "Hack Reactor",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.2111111111111111,
+      "distinguishable": true,
+      "verdict": "Springboard > Hack Reactor"
+    },
+    {
+      "a": "Springboard",
+      "b": "Flatiron School",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.2037037037037037,
+      "distinguishable": true,
+      "verdict": "Springboard > Flatiron School"
+    },
+    {
+      "a": "Springboard",
+      "b": "Nucamp",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.18518518518518517,
+      "distinguishable": true,
+      "verdict": "Springboard > Nucamp"
+    },
+    {
+      "a": "Springboard",
+      "b": "TripleTen",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.17407407407407408,
+      "distinguishable": true,
+      "verdict": "Springboard > TripleTen"
+    },
+    {
+      "a": "Springboard",
+      "b": "Fullstack Academy",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.11851851851851852,
+      "distinguishable": true,
+      "verdict": "Springboard > Fullstack Academy"
+    },
+    {
+      "a": "Springboard",
+      "b": "BrainStation",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.037037037037037035,
+      "distinguishable": true,
+      "verdict": "Springboard > BrainStation"
+    },
+    {
+      "a": "Springboard",
+      "b": "Codecademy",
+      "a_rate": 0.34814814814814815,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "Springboard > Codecademy"
+    },
+    {
+      "a": "App Academy",
+      "b": "General Assembly",
+      "a_rate": 0.24814814814814815,
+      "b_rate": 0.24444444444444444,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "App Academy",
+      "b": "Hack Reactor",
+      "a_rate": 0.24814814814814815,
+      "b_rate": 0.2111111111111111,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "App Academy",
+      "b": "Flatiron School",
+      "a_rate": 0.24814814814814815,
+      "b_rate": 0.2037037037037037,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "App Academy",
+      "b": "Nucamp",
+      "a_rate": 0.24814814814814815,
+      "b_rate": 0.18518518518518517,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "App Academy",
+      "b": "TripleTen",
+      "a_rate": 0.24814814814814815,
+      "b_rate": 0.17407407407407408,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "App Academy",
+      "b": "Fullstack Academy",
+      "a_rate": 0.24814814814814815,
+      "b_rate": 0.11851851851851852,
+      "distinguishable": true,
+      "verdict": "App Academy > Fullstack Academy"
+    },
+    {
+      "a": "App Academy",
+      "b": "BrainStation",
+      "a_rate": 0.24814814814814815,
+      "b_rate": 0.037037037037037035,
+      "distinguishable": true,
+      "verdict": "App Academy > BrainStation"
+    },
+    {
+      "a": "App Academy",
+      "b": "Codecademy",
+      "a_rate": 0.24814814814814815,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "App Academy > Codecademy"
+    },
+    {
+      "a": "General Assembly",
+      "b": "Hack Reactor",
+      "a_rate": 0.24444444444444444,
+      "b_rate": 0.2111111111111111,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "General Assembly",
+      "b": "Flatiron School",
+      "a_rate": 0.24444444444444444,
+      "b_rate": 0.2037037037037037,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "General Assembly",
+      "b": "Nucamp",
+      "a_rate": 0.24444444444444444,
+      "b_rate": 0.18518518518518517,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "General Assembly",
+      "b": "TripleTen",
+      "a_rate": 0.24444444444444444,
+      "b_rate": 0.17407407407407408,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "General Assembly",
+      "b": "Fullstack Academy",
+      "a_rate": 0.24444444444444444,
+      "b_rate": 0.11851851851851852,
+      "distinguishable": true,
+      "verdict": "General Assembly > Fullstack Academy"
+    },
+    {
+      "a": "General Assembly",
+      "b": "BrainStation",
+      "a_rate": 0.24444444444444444,
+      "b_rate": 0.037037037037037035,
+      "distinguishable": true,
+      "verdict": "General Assembly > BrainStation"
+    },
+    {
+      "a": "General Assembly",
+      "b": "Codecademy",
+      "a_rate": 0.24444444444444444,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "General Assembly > Codecademy"
+    },
+    {
+      "a": "Hack Reactor",
+      "b": "Flatiron School",
+      "a_rate": 0.2111111111111111,
+      "b_rate": 0.2037037037037037,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Hack Reactor",
+      "b": "Nucamp",
+      "a_rate": 0.2111111111111111,
+      "b_rate": 0.18518518518518517,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Hack Reactor",
+      "b": "TripleTen",
+      "a_rate": 0.2111111111111111,
+      "b_rate": 0.17407407407407408,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Hack Reactor",
+      "b": "Fullstack Academy",
+      "a_rate": 0.2111111111111111,
+      "b_rate": 0.11851851851851852,
+      "distinguishable": true,
+      "verdict": "Hack Reactor > Fullstack Academy"
+    },
+    {
+      "a": "Hack Reactor",
+      "b": "BrainStation",
+      "a_rate": 0.2111111111111111,
+      "b_rate": 0.037037037037037035,
+      "distinguishable": true,
+      "verdict": "Hack Reactor > BrainStation"
+    },
+    {
+      "a": "Hack Reactor",
+      "b": "Codecademy",
+      "a_rate": 0.2111111111111111,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "Hack Reactor > Codecademy"
+    },
+    {
+      "a": "Flatiron School",
+      "b": "Nucamp",
+      "a_rate": 0.2037037037037037,
+      "b_rate": 0.18518518518518517,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Flatiron School",
+      "b": "TripleTen",
+      "a_rate": 0.2037037037037037,
+      "b_rate": 0.17407407407407408,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Flatiron School",
+      "b": "Fullstack Academy",
+      "a_rate": 0.2037037037037037,
+      "b_rate": 0.11851851851851852,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Flatiron School",
+      "b": "BrainStation",
+      "a_rate": 0.2037037037037037,
+      "b_rate": 0.037037037037037035,
+      "distinguishable": true,
+      "verdict": "Flatiron School > BrainStation"
+    },
+    {
+      "a": "Flatiron School",
+      "b": "Codecademy",
+      "a_rate": 0.2037037037037037,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "Flatiron School > Codecademy"
+    },
+    {
+      "a": "Nucamp",
+      "b": "TripleTen",
+      "a_rate": 0.18518518518518517,
+      "b_rate": 0.17407407407407408,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Nucamp",
+      "b": "Fullstack Academy",
+      "a_rate": 0.18518518518518517,
+      "b_rate": 0.11851851851851852,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "Nucamp",
+      "b": "BrainStation",
+      "a_rate": 0.18518518518518517,
+      "b_rate": 0.037037037037037035,
+      "distinguishable": true,
+      "verdict": "Nucamp > BrainStation"
+    },
+    {
+      "a": "Nucamp",
+      "b": "Codecademy",
+      "a_rate": 0.18518518518518517,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "Nucamp > Codecademy"
+    },
+    {
+      "a": "TripleTen",
+      "b": "Fullstack Academy",
+      "a_rate": 0.17407407407407408,
+      "b_rate": 0.11851851851851852,
+      "distinguishable": false,
+      "verdict": "indistinguishable at this sample size"
+    },
+    {
+      "a": "TripleTen",
+      "b": "BrainStation",
+      "a_rate": 0.17407407407407408,
+      "b_rate": 0.037037037037037035,
+      "distinguishable": true,
+      "verdict": "TripleTen > BrainStation"
+    },
+    {
+      "a": "TripleTen",
+      "b": "Codecademy",
+      "a_rate": 0.17407407407407408,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "TripleTen > Codecademy"
+    },
+    {
+      "a": "Fullstack Academy",
+      "b": "BrainStation",
+      "a_rate": 0.11851851851851852,
+      "b_rate": 0.037037037037037035,
+      "distinguishable": true,
+      "verdict": "Fullstack Academy > BrainStation"
+    },
+    {
+      "a": "Fullstack Academy",
+      "b": "Codecademy",
+      "a_rate": 0.11851851851851852,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "Fullstack Academy > Codecademy"
+    },
+    {
+      "a": "BrainStation",
+      "b": "Codecademy",
+      "a_rate": 0.037037037037037035,
+      "b_rate": 0.0,
+      "distinguishable": true,
+      "verdict": "BrainStation > Codecademy"
+    }
+  ],
+  "cross_model": {
+    "engines": [
+      "anthropic",
+      "openai",
+      "perplexity"
+    ],
+    "average_jaccard": 0.5740238095238095,
+    "pairwise": {
+      "anthropic|openai": 0.5952380952380951,
+      "anthropic|perplexity": 0.5932773109243696,
+      "openai|perplexity": 0.5310267857142857
+    },
+    "prompts_compared": 28
+  },
+  "separate_engines": [
+    {
+      "engine": "gemini",
+      "answers": 90,
+      "ungrounded": 67,
+      "citations": 23,
+      "avg_citations": 0.25555555555555554
+    }
+  ],
+  "headline_claim": "When a prompt names a brand, the answer names that brand. In this study it happened in every case. The further a question gets from naming anyone, the less often any brand appears at all.",
+  "intent_para": "Commercial questions get answered with a list of schools: almost every commercial answer names at least one of the ten brands. Informational questions get answered with an essay: most informational answers name no bootcamp at all. Asking whether bootcamps are worth it does not make the engine recommend anyone, so nobody is visible.",
+  "formula_para": "So a visibility score is roughly the share of prompts that name the brand, times 100%, plus the share that don't, times the brand's actual rate on open questions. The first term is set by whoever wrote the prompt list. Only the second term is the brand.",
+  "monitor_para": "This study exists because of that dashboard. It was a weekly monitor built for one bootcamp's marketing team, and it reported that the brand appeared in 61% of AI answers about its category. Twelve of its thirty prompts named the brand. Across six weekly runs, every one of the 482 answers to those prompts named it. On the other eighteen prompts, the same engine in the same week named it in 37% of answers. Of the 61 points on the dashboard, 39 came from the prompt list.",
+  "monitor_context": "The monitor's 37% and this study's figure for the same brand are not the same measurement: one engine in August on prompts written to watch one brand, against three engines in October on prompts written to survey a category. Both sit a long way below 61.",
+  "citation_note": "These are the sources the engines' search step returned, not the sources the answers drew on. Perplexity and Claude return everything their search retrieved: one answer here retrieves a Nucamp page and then talks entirely about a different school. Read this as what the engines looked at, not what persuaded them.",
+  "discarded": [
+    [
+      "Content farms out-cite the brands' own sites.",
+      "A manual check of five flagged domains found a program-matching search tool, a paid tutoring service and a legitimate developer academy. The classification was a judgement, and it was wrong often enough that the number meant nothing."
+    ],
+    [
+      "Reddit barely registers.",
+      "Community sources were under 1% of retrieved sources. Reddit's citation share in ChatGPT had already collapsed in August 2026, and that was widely covered. Not a finding."
+    ],
+    [
+      "API results differ from what users see, so commercial tools measure the wrong thing.",
+      "Backwards. Commercial tools collect from the browser to avoid exactly that discrepancy. This study runs on APIs, so it is this study's limitation."
+    ],
+    [
+      "Perplexity grounds every answer; Gemini grounds almost none.",
+      "Perplexity was given an explicit search instruction during the run and Gemini was not. The comparison was confounded by configuration."
+    ],
+    [
+      "Some brands are cited far more often than they are named.",
+      "Nucamp's site appeared in the returned sources of 101 answers while its name appeared in about half as many. That is a fact about what \"citation\" means for these engines (retrieved, not used), not about Nucamp."
+    ]
+  ],
+  "caveats": [
+    "270 answers across 10 brands and 30 questions, sampled repeatedly rather than asked once, because the same question returns different answers each time.",
+    "Rates are reported with 95% Wilson confidence intervals. Where two intervals overlap, no ranking between those brands is claimed.",
+    "Answers come from provider APIs with web search switched on, not from the chat interfaces people use. Commercial tools collect from the browser for that reason.",
+    "\"Retrieved\" sources are what the search step returned, not what the answer used. They overstate how much any one source shaped an answer.",
+    "The brand-named row rests on three prompts. The original monitor's 482 of 482 is the stronger evidence for that effect, on one engine.",
+    "Answer engines change, and so do the search results they read. This is a measurement of a moment, not a permanent property."
+  ],
+  "footer": "Method, code and data are open. Flatiron School is one of the ten brands; the author built the original monitor there and left in September 2026. The monitor's own data is not published.",
+  "generated": "06 October 2026"
+}

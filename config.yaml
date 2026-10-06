@@ -1,0 +1,149 @@
+# AEO tracker config — the one file you edit.
+#
+# This is the MONITOR config: your original brand-centred setup, upgraded.
+# The category STUDY uses config.study.yaml, which drops the privileged brand
+# and uses a neutral prompt set.
+#
+# What changed from your original:
+#   * `domain:` is now `domains:` (a list). General Assembly has two.
+#   * Prompts are objects with an intent tag. Intent is what lets you say
+#     "we own comparison queries and vanish from discovery queries."
+#   * Aliases expanded, because a missing alias undercounts a brand and
+#     quietly biases the whole result.
+#
+# Old-style config (bare string prompts, single `domain:`) still loads, so you
+# can upgrade in stages if you prefer.
+
+database: aeo.db
+runs_per_prompt: 5
+engines: [anthropic]
+
+sentiment:
+  enabled: false        # off by default: one LLM call per mentioned entity
+  provider: anthropic
+  model: claude-haiku-4-5
+
+brand:
+  name: Flatiron School
+  domains:
+    - flatironschool.com
+  aliases:
+    - Flatiron School
+    - Flatiron           # NOTE: also a Manhattan building and a health
+                         # company. Spot-check detections on this alias.
+
+competitors:
+  - name: General Assembly
+    domains: [generalassemb.ly, generalassembly.com]
+    aliases: [General Assembly, GA]        # "GA" is risky; check for false hits
+  - name: Springboard
+    domains: [springboard.com]
+    aliases: [Springboard]
+  - name: App Academy
+    domains: [appacademy.io]
+    aliases: [App Academy, AppAcademy, a/A]
+  - name: Hack Reactor
+    domains: [hackreactor.com, galvanize.com]
+    aliases: [Hack Reactor, HackReactor]
+  - name: Fullstack Academy
+    domains: [fullstackacademy.com]
+    aliases: [Fullstack Academy, Full Stack Academy, Fullstack]
+  - name: TripleTen
+    domains: [tripleten.com, practicum.com]
+    aliases: [TripleTen, Triple Ten, Practicum, Yandex Practicum]
+    # TripleTen was cited 140 times but mentioned only 124. Practicum is the
+    # former name and the likely cause. Verify after the next re-parse.
+  - name: BrainStation
+    domains: [brainstation.io]
+    aliases: [BrainStation, Brain Station]
+  - name: Codecademy
+    domains: [codecademy.com]
+    aliases: [Codecademy, Code Academy]
+
+# --- prompt panel ----------------------------------------------------------
+# Intents: informational | commercial | comparative | navigational | transactional
+#
+# Heads-up for the study: 17 of these 35 name Flatiron directly, which
+# guarantees a mention. That is correct for a brand monitor and wrong for a
+# category study. config.study.yaml uses a neutral set instead.
+
+prompts:
+  # --- commercial investigation ---
+  - text: "What are the best coding bootcamps in 2026?"
+    intent: commercial
+  - text: "Best online software engineering bootcamp?"
+    intent: commercial
+  - text: "Best data science bootcamps for career changers?"
+    intent: commercial
+  - text: "Best coding bootcamp for someone with no tech experience?"
+    intent: commercial
+  - text: "Best AI or machine learning bootcamps?"
+    intent: commercial
+  - text: "Best bootcamps with financing or low-upfront-cost options?"
+    intent: commercial
+  - text: "Top cybersecurity bootcamps or certificate programs?"
+    intent: commercial
+  - text: "Which coding bootcamp has the best job placement rate?"
+    intent: commercial
+  - text: "Which bootcamps offer an apprenticeship or earn-while-you-learn model?"
+    intent: commercial
+  - text: "Where should I study cybersecurity?"
+    intent: commercial
+
+  # --- informational ---
+  - text: "Is a coding bootcamp better than a computer science degree?"
+    intent: informational
+  - text: "Are coding bootcamps still worth it now that AI can write code?"
+    intent: informational
+  - text: "How do I best learn AI?"
+    intent: informational
+  - text: "Certificate program vs work-integrated apprenticeship — which is better?"
+    intent: informational
+  - text: "Is Flatiron School worth it?"
+    intent: informational
+
+  # --- comparative ---
+  - text: "Flatiron School vs General Assembly — which is better?"
+    intent: comparative
+  - text: "Flatiron School vs Hack Reactor for software engineering?"
+    intent: comparative
+  - text: "Flatiron School vs Springboard for data science?"
+    intent: comparative
+
+  # --- navigational (brand-specific lookups) ---
+  - text: "What programs does Flatiron School offer?"
+    intent: navigational
+  - text: "How much does Flatiron School cost?"
+    intent: navigational
+  - text: "How long are Flatiron's programs — full-time vs part-time?"
+    intent: navigational
+  - text: "Are Flatiron's programs fully online or in person?"
+    intent: navigational
+  - text: "What's the average starting salary after Flatiron?"
+    intent: navigational
+  - text: "What's the weekly time commitment and schedule?"
+    intent: navigational
+  - text: "When do Flatiron's cohorts start?"
+    intent: navigational
+  - text: "Who are Flatiron's employer partners?"
+    intent: navigational
+  - text: "Who hires Flatiron apprentices?"
+    intent: navigational
+  - text: "What is Flatiron's withdrawal or refund policy?"
+    intent: navigational
+  - text: "How much is the Work-Integrated AI Engineering Immersive, and what's the net cost after apprenticeship earnings?"
+    intent: navigational
+  - text: "Is the Work-Integrated Immersive open to international students?"
+    intent: navigational
+
+  # --- transactional ---
+  - text: "What financing and payment options does Flatiron offer?"
+    intent: transactional
+  - text: "Does Flatiron offer a scholarship for its immersive programs?"
+    intent: transactional
+  - text: "Is there a discount for paying tuition upfront, and which programs does it apply to?"
+    intent: transactional
+  - text: "Can I enroll in Flatiron from outside the US?"
+    intent: transactional
+  - text: "Does Flatiron offer a job guarantee, and what career support is included?"
+    intent: transactional

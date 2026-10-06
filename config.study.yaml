@@ -1,0 +1,182 @@
+# STUDY config — a category survey, not a brand monitor.
+#
+# Two differences from config.yaml that matter:
+#
+#   1. `brands:` is a FLAT list. No privileged centre. In the monitor,
+#      Flatiron is "the brand" and everyone else is "a competitor", which is
+#      correct for monitoring and wrong for a study. Here all ten are peers,
+#      and nothing in the analysis treats one differently.
+#
+#   2. The prompts are neutral. Only three of the thirty name a brand, and
+#      those three are deliberate head-to-head comparisons. The monitor set
+#      named Flatiron in 17 of 35 prompts, which manufactured its mention rate.
+#
+# DISCLOSURE: Flatiron School is included and the author formerly worked
+# there. State this in the published methodology. Leaving them out would be
+# conspicuous in a category this small; including them silently would be worse.
+#
+# Separate database file so the study never mixes with the monitor's history.
+
+database: aeo_study.db
+runs_per_prompt: 3        # 30 prompts x 4 engines x 3 = 360 answers
+engines: [anthropic, openai, perplexity, gemini]
+
+sentiment:
+  enabled: false          # off: thousands of extra calls, answers no study question
+
+brands:
+- name: Flatiron School
+  domains:
+  - flatironschool.com
+  aliases:
+  - Flatiron School
+  - Flatiron
+- name: General Assembly
+  domains:
+  - generalassemb.ly
+  - generalassembly.com
+  aliases:
+  - General Assembly
+- name: Springboard
+  domains:
+  - springboard.com
+  aliases:
+  - Springboard
+- name: App Academy
+  domains:
+  - appacademy.io
+  aliases:
+  - App Academy
+  - AppAcademy
+- name: Hack Reactor
+  domains:
+  - hackreactor.com
+  - galvanize.com
+  aliases:
+  - Hack Reactor
+  - HackReactor
+  - Galvanize
+- name: Fullstack Academy
+  domains:
+  - fullstackacademy.com
+  aliases:
+  - Fullstack Academy
+  - Full Stack Academy
+- name: TripleTen
+  domains:
+  - tripleten.com
+  - practicum.com
+  aliases:
+  - TripleTen
+  - Triple Ten
+  - Practicum
+  - Yandex Practicum
+- name: BrainStation
+  domains:
+  - brainstation.io
+  aliases:
+  - BrainStation
+  - Brain Station
+- name: Codecademy
+  domains:
+  - codecademy.com
+  aliases:
+  - Codecademy
+  - Code Academy
+- name: Nucamp
+  domains:
+  - nucamp.co
+  aliases:
+  - Nucamp
+  - NuCamp
+prompts:
+- id: s01
+  text: What are the best coding bootcamps right now?
+  intent: commercial
+- id: s02
+  text: Best coding bootcamp for a career changer with no tech background?
+  intent: commercial
+- id: s03
+  text: Which online software engineering bootcamps are actually worth the money?
+  intent: commercial
+- id: s04
+  text: Best data science bootcamps for someone switching careers?
+  intent: commercial
+- id: s05
+  text: What are the top AI and machine learning bootcamps?
+  intent: commercial
+- id: s06
+  text: Best cybersecurity bootcamps or certificate programs?
+  intent: commercial
+- id: s07
+  text: Which coding bootcamps have the best job placement rates?
+  intent: commercial
+- id: s08
+  text: Which bootcamps offer an apprenticeship or earn-while-you-learn model?
+  intent: commercial
+- id: s09
+  text: Coding bootcamps with income share agreements or deferred tuition?
+  intent: commercial
+- id: s10
+  text: Best part-time coding bootcamp for someone with a full-time job?
+  intent: commercial
+- id: s11
+  text: Which coding bootcamps actually have a job guarantee, and is it real?
+  intent: commercial
+- id: s12
+  text: Most affordable coding bootcamps that still get people hired?
+  intent: commercial
+- id: s13
+  text: Are coding bootcamps still worth it in 2026?
+  intent: informational
+- id: s14
+  text: Are coding bootcamps pointless now that AI can write code?
+  intent: informational
+- id: s15
+  text: Is a coding bootcamp better than a computer science degree?
+  intent: informational
+- id: s16
+  text: Can you get a software engineering job from a bootcamp with no degree?
+  intent: informational
+- id: s17
+  text: How much do coding bootcamp graduates actually earn?
+  intent: informational
+- id: s18
+  text: How long does it take to get a job after a coding bootcamp?
+  intent: informational
+- id: s19
+  text: Are bootcamp job placement statistics trustworthy?
+  intent: informational
+- id: s20
+  text: Is it better to teach yourself to code or pay for a bootcamp?
+  intent: informational
+- id: s21
+  text: What is a tech apprenticeship and how is it different from a bootcamp?
+  intent: informational
+- id: s22
+  text: Do employers take coding bootcamp graduates seriously?
+  intent: informational
+- id: s23
+  text: Online vs in-person coding bootcamp — does it make a difference?
+  intent: informational
+- id: s24
+  text: What should I look for when comparing coding bootcamps?
+  intent: informational
+- id: s25
+  text: How do I pay for a coding bootcamp if I can't afford it upfront?
+  intent: transactional
+- id: s26
+  text: Are there coding bootcamp scholarships for underrepresented groups?
+  intent: transactional
+- id: s27
+  text: Can I do a US coding bootcamp from outside the United States?
+  intent: transactional
+- id: s28
+  text: Flatiron School vs General Assembly — which is better?
+  intent: comparative
+- id: s29
+  text: Springboard vs Flatiron School for data science?
+  intent: comparative
+- id: s30
+  text: Hack Reactor vs App Academy for software engineering?
+  intent: comparative

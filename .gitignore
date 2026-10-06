@@ -1,0 +1,18 @@
+.env
+__pycache__/
+*.pyc
+
+# macOS + local tooling cruft — never commit these
+.DS_Store
+.claude/settings.local.json
+
+# aeo.db and public/index.html ARE committed on purpose:
+# the weekly workflow appends to the DB and regenerates the page, then pushes both.
+*.backup-*
+.env
+
+# run logs
+*.log
+
+# monitor database: collected for a former employer, kept local only
+aeo.db
