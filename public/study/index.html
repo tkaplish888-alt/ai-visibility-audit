@@ -3,179 +3,294 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Where a 61% AI visibility score came from</title>
-<meta name="description" content="How prompt wording sets AI visibility
- scores: 270 answers about coding bootcamps across three answer engines.">
+<title>61% visible. 39 points of it were the prompt list.</title>
+<meta name="description" content="How prompt wording sets AI visibility scores: 270 answers about coding bootcamps across three answer engines, with the arithmetic and the findings that were thrown out.">
+<meta property="og:title" content="61% visible. 39 points of it were the prompt list.">
+<meta property="og:description" content="I built an AI visibility monitor for a coding bootcamp. It reported the brand in 61% of AI answers about its category. Then I measured how much of that number was the monitor, re-ran the question across ten brands and three engines, and threw out five findings on the way. This is what held.">
+<meta property="og:image" content="prompt-effect.png">
+<meta name="author" content="Tonishqa Kaplish">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ground:#F1F3F1; --ink:#16302B; --teal:#2E6E68;
-    --plum:#6B3352; --grey:#75817D; --rule:#D4DAD7;
+    --ground:#F3F5F4; --panel:#FFFFFF; --ink:#15282C;
+    --teal:#1F6F6B; --teal-soft:#9CC4C0; --plum:#7A2E5B;
+    --grey:#66736F; --rule:#D5DCDA;
   }
   * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
   body {
     margin:0; background:var(--ground); color:var(--ink);
-    font:400 18px/1.62 "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    font:400 17px/1.6 "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap { max-width:860px; margin:0 auto; padding:0 24px 96px; }
-  p, li { max-width:64ch; }
-  header { padding:72px 0 8px; }
+  a { color:var(--teal); text-decoration-thickness:1px; text-underline-offset:3px; }
+  a:hover { color:var(--ink); }
+  :focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+
+  .shell { max-width:1080px; margin:0 auto; padding:0 28px 96px; }
+
+  /* hero */
+  .hero { padding:72px 0 44px; border-bottom:1px solid var(--rule); }
   h1 {
-    font-size:clamp(34px,5.4vw,56px); line-height:1.06; font-weight:700;
-    letter-spacing:-0.022em; margin:0 0 20px; max-width:19ch;
+    font-size:clamp(36px,5.2vw,62px); line-height:1.0; font-weight:800;
+    letter-spacing:-0.035em; margin:0 0 22px; max-width:17ch; text-wrap:balance;
   }
-  .standfirst { font-size:21px; color:var(--grey); margin:0 0 28px; }
-  .meta {
-    font-size:15px; color:var(--grey); border-top:1px solid var(--rule);
-    padding-top:14px;
+  .standfirst { font-size:20px; line-height:1.5; margin:0; max-width:58ch; }
+  .split { margin:40px 0 0; max-width:720px; }
+  .split .track {
+    display:flex; height:34px; background:var(--panel);
+    border:1px solid var(--rule); border-radius:4px; overflow:hidden;
   }
-  .meta span { margin-right:26px; white-space:nowrap; }
+  .split .seg { height:100%; display:block; }
+  .split .seg.plum { background:var(--plum); }
+  .split .seg.teal { background:var(--teal); }
+  .split .scale { display:flex; justify-content:space-between; font-size:12px;
+                   color:var(--grey); margin-top:6px; }
+  .split .keys { display:flex; flex-wrap:wrap; gap:8px 28px; margin:14px 0 0;
+                  padding:0; list-style:none; font-size:15px; }
+  .split .keys li { display:flex; align-items:baseline; gap:9px; }
+  .split .keys i { width:12px; height:12px; border-radius:2px; display:inline-block;
+                    transform:translateY(1px); }
+  .split .keys b { font-weight:700; font-variant-numeric:tabular-nums; }
+  .split figcaption { font-size:14px; color:var(--grey); margin-top:10px; }
+
+  /* two-column body with a sticky rail */
+  .layout {
+    display:grid; grid-template-columns:minmax(0,680px) 264px;
+    column-gap:72px; justify-content:space-between;
+  }
+  main { min-width:0; }
+  aside { position:sticky; top:24px; align-self:start; margin-top:72px; }
+  .links.mobile-links { display:none; margin-top:28px; }
+  .card {
+    background:var(--panel); border:1px solid var(--rule); border-radius:8px;
+    padding:20px 22px; margin-bottom:18px;
+  }
+  .card h3 { margin:0 0 6px; font-size:17px; font-weight:700; }
+  .card .role { margin:0 0 14px; font-size:14px; line-height:1.45; color:var(--grey); }
+  .links { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px; }
+  .links a {
+    display:inline-block; padding:6px 11px; border:1px solid var(--rule);
+    border-radius:999px; font-size:14px; font-weight:500; text-decoration:none;
+    color:var(--ink); background:var(--ground);
+  }
+  .links a:hover { border-color:var(--teal); color:var(--teal); }
+  .toc h4, .facts h4 { margin:0 0 8px; font-size:13px; font-weight:600;
+                        color:var(--grey); }
+  .toc ol { list-style:none; margin:0; padding:0; }
+  .toc li { padding:5px 0; border-top:1px solid var(--rule); font-size:14.5px; line-height:1.35; }
+  .toc li:first-child { border-top:0; }
+  .toc a { color:var(--ink); text-decoration:none; }
+  .toc a:hover { color:var(--teal); }
+  .facts dl { margin:0; }
+  .facts div { display:grid; grid-template-columns:76px 1fr; gap:10px;
+                padding:5px 0; border-top:1px solid var(--rule); font-size:14px; }
+  .facts div:first-child { border-top:0; }
+  .facts dt { color:var(--grey); margin:0; }
+  .facts dd { margin:0; }
+
+  /* content */
+  section { padding-top:56px; }
   h2 {
-    font-size:27px; font-weight:600; letter-spacing:-0.012em;
-    margin:64px 0 6px; max-width:24ch;
+    font-size:30px; line-height:1.12; font-weight:700; letter-spacing:-0.02em;
+    margin:0 0 8px;
   }
-  h3 { font-size:19px; font-weight:600; margin:36px 0 4px; }
-  .sub { color:var(--grey); font-size:16px; margin:0 0 22px; }
-  figure { margin:26px 0 8px; }
+  h3 { font-size:19px; font-weight:700; margin:34px 0 6px; }
+  .sub { color:var(--grey); font-size:16px; margin:0 0 20px; }
+  p { margin:0 0 18px; }
+  figure { margin:22px 0 10px; }
   svg { width:100%; height:auto; display:block; }
-  figcaption { font-size:15px; color:var(--grey); margin-top:12px; max-width:64ch; }
-  .legend {
-    list-style:none; padding:0; margin:18px 0 0; display:flex;
-    flex-wrap:wrap; gap:6px 22px; font-size:15px; max-width:100%;
-  }
-  .legend li { display:flex; align-items:center; gap:8px; }
-  .legend b { font-weight:600; color:var(--grey); }
-  .sw { width:13px; height:13px; border-radius:3px; display:inline-block; }
-  .key { display:flex; gap:24px; font-size:15px; color:var(--grey); margin:14px 0 0; }
-  .key i { width:11px; height:11px; border-radius:50%; display:inline-block;
-            margin-right:7px; vertical-align:baseline; }
-  table { width:100%; border-collapse:collapse; margin:22px 0; font-size:16px; }
-  th, td { text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--rule); }
-  th { font-weight:600; font-size:14px; color:var(--grey); }
-  td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; padding-left:16px; }
-  td.t { color:var(--grey); }
-  .pull {
-    border-left:3px solid var(--plum); padding:4px 0 4px 22px;
-    margin:34px 0; font-size:22px; line-height:1.42; max-width:46ch;
-  }
-  .caveat {
-    background:#fff; border:1px solid var(--rule); border-radius:6px;
-    padding:26px 30px; margin:56px 0 0;
-  }
-  .caveat h2 { margin-top:0; font-size:21px; }
-  .caveat li { font-size:16px; margin-bottom:9px; }
-  .ex { color:var(--grey); font-size:14px; font-style:italic; }
+  figcaption { font-size:14px; color:var(--grey); margin-top:10px; }
   img { max-width:100%; height:auto; display:block; border:1px solid var(--rule);
          border-radius:6px; }
-  .discard li { margin-bottom:14px; }
-  footer {
-    margin-top:64px; padding-top:20px; border-top:1px solid var(--rule);
-    font-size:15px; color:var(--grey);
+  .pull {
+    border-left:3px solid var(--plum); padding:2px 0 2px 20px; margin:30px 0;
+    font-size:23px; line-height:1.38; font-weight:500; letter-spacing:-0.01em;
   }
-  a { color:var(--teal); }
-  a:focus-visible, :focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+  table { width:100%; border-collapse:collapse; margin:18px 0 22px; font-size:15.5px; }
+  th, td { text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--rule);
+            vertical-align:top; }
+  th { font-weight:600; font-size:13.5px; color:var(--grey); }
+  tr.grp th { padding-top:18px; color:var(--ink); font-size:14px; }
+  td.n, th.n { text-align:right; font-variant-numeric:tabular-nums;
+                white-space:nowrap; padding-left:16px; }
+  td.t { color:var(--grey); }
+  .ex { color:var(--grey); font-size:13.5px; font-style:italic; }
+  ol.list { padding:0; margin:18px 0 0; list-style:none; counter-reset:item; }
+  ol.list li {
+    display:grid; grid-template-columns:34px 1fr; gap:0 8px; padding:16px 0;
+    border-top:1px solid var(--rule); counter-increment:item;
+  }
+  ol.list li::before {
+    content:counter(item); font-weight:700; font-size:20px; line-height:1.2;
+    color:var(--plum); grid-row:1 / span 2;
+  }
+  ol.list li b { font-weight:700; display:block; margin-bottom:3px; }
+  ol.list li span { display:block; color:var(--ink); }
+  ol.list.checks li::before { color:var(--teal); }
+  .limits {
+    background:var(--panel); border:1px solid var(--rule); border-radius:8px;
+    padding:24px 28px; margin-top:56px;
+  }
+  .limits h2 { font-size:22px; margin-bottom:12px; }
+  .limits ul { margin:0; padding-left:20px; }
+  .limits li { margin-bottom:9px; font-size:15.5px; }
+  footer {
+    margin-top:56px; padding-top:18px; border-top:1px solid var(--rule);
+    font-size:14.5px; color:var(--grey);
+  }
+
+  @media (max-width:940px) {
+    .layout { grid-template-columns:1fr; }
+    aside { position:static; margin-top:40px; }
+    .links.mobile-links { display:flex; }
+  }
   @media (max-width:640px) {
-    body { font-size:17px; }
-    header { padding-top:44px; }
-    .meta span { display:block; margin:0 0 4px; }
+    body { font-size:16px; }
+    .shell { padding:0 18px 72px; }
+    .hero { padding-top:40px; }
+    .standfirst { font-size:18px; }
+    h2 { font-size:26px; }
+    .pull { font-size:20px; }
+    section { padding-top:44px; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="shell">
+<div class="layout">
+<main>
 
-<header>
-  <h1>Where a 61% AI visibility score came from</h1>
-  <p class="standfirst">A brand monitor said one bootcamp appeared in 61% of AI answers about its category. This measures how much of that number was the monitor.</p>
-  <p class="meta">
-    <span>Tonishqa Kaplish</span>
-    <span>270 answers</span>
-    <span>30 questions</span>
-    <span>Claude, ChatGPT, Perplexity</span>
-    <span>2026-10-01</span>
-  </p>
+<header class="hero">
+  <h1>61% visible.<br>39 points of it were the prompt list.</h1>
+  <p class="standfirst">I built an AI visibility monitor for a coding bootcamp. It reported the brand in 61% of AI answers about its category. Then I measured how much of that number was the monitor, re-ran the question across ten brands and three engines, and threw out five findings on the way. This is what held.</p>
+  <figure class="split" aria-label="The reported 61% split into its two sources">
+    <div class="track">
+      <span class="seg plum" style="width:38.8%"></span>
+      <span class="seg teal" style="width:22.4%"></span>
+    </div>
+    <div class="scale"><span>0%</span><span>61% reported</span><span>100%</span></div>
+    <ul class="keys">
+      <li><i style="background:var(--plum)"></i><span><b>39 points</b> from prompts that named the brand</span></li>
+      <li><i style="background:var(--teal)"></i><span><b>22 points</b> from the brand on every other prompt</span></li>
+    </ul>
+    <figcaption>The monitor's final weekly run: 147 answers,
+    30 prompts, 12 of them naming the brand.</figcaption>
+  </figure>
+  <ul class="links mobile-links"><li><a href="https://www.linkedin.com/in/tonishqa">LinkedIn</a></li><li><a href="https://github.com/tkaplish888-alt/ai-visibility-audit">GitHub</a></li><li><a href="https://tonishqakaplish.com">Portfolio</a></li><li><a href="mailto:tkaplish888@gmail.com">Email</a></li><li><a href="https://calendly.com/tkaplish888/30min">Book 30 minutes</a></li></ul>
 </header>
 
-<h2>It depends how you ask</h2>
+<section id="ask">
+<h2>Ask differently, get a different brand</h2>
 <p class="sub">Share of answers naming a given brand, by prompt type. Every
-brand checked against every answer, pooled across all ten brands.</p>
+brand checked against every answer, pooled across all ten.</p>
 <figure>
-  <svg viewBox="0 0 760 276" role="img" aria-label="Share of answers naming a given brand, by prompt type" xmlns="http://www.w3.org/2000/svg"><line x1="190.0" y1="14" x2="190.0" y2="246" stroke="#D4DAD7" stroke-width="1"/><text x="190.0" y="264" text-anchor="middle" font-size="12" fill="#75817D">0%</text><line x1="308.5" y1="14" x2="308.5" y2="246" stroke="#D4DAD7" stroke-width="1"/><text x="308.5" y="264" text-anchor="middle" font-size="12" fill="#75817D">25%</text><line x1="427.0" y1="14" x2="427.0" y2="246" stroke="#D4DAD7" stroke-width="1"/><text x="427.0" y="264" text-anchor="middle" font-size="12" fill="#75817D">50%</text><line x1="545.5" y1="14" x2="545.5" y2="246" stroke="#D4DAD7" stroke-width="1"/><text x="545.5" y="264" text-anchor="middle" font-size="12" fill="#75817D">75%</text><line x1="664.0" y1="14" x2="664.0" y2="246" stroke="#D4DAD7" stroke-width="1"/><text x="664.0" y="264" text-anchor="middle" font-size="12" fill="#75817D">100%</text><text x="176" y="41.0" text-anchor="end" font-size="15" font-weight="600" fill="#16302B">Names the brand</text><text x="176" y="58.0" text-anchor="end" font-size="12" fill="#75817D">54 of 54</text><rect x="190" y="33.0" width="474.0" height="20" rx="3" fill="#2E6E68"><title>Names the brand: 100.0% (54 of 54), 95% interval 93.4% to 100.0%</title></rect><line x1="632.5" y1="43.0" x2="664.0" y2="43.0" stroke="#16302B" stroke-width="1.5"/><line x1="632.5" y1="37.0" x2="632.5" y2="49.0" stroke="#16302B" stroke-width="1.5"/><line x1="664.0" y1="37.0" x2="664.0" y2="49.0" stroke="#16302B" stroke-width="1.5"/><text x="674.0" y="48.0" font-size="15" font-weight="600" fill="#16302B">100%</text><text x="176" y="99.0" text-anchor="end" font-size="15" font-weight="600" fill="#16302B">Commercial</text><text x="176" y="116.0" text-anchor="end" font-size="12" fill="#75817D">355 of 1,080</text><rect x="190" y="91.0" width="155.8" height="20" rx="3" fill="#2E6E68"><title>Commercial: 32.9% (355 of 1080), 95% interval 30.1% to 35.7%</title></rect><line x1="332.8" y1="101.0" x2="359.4" y2="101.0" stroke="#16302B" stroke-width="1.5"/><line x1="332.8" y1="95.0" x2="332.8" y2="107.0" stroke="#16302B" stroke-width="1.5"/><line x1="359.4" y1="95.0" x2="359.4" y2="107.0" stroke="#16302B" stroke-width="1.5"/><text x="369.4" y="106.0" font-size="15" font-weight="600" fill="#16302B">32.9%</text><text x="176" y="157.0" text-anchor="end" font-size="15" font-weight="600" fill="#16302B">Transactional</text><text x="176" y="174.0" text-anchor="end" font-size="12" fill="#75817D">39 of 270</text><rect x="190" y="149.0" width="68.5" height="20" rx="3" fill="#2E6E68"><title>Transactional: 14.4% (39 of 270), 95% interval 10.7% to 19.1%</title></rect><line x1="241.0" y1="159.0" x2="280.7" y2="159.0" stroke="#16302B" stroke-width="1.5"/><line x1="241.0" y1="153.0" x2="241.0" y2="165.0" stroke="#16302B" stroke-width="1.5"/><line x1="280.7" y1="153.0" x2="280.7" y2="165.0" stroke="#16302B" stroke-width="1.5"/><text x="290.7" y="164.0" font-size="15" font-weight="600" fill="#16302B">14.4%</text><text x="176" y="215.0" text-anchor="end" font-size="15" font-weight="600" fill="#16302B">Informational</text><text x="176" y="232.0" text-anchor="end" font-size="12" fill="#75817D">28 of 1,080</text><rect x="190" y="207.0" width="12.3" height="20" rx="3" fill="#2E6E68"><title>Informational: 2.6% (28 of 1080), 95% interval 1.8% to 3.7%</title></rect><line x1="198.5" y1="217.0" x2="207.6" y2="217.0" stroke="#16302B" stroke-width="1.5"/><line x1="198.5" y1="211.0" x2="198.5" y2="223.0" stroke="#16302B" stroke-width="1.5"/><line x1="207.6" y1="211.0" x2="207.6" y2="223.0" stroke="#16302B" stroke-width="1.5"/><text x="217.6" y="222.0" font-size="15" font-weight="600" fill="#16302B">2.6%</text></svg>
+  <svg viewBox="0 0 760 276" role="img" aria-label="Share of answers naming a given brand, by prompt type" xmlns="http://www.w3.org/2000/svg"><line x1="190.0" y1="14" x2="190.0" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="190.0" y="264" text-anchor="middle" font-size="12" fill="#66736F">0%</text><line x1="308.5" y1="14" x2="308.5" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="308.5" y="264" text-anchor="middle" font-size="12" fill="#66736F">25%</text><line x1="427.0" y1="14" x2="427.0" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="427.0" y="264" text-anchor="middle" font-size="12" fill="#66736F">50%</text><line x1="545.5" y1="14" x2="545.5" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="545.5" y="264" text-anchor="middle" font-size="12" fill="#66736F">75%</text><line x1="664.0" y1="14" x2="664.0" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="664.0" y="264" text-anchor="middle" font-size="12" fill="#66736F">100%</text><text x="176" y="41.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Names the brand</text><text x="176" y="58.0" text-anchor="end" font-size="12" fill="#66736F">54 of 54</text><rect x="190" y="33.0" width="474.0" height="20" rx="3" fill="#1F6F6B"><title>Names the brand: 100.0% (54 of 54), 95% interval 93.4% to 100.0%</title></rect><line x1="632.5" y1="43.0" x2="664.0" y2="43.0" stroke="#15282C" stroke-width="1.5"/><line x1="632.5" y1="37.0" x2="632.5" y2="49.0" stroke="#15282C" stroke-width="1.5"/><line x1="664.0" y1="37.0" x2="664.0" y2="49.0" stroke="#15282C" stroke-width="1.5"/><text x="674.0" y="48.0" font-size="15" font-weight="600" fill="#15282C">100%</text><text x="176" y="99.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Commercial</text><text x="176" y="116.0" text-anchor="end" font-size="12" fill="#66736F">355 of 1,080</text><rect x="190" y="91.0" width="155.8" height="20" rx="3" fill="#1F6F6B"><title>Commercial: 32.9% (355 of 1080), 95% interval 30.1% to 35.7%</title></rect><line x1="332.8" y1="101.0" x2="359.4" y2="101.0" stroke="#15282C" stroke-width="1.5"/><line x1="332.8" y1="95.0" x2="332.8" y2="107.0" stroke="#15282C" stroke-width="1.5"/><line x1="359.4" y1="95.0" x2="359.4" y2="107.0" stroke="#15282C" stroke-width="1.5"/><text x="369.4" y="106.0" font-size="15" font-weight="600" fill="#15282C">32.9%</text><text x="176" y="157.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Transactional</text><text x="176" y="174.0" text-anchor="end" font-size="12" fill="#66736F">39 of 270</text><rect x="190" y="149.0" width="68.5" height="20" rx="3" fill="#1F6F6B"><title>Transactional: 14.4% (39 of 270), 95% interval 10.7% to 19.1%</title></rect><line x1="241.0" y1="159.0" x2="280.7" y2="159.0" stroke="#15282C" stroke-width="1.5"/><line x1="241.0" y1="153.0" x2="241.0" y2="165.0" stroke="#15282C" stroke-width="1.5"/><line x1="280.7" y1="153.0" x2="280.7" y2="165.0" stroke="#15282C" stroke-width="1.5"/><text x="290.7" y="164.0" font-size="15" font-weight="600" fill="#15282C">14.4%</text><text x="176" y="215.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Informational</text><text x="176" y="232.0" text-anchor="end" font-size="12" fill="#66736F">28 of 1,080</text><rect x="190" y="207.0" width="12.3" height="20" rx="3" fill="#1F6F6B"><title>Informational: 2.6% (28 of 1080), 95% interval 1.8% to 3.7%</title></rect><line x1="198.5" y1="217.0" x2="207.6" y2="217.0" stroke="#15282C" stroke-width="1.5"/><line x1="198.5" y1="211.0" x2="198.5" y2="223.0" stroke="#15282C" stroke-width="1.5"/><line x1="207.6" y1="211.0" x2="207.6" y2="223.0" stroke="#15282C" stroke-width="1.5"/><text x="217.6" y="222.0" font-size="15" font-weight="600" fill="#15282C">2.6%</text></svg>
   <figcaption>Whiskers are 95% Wilson confidence intervals. No two rows
   overlap.</figcaption>
 </figure>
-
-<p class="pull">When a prompt names a brand, the answer names that brand. In this study it happened in every case. The further a question gets from naming anyone, the less often any brand appears at all.</p>
-
+<p class="pull">Put a brand&#x27;s name in the prompt and the answer names it back. Every time. Ask an open question and most brands disappear.</p>
 <table>
   <thead><tr><th>Prompt type</th><th class="n">Rate</th>
   <th class="n">Brand-answer pairs</th><th class="t">95% interval</th></tr></thead>
-  <tbody><tr><td>Names the brand<br><span class="ex">"Hack Reactor vs App Academy?"</span></td><td class="n">100.0%</td><td class="n">54 of 54</td><td class="t">93.4% to 100.0%</td></tr><tr><td>Commercial<br><span class="ex">"Best bootcamp for a career changer?"</span></td><td class="n">32.9%</td><td class="n">355 of 1,080</td><td class="t">30.1% to 35.7%</td></tr><tr><td>Transactional<br><span class="ex">"How do I pay for a bootcamp?"</span></td><td class="n">14.4%</td><td class="n">39 of 270</td><td class="t">10.7% to 19.1%</td></tr><tr><td>Informational<br><span class="ex">"Are bootcamps still worth it in 2026?"</span></td><td class="n">2.6%</td><td class="n">28 of 1,080</td><td class="t">1.8% to 3.7%</td></tr></tbody>
+  <tbody><tr><td>Names the brand<br><span class="ex">"Hack Reactor vs App Academy?"</span></td><td class="n">100%</td><td class="n">54 of 54</td><td class="t">93.4% to 100.0%</td></tr><tr><td>Commercial<br><span class="ex">"Best bootcamp for a career changer?"</span></td><td class="n">32.9%</td><td class="n">355 of 1,080</td><td class="t">30.1% to 35.7%</td></tr><tr><td>Transactional<br><span class="ex">"How do I pay for a bootcamp?"</span></td><td class="n">14.4%</td><td class="n">39 of 270</td><td class="t">10.7% to 19.1%</td></tr><tr><td>Informational<br><span class="ex">"Are bootcamps still worth it in 2026?"</span></td><td class="n">2.6%</td><td class="n">28 of 1,080</td><td class="t">1.8% to 3.7%</td></tr></tbody>
 </table>
+<p>The mechanism is plain. Commercial questions get a shortlist: 95% of them name at least one of the ten schools. Informational questions get an essay: 85% name nobody. No engine answers &quot;are bootcamps worth it?&quot; with a recommendation, so on that prompt no brand is visible, and no content strategy changes that.</p>
+<p>Which makes a visibility score arithmetic. Take the share of prompts that name the brand and multiply by 100%. Take the share that don&#x27;t and multiply by the brand&#x27;s real rate on open questions. Add them. The first term belongs to whoever wrote the prompt list. Only the second belongs to the brand.</p>
+</section>
 
-<p>Commercial questions get answered with a list of schools: almost every commercial answer names at least one of the ten brands. Informational questions get answered with an essay: most informational answers name no bootcamp at all. Asking whether bootcamps are worth it does not make the engine recommend anyone, so nobody is visible.</p>
-<p>So a visibility score is roughly the share of prompts that name the brand, times 100%, plus the share that don&#x27;t, times the brand&#x27;s actual rate on open questions. The first term is set by whoever wrote the prompt list. Only the second term is the brand.</p>
-
-<h2>What that did to a real monitor</h2>
+<section id="sixty-one">
+<h2>The 61%, taken apart</h2>
 <figure>
   <img src="monitor-before.png" alt="The original monitor's dashboard, reporting a 61% mention rate for one brand across 147 Claude answers." loading="lazy">
-  <figcaption>The dashboard that started this, as it was published in
-  August 2026.</figcaption>
+  <figcaption>The dashboard that started this, as published in August 2026.</figcaption>
 </figure>
-<p>This study exists because of that dashboard. It was a weekly monitor built for one bootcamp&#x27;s marketing team, and it reported that the brand appeared in 61% of AI answers about its category. Twelve of its thirty prompts named the brand. Across six weekly runs, every one of the 482 answers to those prompts named it. On the other eighteen prompts, the same engine in the same week named it in 37% of answers. Of the 61 points on the dashboard, 39 came from the prompt list.</p>
+<p>This study exists because of that dashboard. I built it as a weekly monitor for one bootcamp&#x27;s marketing team, and it said the brand appeared in 61% of AI answers about its category. Twelve of its thirty prompts named the brand. Across six weekly runs, all 482 answers to those prompts named it back, because the question contained the name. On the other eighteen prompts, same engine, same week: 37%.</p>
 <table>
-  <thead><tr><th>Monitor, final weekly run</th><th class="n">Prompts</th>
+  <thead><tr><th></th><th class="n">Prompts</th>
   <th class="n">Answers</th><th class="n">Brand named</th></tr></thead>
-  <tbody><tr><td><span>Prompts naming the brand</span></td><td class="n">12</td><td class="n">57</td><td class="n"><span>57 (100%)</span></td></tr><tr><td><span>Prompts that don't</span></td><td class="n">18</td><td class="n">90</td><td class="n"><span>33 (37%)</span></td></tr><tr><td><b>As reported</b></td><td class="n">30</td><td class="n">147</td><td class="n"><b>90 (61%)</b></td></tr></tbody>
+  <tbody><tr class="grp"><th colspan="4">The monitor, final weekly run (Claude, August 2026)</th></tr><tr><td><span>Prompts naming the brand</span></td><td class="n">12</td><td class="n">57</td><td class="n"><span>57 (100%)</span></td></tr><tr><td><span>Prompts that don&#x27;t</span></td><td class="n">18</td><td class="n">90</td><td class="n"><span>33 (37%)</span></td></tr><tr><td><b>As reported</b></td><td class="n">30</td><td class="n">147</td><td class="n"><b>90 (61%)</b></td></tr><tr class="grp"><th colspan="4">This study, same brand (Claude, ChatGPT, Perplexity, October 2026)</th></tr><tr><td><span>Prompts naming the brand</span></td><td class="n">2</td><td class="n">18</td><td class="n"><span>18 (100%)</span></td></tr><tr><td><span>Prompts that don&#x27;t</span></td><td class="n">28</td><td class="n">252</td><td class="n"><span>37 (15%)</span></td></tr><tr><td><b>All prompts</b></td><td class="n">30</td><td class="n">270</td><td class="n"><b>55 (20%)</b></td></tr></tbody>
 </table>
-<p>The monitor&#x27;s 37% and this study&#x27;s figure for the same brand are not the same measurement: one engine in August on prompts written to watch one brand, against three engines in October on prompts written to survey a category. Both sit a long way below 61.</p>
+<p>The monitor&#x27;s 37% and this study&#x27;s 15% are different measurements: one engine in August on prompts written to watch one brand, against three engines in October on prompts written to survey a category. The gap between them is the ordinary noise of this kind of work. The gap between either of them and 61 is the panel.</p>
+</section>
 
-<h2>How often each brand comes up</h2>
-<p class="sub">Mention rate across every prompt, with its 95% confidence
-interval.</p>
+<section id="brands">
+<h2>Ten brands, one cluster</h2>
+<p class="sub">Mention rate across every prompt, with its 95% confidence interval.</p>
 <figure>
-  <svg viewBox="0 0 760 404" role="img" aria-label="Mention rate with 95% confidence intervals" xmlns="http://www.w3.org/2000/svg"><line x1="168.0" y1="22" x2="168.0" y2="370" stroke="#D4DAD7" stroke-width="1"/><text x="168.0" y="388" text-anchor="middle" font-size="12" fill="#75817D">0%</text><line x1="275.2" y1="22" x2="275.2" y2="370" stroke="#D4DAD7" stroke-width="1"/><text x="275.2" y="388" text-anchor="middle" font-size="12" fill="#75817D">10%</text><line x1="382.4" y1="22" x2="382.4" y2="370" stroke="#D4DAD7" stroke-width="1"/><text x="382.4" y="388" text-anchor="middle" font-size="12" fill="#75817D">20%</text><line x1="489.6" y1="22" x2="489.6" y2="370" stroke="#D4DAD7" stroke-width="1"/><text x="489.6" y="388" text-anchor="middle" font-size="12" fill="#75817D">30%</text><line x1="596.8" y1="22" x2="596.8" y2="370" stroke="#D4DAD7" stroke-width="1"/><text x="596.8" y="388" text-anchor="middle" font-size="12" fill="#75817D">40%</text><line x1="704.0" y1="22" x2="704.0" y2="370" stroke="#D4DAD7" stroke-width="1"/><text x="704.0" y="388" text-anchor="middle" font-size="12" fill="#75817D">50%</text><text x="154" y="51.0" text-anchor="end" font-size="14" fill="#16302B">Springboard</text><line x1="483.0" y1="47.0" x2="604.0" y2="47.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="541.2" y1="38.0" x2="541.2" y2="56.0" stroke="#2E6E68" stroke-width="3"/><text x="614.0" y="51.0" font-size="13" fill="#75817D">35%</text><text x="154" y="85.0" text-anchor="end" font-size="14" fill="#16302B">App Academy</text><line x1="382.8" y1="81.0" x2="492.8" y2="81.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="434.0" y1="72.0" x2="434.0" y2="90.0" stroke="#2E6E68" stroke-width="3"/><text x="502.8" y="85.0" font-size="13" fill="#75817D">25%</text><text x="154" y="119.0" text-anchor="end" font-size="14" fill="#16302B">General Assembly</text><line x1="379.2" y1="115.0" x2="488.6" y2="115.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="430.0" y1="106.0" x2="430.0" y2="124.0" stroke="#2E6E68" stroke-width="3"/><text x="498.6" y="119.0" font-size="13" fill="#75817D">24%</text><text x="154" y="153.0" text-anchor="end" font-size="14" fill="#16302B">Hack Reactor</text><line x1="346.7" y1="149.0" x2="450.7" y2="149.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="394.3" y1="140.0" x2="394.3" y2="158.0" stroke="#2E6E68" stroke-width="3"/><text x="460.7" y="153.0" font-size="13" fill="#75817D">21%</text><text x="154" y="187.0" text-anchor="end" font-size="14" fill="#16302B">Flatiron School</text><line x1="339.5" y1="183.0" x2="442.2" y2="183.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="386.4" y1="174.0" x2="386.4" y2="192.0" stroke="#2E6E68" stroke-width="3"/><text x="452.2" y="187.0" font-size="13" fill="#75817D">20%</text><text x="154" y="221.0" text-anchor="end" font-size="14" fill="#16302B">Nucamp</text><line x1="321.7" y1="217.0" x2="420.8" y2="217.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="366.5" y1="208.0" x2="366.5" y2="226.0" stroke="#2E6E68" stroke-width="3"/><text x="430.8" y="221.0" font-size="13" fill="#75817D">19%</text><text x="154" y="255.0" text-anchor="end" font-size="14" fill="#16302B">TripleTen</text><line x1="311.1" y1="251.0" x2="407.9" y2="251.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="354.6" y1="242.0" x2="354.6" y2="260.0" stroke="#2E6E68" stroke-width="3"/><text x="417.9" y="255.0" font-size="13" fill="#75817D">17%</text><text x="154" y="289.0" text-anchor="end" font-size="14" fill="#16302B">Fullstack Academy</text><line x1="259.4" y1="285.0" x2="342.2" y2="285.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="295.1" y1="276.0" x2="295.1" y2="294.0" stroke="#2E6E68" stroke-width="3"/><text x="352.2" y="289.0" font-size="13" fill="#75817D">12%</text><text x="154" y="323.0" text-anchor="end" font-size="14" fill="#16302B">BrainStation</text><line x1="189.7" y1="319.0" x2="239.6" y2="319.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="207.7" y1="310.0" x2="207.7" y2="328.0" stroke="#2E6E68" stroke-width="3"/><text x="249.6" y="323.0" font-size="13" fill="#75817D">4%</text><text x="154" y="357.0" text-anchor="end" font-size="14" fill="#16302B">Codecademy</text><line x1="168.0" y1="353.0" x2="183.0" y2="353.0" stroke="#8FB5B1" stroke-width="10" stroke-linecap="round"/><line x1="168.0" y1="344.0" x2="168.0" y2="362.0" stroke="#2E6E68" stroke-width="3"/><text x="193.0" y="357.0" font-size="13" fill="#75817D">0%</text></svg>
+  <svg viewBox="0 0 760 404" role="img" aria-label="Mention rate with 95% confidence intervals" xmlns="http://www.w3.org/2000/svg"><line x1="168.0" y1="22" x2="168.0" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="168.0" y="388" text-anchor="middle" font-size="12" fill="#66736F">0%</text><line x1="275.2" y1="22" x2="275.2" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="275.2" y="388" text-anchor="middle" font-size="12" fill="#66736F">10%</text><line x1="382.4" y1="22" x2="382.4" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="382.4" y="388" text-anchor="middle" font-size="12" fill="#66736F">20%</text><line x1="489.6" y1="22" x2="489.6" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="489.6" y="388" text-anchor="middle" font-size="12" fill="#66736F">30%</text><line x1="596.8" y1="22" x2="596.8" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="596.8" y="388" text-anchor="middle" font-size="12" fill="#66736F">40%</text><line x1="704.0" y1="22" x2="704.0" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="704.0" y="388" text-anchor="middle" font-size="12" fill="#66736F">50%</text><text x="154" y="51.0" text-anchor="end" font-size="14" fill="#15282C">Springboard</text><line x1="483.0" y1="47.0" x2="604.0" y2="47.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="541.2" y1="38.0" x2="541.2" y2="56.0" stroke="#1F6F6B" stroke-width="3"/><text x="614.0" y="51.0" font-size="13" fill="#66736F">35%</text><text x="154" y="85.0" text-anchor="end" font-size="14" fill="#15282C">App Academy</text><line x1="382.8" y1="81.0" x2="492.8" y2="81.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="434.0" y1="72.0" x2="434.0" y2="90.0" stroke="#1F6F6B" stroke-width="3"/><text x="502.8" y="85.0" font-size="13" fill="#66736F">25%</text><text x="154" y="119.0" text-anchor="end" font-size="14" fill="#15282C">General Assembly</text><line x1="379.2" y1="115.0" x2="488.6" y2="115.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="430.0" y1="106.0" x2="430.0" y2="124.0" stroke="#1F6F6B" stroke-width="3"/><text x="498.6" y="119.0" font-size="13" fill="#66736F">24%</text><text x="154" y="153.0" text-anchor="end" font-size="14" fill="#15282C">Hack Reactor</text><line x1="346.7" y1="149.0" x2="450.7" y2="149.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="394.3" y1="140.0" x2="394.3" y2="158.0" stroke="#1F6F6B" stroke-width="3"/><text x="460.7" y="153.0" font-size="13" fill="#66736F">21%</text><text x="154" y="187.0" text-anchor="end" font-size="14" fill="#15282C">Flatiron School</text><line x1="339.5" y1="183.0" x2="442.2" y2="183.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="386.4" y1="174.0" x2="386.4" y2="192.0" stroke="#1F6F6B" stroke-width="3"/><text x="452.2" y="187.0" font-size="13" fill="#66736F">20%</text><text x="154" y="221.0" text-anchor="end" font-size="14" fill="#15282C">Nucamp</text><line x1="321.7" y1="217.0" x2="420.8" y2="217.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="366.5" y1="208.0" x2="366.5" y2="226.0" stroke="#1F6F6B" stroke-width="3"/><text x="430.8" y="221.0" font-size="13" fill="#66736F">19%</text><text x="154" y="255.0" text-anchor="end" font-size="14" fill="#15282C">TripleTen</text><line x1="311.1" y1="251.0" x2="407.9" y2="251.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="354.6" y1="242.0" x2="354.6" y2="260.0" stroke="#1F6F6B" stroke-width="3"/><text x="417.9" y="255.0" font-size="13" fill="#66736F">17%</text><text x="154" y="289.0" text-anchor="end" font-size="14" fill="#15282C">Fullstack Academy</text><line x1="259.4" y1="285.0" x2="342.2" y2="285.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="295.1" y1="276.0" x2="295.1" y2="294.0" stroke="#1F6F6B" stroke-width="3"/><text x="352.2" y="289.0" font-size="13" fill="#66736F">12%</text><text x="154" y="323.0" text-anchor="end" font-size="14" fill="#15282C">BrainStation</text><line x1="189.7" y1="319.0" x2="239.6" y2="319.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="207.7" y1="310.0" x2="207.7" y2="328.0" stroke="#1F6F6B" stroke-width="3"/><text x="249.6" y="323.0" font-size="13" fill="#66736F">4%</text><text x="154" y="357.0" text-anchor="end" font-size="14" fill="#15282C">Codecademy</text><line x1="168.0" y1="353.0" x2="183.0" y2="353.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="168.0" y1="344.0" x2="168.0" y2="362.0" stroke="#1F6F6B" stroke-width="3"/><text x="193.0" y="357.0" font-size="13" fill="#66736F">0%</text></svg>
   <figcaption>The bar is the range the true rate is very likely to fall in.
   The tick is what was measured. Where two bars overlap, the difference between
   those brands is not real at this sample size, however different the
   percentages look.</figcaption>
 </figure>
-
-<h3>Differences you cannot claim</h3><ul><li>Springboard (35%) and App Academy (25%)</li><li>Springboard (35%) and General Assembly (24%)</li><li>App Academy (25%) and General Assembly (24%)</li><li>App Academy (25%) and Hack Reactor (21%)</li><li>App Academy (25%) and Flatiron School (20%)</li><li>App Academy (25%) and Nucamp (19%)</li></ul>
-
+<p>Springboard is separable from Hack Reactor and every brand below it. Nothing else is separable from its neighbours. A ranked bar chart of this table would be asserting an order the data can&#x27;t support. My own dashboard drew it that way. Pairs you cannot separate: Springboard and App Academy, Springboard and General Assembly, App Academy and General Assembly, App Academy and Hack Reactor, App Academy and Flatiron School, App Academy and Nucamp.</p>
+<p>Codecademy&#x27;s zero is real, checked against the raw payloads: Perplexity retrieved Codecademy pages for three answers and used none of them. The matcher catches every spelling variant. I checked that too.</p>
 <h3>By prompt type, per brand</h3>
 <table>
-  <thead><tr><th>Question type</th><th class="n">Answers</th>
-  <th class="t">Most mentioned</th></tr></thead>
+  <thead><tr><th>Prompt type</th><th class="n">Answers</th>
+  <th class="t">Most named</th></tr></thead>
   <tbody><tr><td>commercial</td><td class="n">108</td><td class="t">Springboard 70%, General Assembly 46%, Nucamp 44%</td></tr><tr><td>comparative</td><td class="n">27</td><td class="t">Flatiron School 67%, Springboard 37%, App Academy 33%</td></tr><tr><td>informational</td><td class="n">108</td><td class="t">App Academy 8%, Springboard 5%, Hack Reactor 4%</td></tr><tr><td>transactional</td><td class="n">27</td><td class="t">Hack Reactor 41%, App Academy 30%, Flatiron School 26%</td></tr></tbody>
 </table>
+</section>
 
-<h2>The fifteen most-retrieved websites</h2>
-<p>These are the sources the engines&#x27; search step returned, not the sources the answers drew on. Perplexity and Claude return everything their search retrieved: one answer here retrieves a Nucamp page and then talks entirely about a different school. Read this as what the engines looked at, not what persuaded them.</p>
+<section id="retrieved">
+<h2>Retrieved, not used</h2>
+<p class="sub">The fifteen websites the engines' search step returned most often.</p>
+<p>What Perplexity and Claude return as &quot;citations&quot; is what their search step retrieved, not what the answer used. One answer here retrieves a Nucamp page and then talks entirely about a different school. So a citation rate is a retrieval rate. Read this table as what the engines looked at, not what persuaded them.</p>
 <table>
   <thead><tr><th>Domain</th><th class="n">Retrieved</th>
   <th class="t">Type</th></tr></thead>
   <tbody><tr><td>coursereport.com</td><td class="n">120</td><td class="t">Review sites and directories</td></tr><tr><td>hakia.com</td><td class="n">113</td><td class="t">Review sites and directories</td></tr><tr><td>nucamp.co</td><td class="n">101</td><td class="t">Brands&#x27; own websites</td></tr><tr><td>metana.io</td><td class="n">82</td><td class="t">Other vendors&#x27; content</td></tr><tr><td>tripleten.com</td><td class="n">74</td><td class="t">Brands&#x27; own websites</td></tr><tr><td>scrimba.com</td><td class="n">70</td><td class="t">Other vendors&#x27; content</td></tr><tr><td>careerkarma.com</td><td class="n">60</td><td class="t">Review sites and directories</td></tr><tr><td>forbes.com</td><td class="n">57</td><td class="t">News and editorial</td></tr><tr><td>cirr.org</td><td class="n">47</td><td class="t">Industry standards body</td></tr><tr><td>rockstardeveloperuniversity.com</td><td class="n">45</td><td class="t">Other vendors&#x27; content</td></tr><tr><td>assignmentdude.com</td><td class="n">40</td><td class="t">Paid essay services</td></tr><tr><td>springboard.com</td><td class="n">39</td><td class="t">Brands&#x27; own websites</td></tr><tr><td>bestcolleges.com</td><td class="n">36</td><td class="t">Review sites and directories</td></tr><tr><td>computerscience.org</td><td class="n">32</td><td class="t">News and editorial</td></tr><tr><td>en.wikipedia.org</td><td class="n">32</td><td class="t">News and editorial</td></tr></tbody>
 </table>
+</section>
 
-<h2>What was tested and thrown out</h2>
-<p class="sub">Findings that looked publishable for a day or two and
-weren't.</p>
-<ul class="discard"><li><b>Content farms out-cite the brands&#x27; own sites.</b> A manual check of five flagged domains found a program-matching search tool, a paid tutoring service and a legitimate developer academy. The classification was a judgement, and it was wrong often enough that the number meant nothing.</li><li><b>Reddit barely registers.</b> Community sources were under 1% of retrieved sources. Reddit&#x27;s citation share in ChatGPT had already collapsed in August 2026, and that was widely covered. Not a finding.</li><li><b>API results differ from what users see, so commercial tools measure the wrong thing.</b> Backwards. Commercial tools collect from the browser to avoid exactly that discrepancy. This study runs on APIs, so it is this study&#x27;s limitation.</li><li><b>Perplexity grounds every answer; Gemini grounds almost none.</b> Perplexity was given an explicit search instruction during the run and Gemini was not. The comparison was confounded by configuration.</li><li><b>Some brands are cited far more often than they are named.</b> Nucamp&#x27;s site appeared in the returned sources of 101 answers while its name appeared in about half as many. That is a fact about what &quot;citation&quot; means for these engines (retrieved, not used), not about Nucamp.</li></ul>
+<section id="discarded">
+<h2>Five findings I threw out</h2>
+<p class="sub">A study that only shows what survived is hiding the method. Each of these looked publishable for about a day.</p>
+<ol class="list"><li><b>Content farms out-cite the brands&#x27; own sites.</b><span>A manual check of five flagged domains found a program-matching search tool, a paid tutoring service and a legitimate developer academy. The classification was a judgement, and it was wrong often enough that the number meant nothing.</span></li><li><b>Reddit barely registers.</b><span>Community sources were under 1% of retrieved sources. Reddit&#x27;s citation share in ChatGPT had already collapsed in August 2026, and that was widely covered. I had rediscovered a known event.</span></li><li><b>API results differ from what users see, so commercial tools measure the wrong thing.</b><span>Backwards. Commercial tools collect from the browser to avoid exactly that discrepancy. This study runs on APIs. The critique described my own limitation.</span></li><li><b>Perplexity grounds every answer; Gemini grounds almost none.</b><span>Perplexity was given an explicit search instruction during the run and Gemini was not. I had confounded the comparison with my own configuration.</span></li><li><b>Some brands are cited far more often than they are named.</b><span>Nucamp&#x27;s site appeared in the returned sources of 101 answers while its name appeared in about half as many. That is a fact about what &quot;citation&quot; means for these engines (retrieved, not used), not about Nucamp. It changed the README more than anything else did.</span></li></ol>
+</section>
 
-<h2>Gemini, reported separately</h2><p>Gemini is left out of every figure above. Its answers stay in the database and are summarised here.</p><table><tbody><tr><td>Answers</td><td class="n">90</td></tr><tr><td>Answers that cited nothing</td><td class="n">67</td></tr><tr><td>Average citations per answer</td><td class="n">0.26</td></tr></tbody></table>
-<div class="caveat">
-  <h2>How this was measured, and what it can't tell you</h2>
-  <ul><li>270 answers across 10 brands and 30 questions, sampled repeatedly rather than asked once, because the same question returns different answers each time.</li><li>Rates are reported with 95% Wilson confidence intervals. Where two intervals overlap, no ranking between those brands is claimed.</li><li>Answers come from provider APIs with web search switched on, not from the chat interfaces people use. Commercial tools collect from the browser for that reason.</li><li>&quot;Retrieved&quot; sources are what the search step returned, not what the answer used. They overstate how much any one source shaped an answer.</li><li>The brand-named row rests on three prompts. The original monitor&#x27;s 482 of 482 is the stronger evidence for that effect, on one engine.</li><li>Answer engines change, and so do the search results they read. This is a measurement of a moment, not a permanent property.</li></ul>
+<section id="checks">
+<h2>Five checks before you trust a visibility score</h2>
+<p class="sub">Five things I&#x27;d check in any visibility tool before trusting its number, including the one I built.</p>
+<ol class="list checks"><li><b>Count the prompts that name you.</b><span>Divide by the total. That fraction is a floor under your score that has nothing to do with the engine.</span></li><li><b>Report branded and unbranded prompts separately.</b><span>Branded prompts measure accuracy and perception. They don&#x27;t measure visibility.</span></li><li><b>Tag every prompt with an intent and cut every rate by it.</b><span>Informational prompts read near zero for everyone. That isn&#x27;t a gap to close with content. It&#x27;s how the engines answer those questions.</span></li><li><b>Show counts and intervals, not bare percentages.</b><span>&quot;20% (55 of 270, 16% to 26%)&quot; tells a reader what they can conclude. &quot;20%&quot; invites them to rank.</span></li><li><b>Ask what &quot;citation&quot; means in your tool.</b><span>Retrieved, or used by the answer? They are different numbers. Find out which one your dashboard is showing.</span></li></ol>
+</section>
+
+<section id="gemini"><h2>Gemini, reported separately</h2><p>Gemini is left out of every figure above. It returned no grounding data at all for 67 of its 90 answers, which means it answered from training data rather than the live web, and its remaining sources arrive through a redirect host the parser does not yet resolve. Its answers stay in the database.</p></section>
+
+<div class="limits" id="limits">
+  <h2>What this can't tell you</h2>
+  <ul><li>270 answers, 10 brands, 30 prompts, one category, one day. Engines and their indexes move; this is a measurement of a moment.</li><li>Answers come from provider APIs with web search switched on, not from the chat interfaces people use. Commercial tools collect from the browser for that reason.</li><li>Every rate carries a 95% Wilson interval. Where two overlap, no ranking is claimed.</li><li>The brand-named row rests on three prompts and 54 pairs. The original monitor&#x27;s 482 of 482 is the stronger evidence for that effect, on one engine.</li><li>&quot;Retrieved&quot; sources are what the search step returned, not what the answer used. They overstate how much any one source shaped an answer.</li></ul>
 </div>
 
 <footer>
-  <p>Method, code and data are open. Flatiron School is one of the ten brands; the author built the original monitor there and left in September 2026. The monitor&#x27;s own data is not published.<br><a href="https://github.com/tkaplish888-alt/ai-visibility-audit">Code and data on GitHub</a>. Generated 06 October 2026.</p>
+  <p>Flatiron School is one of the ten brands. I built the original monitor as Marketing Technology Lead there and left in September 2026. The monitor&#x27;s data was collected for them and is not published; the study&#x27;s data, collected afterwards with my own keys, is.<br>
+  <a href="https://github.com/tkaplish888-alt/ai-visibility-audit">Code, data and both prompt panels on GitHub</a>.
+  Generated 07 October 2026.</p>
 </footer>
 
+</main>
+
+<aside>
+  <div class="card">
+    <h3>Tonishqa Kaplish</h3>
+    <p class="role">Marketing technologist, Seattle. I build marketing data systems, then check whether they&#x27;re telling the truth.</p>
+    <ul class="links"><li><a href="https://www.linkedin.com/in/tonishqa">LinkedIn</a></li><li><a href="https://github.com/tkaplish888-alt/ai-visibility-audit">GitHub</a></li><li><a href="https://tonishqakaplish.com">Portfolio</a></li><li><a href="mailto:tkaplish888@gmail.com">Email</a></li><li><a href="https://calendly.com/tkaplish888/30min">Book 30 minutes</a></li></ul>
+  </div>
+  <div class="card toc">
+    <h4>On this page</h4>
+    <ol><li><a href="#ask">Ask differently, get a different brand</a></li><li><a href="#sixty-one">The 61%, taken apart</a></li><li><a href="#brands">Ten brands, one cluster</a></li><li><a href="#retrieved">Retrieved, not used</a></li><li><a href="#discarded">Five findings I threw out</a></li><li><a href="#checks">Five checks before you trust a score</a></li><li><a href="#limits">What this can&#x27;t tell you</a></li></ol>
+  </div>
+  <div class="card facts">
+    <h4>This study</h4>
+    <dl><div><dt>Prompts</dt><dd>30, three of them naming a brand</dd></div><div><dt>Brands</dt><dd>10, as peers</dd></div><div><dt>Engines</dt><dd>ChatGPT, Claude, Perplexity</dd></div><div><dt>Samples</dt><dd>3 per prompt per engine</dd></div><div><dt>Collected</dt><dd>1 October 2026, provider APIs</dd></div><div><dt>Cost</dt><dd>about $20</dd></div></dl>
+  </div>
+</aside>
+</div>
 </div>
 </body>
 </html>

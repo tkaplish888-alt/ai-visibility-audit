@@ -37,35 +37,39 @@ from aeo.stats import (_filters, brand_stats, by_intent,  # noqa: E402
 # =============================================================================
 # HAND-WRITTEN PAGE PROSE. NOT GENERATED FROM THE DATA.
 #
-# These three strings are typed by the author. They quote specific figures
-# (shares, counts) from the run with Gemini excluded: 270 answers across
-# Claude, ChatGPT and Perplexity. If the data, the engine set or the source
-# classifications change, re-check every number here by hand and edit it.
-# Nothing will update them.
+# These strings are typed by the author. Where they quote a figure, it comes
+# from the run with Gemini excluded (270 answers across Claude, ChatGPT and
+# Perplexity) or from the original monitor (see MONITOR). If the data or the
+# engine set changes, re-check every number here by hand. Nothing updates them.
 # =============================================================================
-HEADLINE_CLAIM = (
-    "When a prompt names a brand, the answer names that brand. In this study it "
-    "happened in every case. The further a question gets from naming anyone, "
-    "the less often any brand appears at all.")
+TITLE = "61% visible. 39 points of it were the prompt list."
+TITLE_HTML = "61% visible.<br>39 points of it were the prompt list."
 
-INTENT_PARA = (
-    "Commercial questions get answered with a list of schools: almost every "
-    "commercial answer names at least one of the ten brands. Informational "
-    "questions get answered with an essay: most informational answers name no "
-    "bootcamp at all. Asking whether bootcamps are worth it does not make the "
-    "engine recommend anyone, so nobody is visible.")
+STANDFIRST = (
+    "I built an AI visibility monitor for a coding bootcamp. It reported the "
+    "brand in 61% of AI answers about its category. Then I measured how much "
+    "of that number was the monitor, re-ran the question across ten brands and "
+    "three engines, and threw out five findings on the way. This is what held.")
 
-FORMULA_PARA = (
-    "So a visibility score is roughly the share of prompts that name the brand, "
-    "times 100%, plus the share that don't, times the brand's actual rate on "
-    "open questions. The first term is set by whoever wrote the prompt list. "
-    "Only the second term is the brand.")
+AUTHOR = {
+    "name": "Tonishqa Kaplish",
+    "role": "Marketing technologist, Seattle. I build marketing data systems, "
+            "then check whether they're telling the truth.",
+    "links": [
+        ("LinkedIn", "https://www.linkedin.com/in/tonishqa"),
+        ("GitHub", "https://github.com/tkaplish888-alt/ai-visibility-audit"),
+        ("Portfolio", "https://tonishqakaplish.com"),
+        ("Email", "mailto:tkaplish888@gmail.com"),
+        ("Book 30 minutes", "https://calendly.com/tkaplish888/30min"),
+    ],
+}
 
 # The original monitor's database was collected for a former employer and is
 # not in this repository. These figures are typed from it by hand: the last of
 # its six weekly runs (31 Aug 2026, Claude only, 30 prompts, 147 answers), and
 # all six runs for the brand-named total.
 MONITOR = {
+    "brand": "Flatiron School",
     "named_prompts": 12, "total_prompts": 30,
     "named_answers": 57, "named_hits": 57,
     "other_answers": 90, "other_hits": 33,
@@ -73,27 +77,60 @@ MONITOR = {
     "all_runs_named": 482,
 }
 
+PULL = (
+    "Put a brand's name in the prompt and the answer names it back. Every "
+    "time. Ask an open question and most brands disappear.")
+
+INTENT_PARA = (
+    "The mechanism is plain. Commercial questions get a shortlist: 95% of them "
+    "name at least one of the ten schools. Informational questions get an "
+    "essay: 85% name nobody. No engine answers \"are bootcamps worth it?\" with "
+    "a recommendation, so on that prompt no brand is visible, and no content "
+    "strategy changes that.")
+
+FORMULA_PARA = (
+    "Which makes a visibility score arithmetic. Take the share of prompts that "
+    "name the brand and multiply by 100%. Take the share that don't and "
+    "multiply by the brand's real rate on open questions. Add them. The first "
+    "term belongs to whoever wrote the prompt list. Only the second belongs to "
+    "the brand.")
+
 MONITOR_PARA = (
-    "This study exists because of that dashboard. It was a weekly monitor built "
-    "for one bootcamp's marketing team, and it reported that the brand appeared "
+    "This study exists because of that dashboard. I built it as a weekly "
+    "monitor for one bootcamp's marketing team, and it said the brand appeared "
     "in 61% of AI answers about its category. Twelve of its thirty prompts "
-    "named the brand. Across six weekly runs, every one of the 482 answers to "
-    "those prompts named it. On the other eighteen prompts, the same engine in "
-    "the same week named it in 37% of answers. Of the 61 points on the "
-    "dashboard, 39 came from the prompt list.")
+    "named the brand. Across six weekly runs, all 482 answers to those prompts "
+    "named it back, because the question contained the name. On the other "
+    "eighteen prompts, same engine, same week: 37%.")
 
 MONITOR_CONTEXT = (
-    "The monitor's 37% and this study's figure for the same brand are not the "
-    "same measurement: one engine in August on prompts written to watch one "
-    "brand, against three engines in October on prompts written to survey a "
-    "category. Both sit a long way below 61.")
+    "The monitor's 37% and this study's {other} are different measurements: "
+    "one engine in August on prompts written to watch one brand, against "
+    "three engines in October on prompts written to survey a category. The "
+    "gap between them is the ordinary noise of this kind of work. The gap "
+    "between either of them and 61 is the panel.")
+
+BRAND_PARA = (
+    "Springboard is separable from Hack Reactor and every brand below it. "
+    "Nothing else is separable from its neighbours. A ranked bar chart of "
+    "this table would be asserting an order the data can't support. My own "
+    "dashboard drew it that way.")
+
+CODECADEMY_NOTE = (
+    "Codecademy's zero is real, checked against the raw payloads: Perplexity "
+    "retrieved Codecademy pages for three answers and used none of them. The "
+    "matcher catches every spelling variant. I checked that too.")
 
 CITATION_NOTE = (
-    "These are the sources the engines' search step returned, not the sources "
-    "the answers drew on. Perplexity and Claude return everything their search "
-    "retrieved: one answer here retrieves a Nucamp page and then talks entirely "
-    "about a different school. Read this as what the engines looked at, not "
-    "what persuaded them.")
+    "What Perplexity and Claude return as \"citations\" is what their search "
+    "step retrieved, not what the answer used. One answer here retrieves a "
+    "Nucamp page and then talks entirely about a different school. So a "
+    "citation rate is a retrieval rate. Read this table as what the engines "
+    "looked at, not what persuaded them.")
+
+DISCARDED_INTRO = (
+    "A study that only shows what survived is hiding the method. Each of "
+    "these looked publishable for about a day.")
 
 DISCARDED = [
     ("Content farms out-cite the brands' own sites.",
@@ -104,36 +141,67 @@ DISCARDED = [
     ("Reddit barely registers.",
      "Community sources were under 1% of retrieved sources. Reddit's citation "
      "share in ChatGPT had already collapsed in August 2026, and that was "
-     "widely covered. Not a finding."),
-    ("API results differ from what users see, so commercial tools measure the "
-     "wrong thing.",
+     "widely covered. I had rediscovered a known event."),
+    ("API results differ from what users see, so commercial tools measure "
+     "the wrong thing.",
      "Backwards. Commercial tools collect from the browser to avoid exactly "
-     "that discrepancy. This study runs on APIs, so it is this study's "
-     "limitation."),
+     "that discrepancy. This study runs on APIs. The critique described my "
+     "own limitation."),
     ("Perplexity grounds every answer; Gemini grounds almost none.",
      "Perplexity was given an explicit search instruction during the run and "
-     "Gemini was not. The comparison was confounded by configuration."),
+     "Gemini was not. I had confounded the comparison with my own "
+     "configuration."),
     ("Some brands are cited far more often than they are named.",
      "Nucamp's site appeared in the returned sources of 101 answers while its "
      "name appeared in about half as many. That is a fact about what "
      "\"citation\" means for these engines (retrieved, not used), not about "
-     "Nucamp."),
+     "Nucamp. It changed the README more than anything else did."),
+]
+
+CHECKS_INTRO = (
+    "Five things I'd check in any visibility tool before trusting its number, "
+    "including the one I built.")
+
+CHECKS = [
+    ("Count the prompts that name you.",
+     "Divide by the total. That fraction is a floor under your score that has "
+     "nothing to do with the engine."),
+    ("Report branded and unbranded prompts separately.",
+     "Branded prompts measure accuracy and perception. They don't measure "
+     "visibility."),
+    ("Tag every prompt with an intent and cut every rate by it.",
+     "Informational prompts read near zero for everyone. That isn't a gap to "
+     "close with content. It's how the engines answer those questions."),
+    ("Show counts and intervals, not bare percentages.",
+     "\"20% (55 of 270, 16% to 26%)\" tells a reader what they can conclude. "
+     "\"20%\" invites them to rank."),
+    ("Ask what \"citation\" means in your tool.",
+     "Retrieved, or used by the answer? They are different numbers. Find out "
+     "which one your dashboard is showing."),
+]
+
+FACTS = [
+    ("Prompts", "30, three of them naming a brand"),
+    ("Brands", "10, as peers"),
+    ("Engines", "ChatGPT, Claude, Perplexity"),
+    ("Samples", "3 per prompt per engine"),
+    ("Collected", "1 October 2026, provider APIs"),
+    ("Cost", "about $20"),
 ]
 # =============================================================================
 
 # --- palette ---------------------------------------------------------------
-# Cool pale ground and deep pine rather than the cream-and-terracotta that
-# every generated report page arrives in. Teal carries measured data; plum
-# marks the categories the study is flagging; sand is neutral volume.
+# Cool pale ground and deep slate-teal ink. Teal carries measured data; plum
+# marks what the prompt list contributed and what was thrown out.
 C = {
-    "ground": "#F1F3F1",
-    "ink": "#16302B",
-    "teal": "#2E6E68",
-    "teal_soft": "#8FB5B1",
-    "plum": "#6B3352",
-    "sand": "#C9BFA9",
-    "grey": "#75817D",
-    "rule": "#D4DAD7",
+    "ground": "#F3F5F4",
+    "panel": "#FFFFFF",
+    "ink": "#15282C",
+    "teal": "#1F6F6B",
+    "teal_soft": "#9CC4C0",
+    "plum": "#7A2E5B",
+    "grey": "#66736F",
+    "rule": "#D5DCDA",
 }
 
 SOURCE_LABELS = {
@@ -312,6 +380,28 @@ def pooled_by_intent(db: str, cfg, **kw) -> list[dict]:
     return out
 
 
+def brand_split(db: str, cfg, brand: str, **kw) -> dict:
+    """One brand's mention rate on prompts that name it versus prompts that
+    don't. The study-side counterpart of the MONITOR table."""
+    import re
+    ent = next(e for e in cfg.all_entities if e.name == brand)
+    names = {pr.id for pr in cfg.prompts
+             if any(re.search(rf"\b{re.escape(a)}\b", pr.text, re.I)
+                    for a in (ent.aliases or [ent.name]))}
+    clause, params = _filters(**kw)
+    conn = sqlite3.connect(db)
+    q = (f"SELECT r.prompt_id, (m.count > 0) FROM mentions m JOIN responses r "
+         f"ON r.id = m.response_id WHERE m.entity = ? AND {clause}")
+    out = {"named": [0, 0], "other": [0, 0]}
+    for pid, hit in conn.execute(q, [brand, *params]):
+        t = out["named" if pid in names else "other"]
+        t[0] += int(hit); t[1] += 1
+    conn.close()
+    out["named_prompts"] = len(names)
+    out["other_prompts"] = len(cfg.prompts) - len(names)
+    return out
+
+
 # --- page ------------------------------------------------------------------
 
 def build_html(d: dict) -> str:
@@ -319,29 +409,42 @@ def build_html(d: dict) -> str:
     disputed = [s for s in d["significance"] if not s["distinguishable"]][:6]
     pooled = d["pooled_intent"]
     m = d["monitor"]
+    sp = d["study_split"]
 
+    # --- hero split bar: the 61 points, decomposed ------------------------
+    named_pts = m["named_hits"] / m["total_answers"] * 100
+    other_pts = m["other_hits"] / m["total_answers"] * 100
+    total_pts = m["total_hits"] / m["total_answers"] * 100
+
+    # --- tables -----------------------------------------------------------
+    def _rate(r):
+        return "100%" if r["k"] == r["n"] else f"{r['rate']:.1%}"
     pooled_rows = "".join(
         f'<tr><td>{esc(r["label"])}<br><span class="ex">"{esc(r["example"])}"'
-        f'</span></td><td class="n">{r["rate"]:.1%}</td>'
+        f'</span></td><td class="n">{_rate(r)}</td>'
         f'<td class="n">{r["k"]:,} of {r["n"]:,}</td>'
         f'<td class="t">{r["ci"][0]:.1%} to {r["ci"][1]:.1%}</td></tr>'
         for r in pooled)
 
-    def mrow(label, prompts, n, k, strong=False):
+    def row(label, prompts, n, k, strong=False):
         tag = "b" if strong else "span"
-        return (f'<tr><td><{tag}>{label}</{tag}></td><td class="n">{prompts}</td>'
+        return (f'<tr><td><{tag}>{esc(label)}</{tag}></td><td class="n">{prompts}</td>'
                 f'<td class="n">{n}</td><td class="n"><{tag}>{k} '
                 f'({k / n:.0%})</{tag}></td></tr>')
-    monitor_rows = (
-        mrow("Prompts naming the brand", m["named_prompts"], m["named_answers"],
-             m["named_hits"])
-        + mrow("Prompts that don't", m["total_prompts"] - m["named_prompts"],
-               m["other_answers"], m["other_hits"])
-        + mrow("As reported", m["total_prompts"], m["total_answers"],
-               m["total_hits"], strong=True))
-
-    discarded = "".join(f'<li><b>{esc(t)}</b> {esc(w)}</li>'
-                        for t, w in d["discarded"])
+    split_rows = (
+        f'<tr class="grp"><th colspan="4">The monitor, final weekly run '
+        f'(Claude, August 2026)</th></tr>'
+        + row("Prompts naming the brand", m["named_prompts"], m["named_answers"], m["named_hits"])
+        + row("Prompts that don't", m["total_prompts"] - m["named_prompts"], m["other_answers"], m["other_hits"])
+        + row("As reported", m["total_prompts"], m["total_answers"], m["total_hits"], strong=True)
+        + f'<tr class="grp"><th colspan="4">This study, same brand '
+          f'({esc(d["engines_label"])}, October 2026)</th></tr>'
+        + row("Prompts naming the brand", sp["named_prompts"], sp["named"][1], sp["named"][0])
+        + row("Prompts that don't", sp["other_prompts"], sp["other"][1], sp["other"][0])
+        + row("All prompts", sp["named_prompts"] + sp["other_prompts"],
+              sp["named"][1] + sp["other"][1], sp["named"][0] + sp["other"][0], strong=True))
+    other_rate = sp["other"][0] / max(sp["other"][1], 1)
+    monitor_context = d["monitor_context"].format(other=f"{other_rate:.0%}")
 
     domain_rows = "".join(
         f'<tr><td>{esc(x["domain"])}</td>'
@@ -358,24 +461,39 @@ def build_html(d: dict) -> str:
                         f'<td class="n">{brands[0]["n"] if brands else 0}</td>'
                         f'<td class="t">{lead}</td></tr>')
 
-    overlaps = "".join(
-        f'<li>{esc(s["a"])} ({s["a_rate"]:.0%}) and {esc(s["b"])} '
-        f'({s["b_rate"]:.0%})</li>' for s in disputed)
+    overlaps = ", ".join(
+        f'{esc(s["a"])} and {esc(s["b"])}' for s in disputed)
+
+    discarded = "".join(f'<li><b>{esc(t)}</b><span>{esc(w)}</span></li>'
+                        for t, w in d["discarded"])
+    checks = "".join(f'<li><b>{esc(t)}</b><span>{esc(w)}</span></li>'
+                     for t, w in d["checks"])
 
     separate = ""
     for e in d.get("separate_engines", []):
         name = ENGINE_NAMES.get(e["engine"], e["engine"])
         separate += (
-            f'<h2>{esc(name)}, reported separately</h2>'
-            f'<p>{esc(name)} is left out of every figure above. Its answers '
-            f'stay in the database and are summarised here.</p>'
-            f'<table><tbody>'
-            f'<tr><td>Answers</td><td class="n">{e["answers"]}</td></tr>'
-            f'<tr><td>Answers that cited nothing</td>'
-            f'<td class="n">{e["ungrounded"]}</td></tr>'
-            f'<tr><td>Average citations per answer</td>'
-            f'<td class="n">{e["avg_citations"]:.2f}</td></tr>'
-            f'</tbody></table>')
+            f'<section id="gemini"><h2>{esc(name)}, reported separately</h2>'
+            f'<p>{esc(name)} is left out of every figure above. It returned no '
+            f'grounding data at all for {e["ungrounded"]} of its {e["answers"]} '
+            f'answers, which means it answered from training data rather than '
+            f'the live web, and its remaining sources arrive through a redirect '
+            f'host the parser does not yet resolve. Its answers stay in the '
+            f'database.</p></section>')
+
+    links = "".join(
+        f'<li><a href="{esc(u)}">{esc(t)}</a></li>'
+        for t, u in d["author"]["links"])
+    facts = "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>'
+                    for k, v in d["facts"])
+    toc = [("ask", "Ask differently, get a different brand"),
+           ("sixty-one", "The 61%, taken apart"),
+           ("brands", "Ten brands, one cluster"),
+           ("retrieved", "Retrieved, not used"),
+           ("discarded", "Five findings I threw out"),
+           ("checks", "Five checks before you trust a score"),
+           ("limits", "What this can't tell you")]
+    toc_html = "".join(f'<li><a href="#{i}">{esc(t)}</a></li>' for i, t in toc)
 
     return f"""<!doctype html>
 <html lang="en">
@@ -383,138 +501,222 @@ def build_html(d: dict) -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(d["title"])}</title>
-<meta name="description" content="How prompt wording sets AI visibility
- scores: {d["n"]} answers about coding bootcamps across three answer engines.">
+<meta name="description" content="How prompt wording sets AI visibility scores: {d["n"]} answers about coding bootcamps across three answer engines, with the arithmetic and the findings that were thrown out.">
+<meta property="og:title" content="{esc(d["title"])}">
+<meta property="og:description" content="{esc(d["standfirst"])}">
+<meta property="og:image" content="prompt-effect.png">
+<meta name="author" content="{esc(d["author"]["name"])}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {{
-    --ground:{C["ground"]}; --ink:{C["ink"]}; --teal:{C["teal"]};
-    --plum:{C["plum"]}; --grey:{C["grey"]}; --rule:{C["rule"]};
+    --ground:{C["ground"]}; --panel:{C["panel"]}; --ink:{C["ink"]};
+    --teal:{C["teal"]}; --teal-soft:{C["teal_soft"]}; --plum:{C["plum"]};
+    --grey:{C["grey"]}; --rule:{C["rule"]};
   }}
   * {{ box-sizing:border-box; }}
+  html {{ scroll-behavior:smooth; }}
+  @media (prefers-reduced-motion: reduce) {{ html {{ scroll-behavior:auto; }} }}
   body {{
     margin:0; background:var(--ground); color:var(--ink);
-    font:400 18px/1.62 "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    font:400 17px/1.6 "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing:antialiased;
   }}
-  .wrap {{ max-width:860px; margin:0 auto; padding:0 24px 96px; }}
-  p, li {{ max-width:64ch; }}
-  header {{ padding:72px 0 8px; }}
+  a {{ color:var(--teal); text-decoration-thickness:1px; text-underline-offset:3px; }}
+  a:hover {{ color:var(--ink); }}
+  :focus-visible {{ outline:2px solid var(--teal); outline-offset:3px; }}
+
+  .shell {{ max-width:1080px; margin:0 auto; padding:0 28px 96px; }}
+
+  /* hero */
+  .hero {{ padding:72px 0 44px; border-bottom:1px solid var(--rule); }}
   h1 {{
-    font-size:clamp(34px,5.4vw,56px); line-height:1.06; font-weight:700;
-    letter-spacing:-0.022em; margin:0 0 20px; max-width:19ch;
+    font-size:clamp(36px,5.2vw,62px); line-height:1.0; font-weight:800;
+    letter-spacing:-0.035em; margin:0 0 22px; max-width:17ch; text-wrap:balance;
   }}
-  .standfirst {{ font-size:21px; color:var(--grey); margin:0 0 28px; }}
-  .meta {{
-    font-size:15px; color:var(--grey); border-top:1px solid var(--rule);
-    padding-top:14px;
+  .standfirst {{ font-size:20px; line-height:1.5; margin:0; max-width:58ch; }}
+  .split {{ margin:40px 0 0; max-width:720px; }}
+  .split .track {{
+    display:flex; height:34px; background:var(--panel);
+    border:1px solid var(--rule); border-radius:4px; overflow:hidden;
   }}
-  .meta span {{ margin-right:26px; white-space:nowrap; }}
+  .split .seg {{ height:100%; display:block; }}
+  .split .seg.plum {{ background:var(--plum); }}
+  .split .seg.teal {{ background:var(--teal); }}
+  .split .scale {{ display:flex; justify-content:space-between; font-size:12px;
+                   color:var(--grey); margin-top:6px; }}
+  .split .keys {{ display:flex; flex-wrap:wrap; gap:8px 28px; margin:14px 0 0;
+                  padding:0; list-style:none; font-size:15px; }}
+  .split .keys li {{ display:flex; align-items:baseline; gap:9px; }}
+  .split .keys i {{ width:12px; height:12px; border-radius:2px; display:inline-block;
+                    transform:translateY(1px); }}
+  .split .keys b {{ font-weight:700; font-variant-numeric:tabular-nums; }}
+  .split figcaption {{ font-size:14px; color:var(--grey); margin-top:10px; }}
+
+  /* two-column body with a sticky rail */
+  .layout {{
+    display:grid; grid-template-columns:minmax(0,680px) 264px;
+    column-gap:72px; justify-content:space-between;
+  }}
+  main {{ min-width:0; }}
+  aside {{ position:sticky; top:24px; align-self:start; margin-top:72px; }}
+  .links.mobile-links {{ display:none; margin-top:28px; }}
+  .card {{
+    background:var(--panel); border:1px solid var(--rule); border-radius:8px;
+    padding:20px 22px; margin-bottom:18px;
+  }}
+  .card h3 {{ margin:0 0 6px; font-size:17px; font-weight:700; }}
+  .card .role {{ margin:0 0 14px; font-size:14px; line-height:1.45; color:var(--grey); }}
+  .links {{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px; }}
+  .links a {{
+    display:inline-block; padding:6px 11px; border:1px solid var(--rule);
+    border-radius:999px; font-size:14px; font-weight:500; text-decoration:none;
+    color:var(--ink); background:var(--ground);
+  }}
+  .links a:hover {{ border-color:var(--teal); color:var(--teal); }}
+  .toc h4, .facts h4 {{ margin:0 0 8px; font-size:13px; font-weight:600;
+                        color:var(--grey); }}
+  .toc ol {{ list-style:none; margin:0; padding:0; }}
+  .toc li {{ padding:5px 0; border-top:1px solid var(--rule); font-size:14.5px; line-height:1.35; }}
+  .toc li:first-child {{ border-top:0; }}
+  .toc a {{ color:var(--ink); text-decoration:none; }}
+  .toc a:hover {{ color:var(--teal); }}
+  .facts dl {{ margin:0; }}
+  .facts div {{ display:grid; grid-template-columns:76px 1fr; gap:10px;
+                padding:5px 0; border-top:1px solid var(--rule); font-size:14px; }}
+  .facts div:first-child {{ border-top:0; }}
+  .facts dt {{ color:var(--grey); margin:0; }}
+  .facts dd {{ margin:0; }}
+
+  /* content */
+  section {{ padding-top:56px; }}
   h2 {{
-    font-size:27px; font-weight:600; letter-spacing:-0.012em;
-    margin:64px 0 6px; max-width:24ch;
+    font-size:30px; line-height:1.12; font-weight:700; letter-spacing:-0.02em;
+    margin:0 0 8px;
   }}
-  h3 {{ font-size:19px; font-weight:600; margin:36px 0 4px; }}
-  .sub {{ color:var(--grey); font-size:16px; margin:0 0 22px; }}
-  figure {{ margin:26px 0 8px; }}
+  h3 {{ font-size:19px; font-weight:700; margin:34px 0 6px; }}
+  .sub {{ color:var(--grey); font-size:16px; margin:0 0 20px; }}
+  p {{ margin:0 0 18px; }}
+  figure {{ margin:22px 0 10px; }}
   svg {{ width:100%; height:auto; display:block; }}
-  figcaption {{ font-size:15px; color:var(--grey); margin-top:12px; max-width:64ch; }}
-  .legend {{
-    list-style:none; padding:0; margin:18px 0 0; display:flex;
-    flex-wrap:wrap; gap:6px 22px; font-size:15px; max-width:100%;
-  }}
-  .legend li {{ display:flex; align-items:center; gap:8px; }}
-  .legend b {{ font-weight:600; color:var(--grey); }}
-  .sw {{ width:13px; height:13px; border-radius:3px; display:inline-block; }}
-  .key {{ display:flex; gap:24px; font-size:15px; color:var(--grey); margin:14px 0 0; }}
-  .key i {{ width:11px; height:11px; border-radius:50%; display:inline-block;
-            margin-right:7px; vertical-align:baseline; }}
-  table {{ width:100%; border-collapse:collapse; margin:22px 0; font-size:16px; }}
-  th, td {{ text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--rule); }}
-  th {{ font-weight:600; font-size:14px; color:var(--grey); }}
-  td.n, th.n {{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; padding-left:16px; }}
-  td.t {{ color:var(--grey); }}
-  .pull {{
-    border-left:3px solid var(--plum); padding:4px 0 4px 22px;
-    margin:34px 0; font-size:22px; line-height:1.42; max-width:46ch;
-  }}
-  .caveat {{
-    background:#fff; border:1px solid var(--rule); border-radius:6px;
-    padding:26px 30px; margin:56px 0 0;
-  }}
-  .caveat h2 {{ margin-top:0; font-size:21px; }}
-  .caveat li {{ font-size:16px; margin-bottom:9px; }}
-  .ex {{ color:var(--grey); font-size:14px; font-style:italic; }}
+  figcaption {{ font-size:14px; color:var(--grey); margin-top:10px; }}
   img {{ max-width:100%; height:auto; display:block; border:1px solid var(--rule);
          border-radius:6px; }}
-  .discard li {{ margin-bottom:14px; }}
-  footer {{
-    margin-top:64px; padding-top:20px; border-top:1px solid var(--rule);
-    font-size:15px; color:var(--grey);
+  .pull {{
+    border-left:3px solid var(--plum); padding:2px 0 2px 20px; margin:30px 0;
+    font-size:23px; line-height:1.38; font-weight:500; letter-spacing:-0.01em;
   }}
-  a {{ color:var(--teal); }}
-  a:focus-visible, :focus-visible {{ outline:2px solid var(--teal); outline-offset:3px; }}
+  table {{ width:100%; border-collapse:collapse; margin:18px 0 22px; font-size:15.5px; }}
+  th, td {{ text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--rule);
+            vertical-align:top; }}
+  th {{ font-weight:600; font-size:13.5px; color:var(--grey); }}
+  tr.grp th {{ padding-top:18px; color:var(--ink); font-size:14px; }}
+  td.n, th.n {{ text-align:right; font-variant-numeric:tabular-nums;
+                white-space:nowrap; padding-left:16px; }}
+  td.t {{ color:var(--grey); }}
+  .ex {{ color:var(--grey); font-size:13.5px; font-style:italic; }}
+  ol.list {{ padding:0; margin:18px 0 0; list-style:none; counter-reset:item; }}
+  ol.list li {{
+    display:grid; grid-template-columns:34px 1fr; gap:0 8px; padding:16px 0;
+    border-top:1px solid var(--rule); counter-increment:item;
+  }}
+  ol.list li::before {{
+    content:counter(item); font-weight:700; font-size:20px; line-height:1.2;
+    color:var(--plum); grid-row:1 / span 2;
+  }}
+  ol.list li b {{ font-weight:700; display:block; margin-bottom:3px; }}
+  ol.list li span {{ display:block; color:var(--ink); }}
+  ol.list.checks li::before {{ color:var(--teal); }}
+  .limits {{
+    background:var(--panel); border:1px solid var(--rule); border-radius:8px;
+    padding:24px 28px; margin-top:56px;
+  }}
+  .limits h2 {{ font-size:22px; margin-bottom:12px; }}
+  .limits ul {{ margin:0; padding-left:20px; }}
+  .limits li {{ margin-bottom:9px; font-size:15.5px; }}
+  footer {{
+    margin-top:56px; padding-top:18px; border-top:1px solid var(--rule);
+    font-size:14.5px; color:var(--grey);
+  }}
+
+  @media (max-width:940px) {{
+    .layout {{ grid-template-columns:1fr; }}
+    aside {{ position:static; margin-top:40px; }}
+    .links.mobile-links {{ display:flex; }}
+  }}
   @media (max-width:640px) {{
-    body {{ font-size:17px; }}
-    header {{ padding-top:44px; }}
-    .meta span {{ display:block; margin:0 0 4px; }}
+    body {{ font-size:16px; }}
+    .shell {{ padding:0 18px 72px; }}
+    .hero {{ padding-top:40px; }}
+    .standfirst {{ font-size:18px; }}
+    h2 {{ font-size:26px; }}
+    .pull {{ font-size:20px; }}
+    section {{ padding-top:44px; }}
   }}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="shell">
+<div class="layout">
+<main>
 
-<header>
-  <h1>{esc(d["title"])}</h1>
+<header class="hero">
+  <h1>{d["title_html"]}</h1>
   <p class="standfirst">{esc(d["standfirst"])}</p>
-  <p class="meta">
-    <span>Tonishqa Kaplish</span>
-    <span>{d["n"]} answers</span>
-    <span>{d["n_prompts"]} questions</span>
-    <span>{esc(d["engines_label"])}</span>
-    <span>{esc(d["window"])}</span>
-  </p>
+  <figure class="split" aria-label="The reported 61% split into its two sources">
+    <div class="track">
+      <span class="seg plum" style="width:{named_pts:.1f}%"></span>
+      <span class="seg teal" style="width:{other_pts:.1f}%"></span>
+    </div>
+    <div class="scale"><span>0%</span><span>{total_pts:.0f}% reported</span><span>100%</span></div>
+    <ul class="keys">
+      <li><i style="background:var(--plum)"></i><span><b>{named_pts:.0f} points</b> from prompts that named the brand</span></li>
+      <li><i style="background:var(--teal)"></i><span><b>{other_pts:.0f} points</b> from the brand on every other prompt</span></li>
+    </ul>
+    <figcaption>The monitor's final weekly run: {m["total_answers"]} answers,
+    {m["total_prompts"]} prompts, {m["named_prompts"]} of them naming the brand.</figcaption>
+  </figure>
+  <ul class="links mobile-links">{links}</ul>
 </header>
 
-<h2>It depends how you ask</h2>
+<section id="ask">
+<h2>Ask differently, get a different brand</h2>
 <p class="sub">Share of answers naming a given brand, by prompt type. Every
-brand checked against every answer, pooled across all ten brands.</p>
+brand checked against every answer, pooled across all ten.</p>
 <figure>
   {chart_intent(pooled)}
   <figcaption>Whiskers are 95% Wilson confidence intervals. No two rows
   overlap.</figcaption>
 </figure>
-
-<p class="pull">{esc(d["headline_claim"])}</p>
-
+<p class="pull">{esc(d["pull"])}</p>
 <table>
   <thead><tr><th>Prompt type</th><th class="n">Rate</th>
   <th class="n">Brand-answer pairs</th><th class="t">95% interval</th></tr></thead>
   <tbody>{pooled_rows}</tbody>
 </table>
-
 <p>{esc(d["intent_para"])}</p>
 <p>{esc(d["formula_para"])}</p>
+</section>
 
-<h2>What that did to a real monitor</h2>
+<section id="sixty-one">
+<h2>The 61%, taken apart</h2>
 <figure>
   <img src="monitor-before.png" alt="The original monitor's dashboard, reporting a 61% mention rate for one brand across 147 Claude answers." loading="lazy">
-  <figcaption>The dashboard that started this, as it was published in
-  August 2026.</figcaption>
+  <figcaption>The dashboard that started this, as published in August 2026.</figcaption>
 </figure>
 <p>{esc(d["monitor_para"])}</p>
 <table>
-  <thead><tr><th>Monitor, final weekly run</th><th class="n">Prompts</th>
+  <thead><tr><th></th><th class="n">Prompts</th>
   <th class="n">Answers</th><th class="n">Brand named</th></tr></thead>
-  <tbody>{monitor_rows}</tbody>
+  <tbody>{split_rows}</tbody>
 </table>
-<p>{esc(d["monitor_context"])}</p>
+<p>{esc(monitor_context)}</p>
+</section>
 
-<h2>How often each brand comes up</h2>
-<p class="sub">Mention rate across every prompt, with its 95% confidence
-interval.</p>
+<section id="brands">
+<h2>Ten brands, one cluster</h2>
+<p class="sub">Mention rate across every prompt, with its 95% confidence interval.</p>
 <figure>
   {chart_intervals(rows)}
   <figcaption>The bar is the range the true rate is very likely to fall in.
@@ -522,39 +724,70 @@ interval.</p>
   those brands is not real at this sample size, however different the
   percentages look.</figcaption>
 </figure>
-
-{"<h3>Differences you cannot claim</h3><ul>" + overlaps + "</ul>" if overlaps else ""}
-
+<p>{esc(d["brand_para"])}{(" Pairs you cannot separate: " + overlaps + ".") if overlaps else ""}</p>
+<p>{esc(d["codecademy_note"])}</p>
 <h3>By prompt type, per brand</h3>
 <table>
-  <thead><tr><th>Question type</th><th class="n">Answers</th>
-  <th class="t">Most mentioned</th></tr></thead>
+  <thead><tr><th>Prompt type</th><th class="n">Answers</th>
+  <th class="t">Most named</th></tr></thead>
   <tbody>{intent_rows}</tbody>
 </table>
+</section>
 
-<h2>The fifteen most-retrieved websites</h2>
+<section id="retrieved">
+<h2>Retrieved, not used</h2>
+<p class="sub">The fifteen websites the engines' search step returned most often.</p>
 <p>{esc(d["citation_note"])}</p>
 <table>
   <thead><tr><th>Domain</th><th class="n">Retrieved</th>
   <th class="t">Type</th></tr></thead>
   <tbody>{domain_rows}</tbody>
 </table>
+</section>
 
-<h2>What was tested and thrown out</h2>
-<p class="sub">Findings that looked publishable for a day or two and
-weren't.</p>
-<ul class="discard">{discarded}</ul>
+<section id="discarded">
+<h2>Five findings I threw out</h2>
+<p class="sub">{esc(d["discarded_intro"])}</p>
+<ol class="list">{discarded}</ol>
+</section>
+
+<section id="checks">
+<h2>Five checks before you trust a visibility score</h2>
+<p class="sub">{esc(d["checks_intro"])}</p>
+<ol class="list checks">{checks}</ol>
+</section>
 
 {separate}
-<div class="caveat">
-  <h2>How this was measured, and what it can't tell you</h2>
+
+<div class="limits" id="limits">
+  <h2>What this can't tell you</h2>
   <ul>{"".join(f"<li>{esc(c)}</li>" for c in d["caveats"])}</ul>
 </div>
 
 <footer>
-  <p>{esc(d["footer"])}<br><a href="https://github.com/tkaplish888-alt/ai-visibility-audit">Code and data on GitHub</a>. Generated {esc(d["generated"])}.</p>
+  <p>{esc(d["footer"])}<br>
+  <a href="https://github.com/tkaplish888-alt/ai-visibility-audit">Code, data and both prompt panels on GitHub</a>.
+  Generated {esc(d["generated"])}.</p>
 </footer>
 
+</main>
+
+<aside>
+  <div class="card">
+    <h3>{esc(d["author"]["name"])}</h3>
+    <p class="role">{esc(d["author"]["role"])}</p>
+    <ul class="links">{links}</ul>
+  </div>
+  <div class="card toc">
+    <h4>On this page</h4>
+    <ol>{toc_html}</ol>
+  </div>
+  <div class="card facts">
+    <h4>This study</h4>
+    <dl>{facts}</dl>
+  </div>
+</aside>
+</div>
 </div>
 </body>
 </html>
@@ -599,21 +832,20 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
     single = len(engines) == 1
 
     caveats = [
-        f"{n} answers across {len({r['brand'] for r in rows})} brands and "
-        f"{len(cfg.prompts)} questions, sampled repeatedly rather "
-        f"than asked once, because the same question returns different answers "
-        f"each time.",
-        "Rates are reported with 95% Wilson confidence intervals. Where two "
-        "intervals overlap, no ranking between those brands is claimed.",
+        f"{n} answers, {len({r['brand'] for r in rows})} brands, "
+        f"{len(cfg.prompts)} prompts, one category, one day. Engines and "
+        f"their indexes move; this is a measurement of a moment.",
         "Answers come from provider APIs with web search switched on, not "
         "from the chat interfaces people use. Commercial tools collect from "
         "the browser for that reason.",
-        "\"Retrieved\" sources are what the search step returned, not what the "
-        "answer used. They overstate how much any one source shaped an answer.",
-        "The brand-named row rests on three prompts. The original monitor's "
-        "482 of 482 is the stronger evidence for that effect, on one engine.",
-        "Answer engines change, and so do the search results they read. This "
-        "is a measurement of a moment, not a permanent property.",
+        "Every rate carries a 95% Wilson interval. Where two overlap, no "
+        "ranking is claimed.",
+        "The brand-named row rests on three prompts and 54 pairs. The "
+        "original monitor's 482 of 482 is the stronger evidence for that "
+        "effect, on one engine.",
+        "\"Retrieved\" sources are what the search step returned, not what "
+        "the answer used. They overstate how much any one source shaped an "
+        "answer.",
     ]
     if single:
         caveats.insert(0, f"One engine only ({label}). These findings may not "
@@ -626,16 +858,16 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
             f"answer are undercounted in this dataset.")
 
     return {
-        "title": "Where a 61% AI visibility score came from",
-        "standfirst": ("A brand monitor said one bootcamp appeared in 61% of AI "
-                       "answers about its category. This measures how much of "
-                       "that number was the monitor."),
+        "title": TITLE, "title_html": TITLE_HTML, "standfirst": STANDFIRST,
+        "author": AUTHOR,
+        "facts": FACTS,
         "n": n, "n_citations": ncit, "n_prompts": n_prompts or len(cfg.prompts),
         "engines": engines, "engines_label": label,
         "window": ((lo[:10] if lo[:10] == hi[:10] else f"{lo[:10]} to {hi[:10]}") if lo else ""),
         "brands": rows,
         "pooled_intent": pooled_by_intent(db, cfg, **kw),
         "monitor": MONITOR,
+        "study_split": brand_split(db, cfg, MONITOR["brand"], **kw),
         "top_domains": top_domains(db, limit=15, **kw),
         "by_intent": {k: [{"brand": b.brand, "n": b.n,
                            "mention_rate": b.mention_rate}
@@ -646,14 +878,17 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
         "separate_engines": [
             e for x in (exclude_engines or [])
             for e in engine_summary(db, engine=x)],
-        "headline_claim": HEADLINE_CLAIM, "intent_para": INTENT_PARA,
+        "pull": PULL, "intent_para": INTENT_PARA,
         "formula_para": FORMULA_PARA, "monitor_para": MONITOR_PARA,
-        "monitor_context": MONITOR_CONTEXT, "citation_note": CITATION_NOTE,
-        "discarded": DISCARDED, "caveats": caveats,
-        "footer": ("Method, code and data are open. Flatiron School is one of "
-                   "the ten brands; the author built the original monitor "
-                   "there and left in September 2026. The monitor's own data "
-                   "is not published."),
+        "monitor_context": MONITOR_CONTEXT, "brand_para": BRAND_PARA,
+        "codecademy_note": CODECADEMY_NOTE, "citation_note": CITATION_NOTE,
+        "discarded_intro": DISCARDED_INTRO, "discarded": DISCARDED,
+        "checks_intro": CHECKS_INTRO, "checks": CHECKS, "caveats": caveats,
+        "footer": ("Flatiron School is one of the ten brands. I built the "
+                   "original monitor as Marketing Technology Lead there and "
+                   "left in September 2026. The monitor's data was collected "
+                   "for them and is not published; the study's data, collected "
+                   "afterwards with my own keys, is."),
         "generated": datetime.now(timezone.utc).strftime("%d %B %Y"),
     }
 

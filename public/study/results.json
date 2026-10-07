@@ -1,6 +1,59 @@
 {
-  "title": "Where a 61% AI visibility score came from",
-  "standfirst": "A brand monitor said one bootcamp appeared in 61% of AI answers about its category. This measures how much of that number was the monitor.",
+  "title": "61% visible. 39 points of it were the prompt list.",
+  "title_html": "61% visible.<br>39 points of it were the prompt list.",
+  "standfirst": "I built an AI visibility monitor for a coding bootcamp. It reported the brand in 61% of AI answers about its category. Then I measured how much of that number was the monitor, re-ran the question across ten brands and three engines, and threw out five findings on the way. This is what held.",
+  "author": {
+    "name": "Tonishqa Kaplish",
+    "role": "Marketing technologist, Seattle. I build marketing data systems, then check whether they're telling the truth.",
+    "links": [
+      [
+        "LinkedIn",
+        "https://www.linkedin.com/in/tonishqa"
+      ],
+      [
+        "GitHub",
+        "https://github.com/tkaplish888-alt/ai-visibility-audit"
+      ],
+      [
+        "Portfolio",
+        "https://tonishqakaplish.com"
+      ],
+      [
+        "Email",
+        "mailto:tkaplish888@gmail.com"
+      ],
+      [
+        "Book 30 minutes",
+        "https://calendly.com/tkaplish888/30min"
+      ]
+    ]
+  },
+  "facts": [
+    [
+      "Prompts",
+      "30, three of them naming a brand"
+    ],
+    [
+      "Brands",
+      "10, as peers"
+    ],
+    [
+      "Engines",
+      "ChatGPT, Claude, Perplexity"
+    ],
+    [
+      "Samples",
+      "3 per prompt per engine"
+    ],
+    [
+      "Collected",
+      "1 October 2026, provider APIs"
+    ],
+    [
+      "Cost",
+      "about $20"
+    ]
+  ],
   "n": 270,
   "n_citations": 2541,
   "n_prompts": 30,
@@ -244,6 +297,7 @@
     }
   ],
   "monitor": {
+    "brand": "Flatiron School",
     "named_prompts": 12,
     "total_prompts": 30,
     "named_answers": 57,
@@ -253,6 +307,18 @@
     "total_answers": 147,
     "total_hits": 90,
     "all_runs_named": 482
+  },
+  "study_split": {
+    "named": [
+      18,
+      18
+    ],
+    "other": [
+      37,
+      252
+    ],
+    "named_prompts": 2,
+    "other_prompts": 28
   },
   "top_domains": [
     {
@@ -941,12 +1007,15 @@
       "avg_citations": 0.25555555555555554
     }
   ],
-  "headline_claim": "When a prompt names a brand, the answer names that brand. In this study it happened in every case. The further a question gets from naming anyone, the less often any brand appears at all.",
-  "intent_para": "Commercial questions get answered with a list of schools: almost every commercial answer names at least one of the ten brands. Informational questions get answered with an essay: most informational answers name no bootcamp at all. Asking whether bootcamps are worth it does not make the engine recommend anyone, so nobody is visible.",
-  "formula_para": "So a visibility score is roughly the share of prompts that name the brand, times 100%, plus the share that don't, times the brand's actual rate on open questions. The first term is set by whoever wrote the prompt list. Only the second term is the brand.",
-  "monitor_para": "This study exists because of that dashboard. It was a weekly monitor built for one bootcamp's marketing team, and it reported that the brand appeared in 61% of AI answers about its category. Twelve of its thirty prompts named the brand. Across six weekly runs, every one of the 482 answers to those prompts named it. On the other eighteen prompts, the same engine in the same week named it in 37% of answers. Of the 61 points on the dashboard, 39 came from the prompt list.",
-  "monitor_context": "The monitor's 37% and this study's figure for the same brand are not the same measurement: one engine in August on prompts written to watch one brand, against three engines in October on prompts written to survey a category. Both sit a long way below 61.",
-  "citation_note": "These are the sources the engines' search step returned, not the sources the answers drew on. Perplexity and Claude return everything their search retrieved: one answer here retrieves a Nucamp page and then talks entirely about a different school. Read this as what the engines looked at, not what persuaded them.",
+  "pull": "Put a brand's name in the prompt and the answer names it back. Every time. Ask an open question and most brands disappear.",
+  "intent_para": "The mechanism is plain. Commercial questions get a shortlist: 95% of them name at least one of the ten schools. Informational questions get an essay: 85% name nobody. No engine answers \"are bootcamps worth it?\" with a recommendation, so on that prompt no brand is visible, and no content strategy changes that.",
+  "formula_para": "Which makes a visibility score arithmetic. Take the share of prompts that name the brand and multiply by 100%. Take the share that don't and multiply by the brand's real rate on open questions. Add them. The first term belongs to whoever wrote the prompt list. Only the second belongs to the brand.",
+  "monitor_para": "This study exists because of that dashboard. I built it as a weekly monitor for one bootcamp's marketing team, and it said the brand appeared in 61% of AI answers about its category. Twelve of its thirty prompts named the brand. Across six weekly runs, all 482 answers to those prompts named it back, because the question contained the name. On the other eighteen prompts, same engine, same week: 37%.",
+  "monitor_context": "The monitor's 37% and this study's {other} are different measurements: one engine in August on prompts written to watch one brand, against three engines in October on prompts written to survey a category. The gap between them is the ordinary noise of this kind of work. The gap between either of them and 61 is the panel.",
+  "brand_para": "Springboard is separable from Hack Reactor and every brand below it. Nothing else is separable from its neighbours. A ranked bar chart of this table would be asserting an order the data can't support. My own dashboard drew it that way.",
+  "codecademy_note": "Codecademy's zero is real, checked against the raw payloads: Perplexity retrieved Codecademy pages for three answers and used none of them. The matcher catches every spelling variant. I checked that too.",
+  "citation_note": "What Perplexity and Claude return as \"citations\" is what their search step retrieved, not what the answer used. One answer here retrieves a Nucamp page and then talks entirely about a different school. So a citation rate is a retrieval rate. Read this table as what the engines looked at, not what persuaded them.",
+  "discarded_intro": "A study that only shows what survived is hiding the method. Each of these looked publishable for about a day.",
   "discarded": [
     [
       "Content farms out-cite the brands' own sites.",
@@ -954,29 +1023,51 @@
     ],
     [
       "Reddit barely registers.",
-      "Community sources were under 1% of retrieved sources. Reddit's citation share in ChatGPT had already collapsed in August 2026, and that was widely covered. Not a finding."
+      "Community sources were under 1% of retrieved sources. Reddit's citation share in ChatGPT had already collapsed in August 2026, and that was widely covered. I had rediscovered a known event."
     ],
     [
       "API results differ from what users see, so commercial tools measure the wrong thing.",
-      "Backwards. Commercial tools collect from the browser to avoid exactly that discrepancy. This study runs on APIs, so it is this study's limitation."
+      "Backwards. Commercial tools collect from the browser to avoid exactly that discrepancy. This study runs on APIs. The critique described my own limitation."
     ],
     [
       "Perplexity grounds every answer; Gemini grounds almost none.",
-      "Perplexity was given an explicit search instruction during the run and Gemini was not. The comparison was confounded by configuration."
+      "Perplexity was given an explicit search instruction during the run and Gemini was not. I had confounded the comparison with my own configuration."
     ],
     [
       "Some brands are cited far more often than they are named.",
-      "Nucamp's site appeared in the returned sources of 101 answers while its name appeared in about half as many. That is a fact about what \"citation\" means for these engines (retrieved, not used), not about Nucamp."
+      "Nucamp's site appeared in the returned sources of 101 answers while its name appeared in about half as many. That is a fact about what \"citation\" means for these engines (retrieved, not used), not about Nucamp. It changed the README more than anything else did."
+    ]
+  ],
+  "checks_intro": "Five things I'd check in any visibility tool before trusting its number, including the one I built.",
+  "checks": [
+    [
+      "Count the prompts that name you.",
+      "Divide by the total. That fraction is a floor under your score that has nothing to do with the engine."
+    ],
+    [
+      "Report branded and unbranded prompts separately.",
+      "Branded prompts measure accuracy and perception. They don't measure visibility."
+    ],
+    [
+      "Tag every prompt with an intent and cut every rate by it.",
+      "Informational prompts read near zero for everyone. That isn't a gap to close with content. It's how the engines answer those questions."
+    ],
+    [
+      "Show counts and intervals, not bare percentages.",
+      "\"20% (55 of 270, 16% to 26%)\" tells a reader what they can conclude. \"20%\" invites them to rank."
+    ],
+    [
+      "Ask what \"citation\" means in your tool.",
+      "Retrieved, or used by the answer? They are different numbers. Find out which one your dashboard is showing."
     ]
   ],
   "caveats": [
-    "270 answers across 10 brands and 30 questions, sampled repeatedly rather than asked once, because the same question returns different answers each time.",
-    "Rates are reported with 95% Wilson confidence intervals. Where two intervals overlap, no ranking between those brands is claimed.",
+    "270 answers, 10 brands, 30 prompts, one category, one day. Engines and their indexes move; this is a measurement of a moment.",
     "Answers come from provider APIs with web search switched on, not from the chat interfaces people use. Commercial tools collect from the browser for that reason.",
-    "\"Retrieved\" sources are what the search step returned, not what the answer used. They overstate how much any one source shaped an answer.",
-    "The brand-named row rests on three prompts. The original monitor's 482 of 482 is the stronger evidence for that effect, on one engine.",
-    "Answer engines change, and so do the search results they read. This is a measurement of a moment, not a permanent property."
+    "Every rate carries a 95% Wilson interval. Where two overlap, no ranking is claimed.",
+    "The brand-named row rests on three prompts and 54 pairs. The original monitor's 482 of 482 is the stronger evidence for that effect, on one engine.",
+    "\"Retrieved\" sources are what the search step returned, not what the answer used. They overstate how much any one source shaped an answer."
   ],
-  "footer": "Method, code and data are open. Flatiron School is one of the ten brands; the author built the original monitor there and left in September 2026. The monitor's own data is not published.",
-  "generated": "06 October 2026"
+  "footer": "Flatiron School is one of the ten brands. I built the original monitor as Marketing Technology Lead there and left in September 2026. The monitor's data was collected for them and is not published; the study's data, collected afterwards with my own keys, is.",
+  "generated": "07 October 2026"
 }

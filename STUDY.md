@@ -1,6 +1,6 @@
-# Where a 61% AI visibility score came from
+# 61% visible. 39 points of it were the prompt list.
 
-*I built a monitor that said a coding bootcamp showed up in 61% of AI answers about its category. Then I measured how much of that number was the monitor.*
+*I built an AI visibility monitor for a coding bootcamp. It reported the brand in 61% of AI answers about its category. Then I measured how much of that number was the monitor, re-ran the question across ten brands and three engines, and threw out five findings on the way. This is what held.*
 
 Tonishqa Kaplish · October 2026 · [Interactive version](https://ai-visibility-audit-rho.vercel.app/study/) · [Code and data](https://github.com/tkaplish888-alt/ai-visibility-audit)
 
