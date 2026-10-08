@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>61% visible. 39 points of it were the prompt list.</title>
-<meta name="description" content="How prompt wording sets AI visibility scores: 270 answers about coding bootcamps across three answer engines, with the arithmetic and the findings that were thrown out.">
-<meta property="og:title" content="61% visible. 39 points of it were the prompt list.">
-<meta property="og:description" content="I built an AI visibility monitor for a coding bootcamp. It reported the brand in 61% of AI answers about its category. Then I measured how much of that number was the monitor, re-ran the question across ten brands and three engines, and threw out five findings on the way. This is what held.">
-<meta property="og:image" content="prompt-effect.png">
+<title>Measuring AI Visibility in 2026: What Inflates the Score, What a Citation Really Measures, and 5 Findings That Didn&#x27;t Survive</title>
+<meta name="description" content="I set out to measure how often AI engines mention a brand. My first tracker said 61%, and most of that number came from the prompts I&#x27;d chosen. This is what I learned rebuilding it across ten brands and three engines, and the method I&#x27;d use now.">
+<meta property="og:title" content="Measuring AI Visibility in 2026: What Inflates the Score, What a Citation Really Measures, and 5 Findings That Didn&#x27;t Survive">
+<meta property="og:description" content="I set out to measure how often AI engines mention a brand. My first tracker said 61%, and most of that number came from the prompts I&#x27;d chosen. This is what I learned rebuilding it across ten brands and three engines, and the method I&#x27;d use now.">
+<meta property="og:image" content="https://ai-visibility-audit-rho.vercel.app/study/prompt-effect.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="Tonishqa Kaplish">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +37,7 @@
   .hero { padding:72px 0 44px; border-bottom:1px solid var(--rule); }
   h1 {
     font-size:clamp(36px,5.2vw,62px); line-height:1.0; font-weight:800;
-    letter-spacing:-0.035em; margin:0 0 22px; max-width:17ch; text-wrap:balance;
+    letter-spacing:-0.035em; margin:0 0 22px; max-width:14ch; text-wrap:balance;
   }
   .standfirst { font-size:20px; line-height:1.5; margin:0; max-width:58ch; }
   .split { margin:40px 0 0; max-width:720px; }
@@ -138,6 +139,19 @@
   .limits h2 { font-size:22px; margin-bottom:12px; }
   .limits ul { margin:0; padding-left:20px; }
   .limits li { margin-bottom:9px; font-size:15.5px; }
+  .kicker { display:block; font-size:0.42em; font-weight:500; letter-spacing:-0.01em;
+             line-height:1.3; color:var(--grey); margin-top:16px; max-width:34ch; }
+  .muted { color:var(--grey); font-weight:400; font-size:14px; }
+  pre.eq { background:var(--panel); border:1px solid var(--rule); border-radius:6px;
+            padding:14px 16px; font-size:13px; line-height:1.5; overflow-x:auto; white-space:pre-wrap;
+            margin:0 0 18px; }
+  code { font-size:0.9em; background:var(--panel); border:1px solid var(--rule);
+          border-radius:4px; padding:1px 5px; }
+  table.design td.k { color:var(--grey); width:150px; }
+  table.guide td { vertical-align:top; }
+  .limits table { margin:0; }
+  .limits td.k { width:200px; }
+  footer code { font-size:0.85em; }
   footer {
     margin-top:56px; padding-top:18px; border-top:1px solid var(--rule);
     font-size:14.5px; color:var(--grey);
@@ -165,8 +179,8 @@
 <main>
 
 <header class="hero">
-  <h1>61% visible.<br>39 points of it were the prompt list.</h1>
-  <p class="standfirst">I built an AI visibility monitor for a coding bootcamp. It reported the brand in 61% of AI answers about its category. Then I measured how much of that number was the monitor, re-ran the question across ten brands and three engines, and threw out five findings on the way. This is what held.</p>
+  <h1>Measuring AI Visibility in 2026<span class="kicker">What inflates the score, what a citation really measures, and 5 findings that didn&#x27;t survive</span></h1>
+  <p class="standfirst">I set out to measure how often AI engines mention a brand. My first tracker said 61%, and most of that number came from the prompts I&#x27;d chosen. This is what I learned rebuilding it across ten brands and three engines, and the method I&#x27;d use now.</p>
   <figure class="split" aria-label="The reported 61% split into its two sources">
     <div class="track">
       <span class="seg plum" style="width:38.8%"></span>
@@ -177,100 +191,154 @@
       <li><i style="background:var(--plum)"></i><span><b>39 points</b> from prompts that named the brand</span></li>
       <li><i style="background:var(--teal)"></i><span><b>22 points</b> from the brand on every other prompt</span></li>
     </ul>
-    <figcaption>The monitor's final weekly run: 147 answers,
+    <figcaption>My first tracker's final weekly run: 147 answers,
     30 prompts, 12 of them naming the brand.</figcaption>
   </figure>
   <ul class="links mobile-links"><li><a href="https://www.linkedin.com/in/tonishqa">LinkedIn</a></li><li><a href="https://github.com/tkaplish888-alt/ai-visibility-audit">GitHub</a></li><li><a href="https://tonishqakaplish.com">Portfolio</a></li><li><a href="mailto:tkaplish888@gmail.com">Email</a></li><li><a href="https://calendly.com/tkaplish888/30min">Book 30 minutes</a></li></ul>
 </header>
 
-<section id="ask">
-<h2>Ask differently, get a different brand</h2>
-<p class="sub">Share of answers naming a given brand, by prompt type. Every
-brand checked against every answer, pooled across all ten.</p>
+<section id="short">
+<h2>The short version</h2>
+<p>When a prompt names a brand, AI engines name it back. In this study that happened every time. Take the brand&#x27;s name out, and how often it shows up depends on the prompt&#x27;s intent: the kind of question being asked.</p>
 <figure>
-  <svg viewBox="0 0 760 276" role="img" aria-label="Share of answers naming a given brand, by prompt type" xmlns="http://www.w3.org/2000/svg"><line x1="190.0" y1="14" x2="190.0" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="190.0" y="264" text-anchor="middle" font-size="12" fill="#66736F">0%</text><line x1="308.5" y1="14" x2="308.5" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="308.5" y="264" text-anchor="middle" font-size="12" fill="#66736F">25%</text><line x1="427.0" y1="14" x2="427.0" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="427.0" y="264" text-anchor="middle" font-size="12" fill="#66736F">50%</text><line x1="545.5" y1="14" x2="545.5" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="545.5" y="264" text-anchor="middle" font-size="12" fill="#66736F">75%</text><line x1="664.0" y1="14" x2="664.0" y2="246" stroke="#D5DCDA" stroke-width="1"/><text x="664.0" y="264" text-anchor="middle" font-size="12" fill="#66736F">100%</text><text x="176" y="41.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Names the brand</text><text x="176" y="58.0" text-anchor="end" font-size="12" fill="#66736F">54 of 54</text><rect x="190" y="33.0" width="474.0" height="20" rx="3" fill="#1F6F6B"><title>Names the brand: 100.0% (54 of 54), 95% interval 93.4% to 100.0%</title></rect><line x1="632.5" y1="43.0" x2="664.0" y2="43.0" stroke="#15282C" stroke-width="1.5"/><line x1="632.5" y1="37.0" x2="632.5" y2="49.0" stroke="#15282C" stroke-width="1.5"/><line x1="664.0" y1="37.0" x2="664.0" y2="49.0" stroke="#15282C" stroke-width="1.5"/><text x="674.0" y="48.0" font-size="15" font-weight="600" fill="#15282C">100%</text><text x="176" y="99.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Commercial</text><text x="176" y="116.0" text-anchor="end" font-size="12" fill="#66736F">355 of 1,080</text><rect x="190" y="91.0" width="155.8" height="20" rx="3" fill="#1F6F6B"><title>Commercial: 32.9% (355 of 1080), 95% interval 30.1% to 35.7%</title></rect><line x1="332.8" y1="101.0" x2="359.4" y2="101.0" stroke="#15282C" stroke-width="1.5"/><line x1="332.8" y1="95.0" x2="332.8" y2="107.0" stroke="#15282C" stroke-width="1.5"/><line x1="359.4" y1="95.0" x2="359.4" y2="107.0" stroke="#15282C" stroke-width="1.5"/><text x="369.4" y="106.0" font-size="15" font-weight="600" fill="#15282C">32.9%</text><text x="176" y="157.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Transactional</text><text x="176" y="174.0" text-anchor="end" font-size="12" fill="#66736F">39 of 270</text><rect x="190" y="149.0" width="68.5" height="20" rx="3" fill="#1F6F6B"><title>Transactional: 14.4% (39 of 270), 95% interval 10.7% to 19.1%</title></rect><line x1="241.0" y1="159.0" x2="280.7" y2="159.0" stroke="#15282C" stroke-width="1.5"/><line x1="241.0" y1="153.0" x2="241.0" y2="165.0" stroke="#15282C" stroke-width="1.5"/><line x1="280.7" y1="153.0" x2="280.7" y2="165.0" stroke="#15282C" stroke-width="1.5"/><text x="290.7" y="164.0" font-size="15" font-weight="600" fill="#15282C">14.4%</text><text x="176" y="215.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Informational</text><text x="176" y="232.0" text-anchor="end" font-size="12" fill="#66736F">28 of 1,080</text><rect x="190" y="207.0" width="12.3" height="20" rx="3" fill="#1F6F6B"><title>Informational: 2.6% (28 of 1080), 95% interval 1.8% to 3.7%</title></rect><line x1="198.5" y1="217.0" x2="207.6" y2="217.0" stroke="#15282C" stroke-width="1.5"/><line x1="198.5" y1="211.0" x2="198.5" y2="223.0" stroke="#15282C" stroke-width="1.5"/><line x1="207.6" y1="211.0" x2="207.6" y2="223.0" stroke="#15282C" stroke-width="1.5"/><text x="217.6" y="222.0" font-size="15" font-weight="600" fill="#15282C">2.6%</text></svg>
-  <figcaption>Whiskers are 95% Wilson confidence intervals. No two rows
-  overlap.</figcaption>
+  <svg viewBox="0 0 760 252" role="img" aria-label="Share of answers naming a given brand, by prompt intent" xmlns="http://www.w3.org/2000/svg"><line x1="190.0" y1="14" x2="190.0" y2="222" stroke="#D5DCDA" stroke-width="1"/><text x="190.0" y="240" text-anchor="middle" font-size="12" fill="#66736F">0%</text><line x1="308.5" y1="14" x2="308.5" y2="222" stroke="#D5DCDA" stroke-width="1"/><text x="308.5" y="240" text-anchor="middle" font-size="12" fill="#66736F">25%</text><line x1="427.0" y1="14" x2="427.0" y2="222" stroke="#D5DCDA" stroke-width="1"/><text x="427.0" y="240" text-anchor="middle" font-size="12" fill="#66736F">50%</text><line x1="545.5" y1="14" x2="545.5" y2="222" stroke="#D5DCDA" stroke-width="1"/><text x="545.5" y="240" text-anchor="middle" font-size="12" fill="#66736F">75%</text><line x1="664.0" y1="14" x2="664.0" y2="222" stroke="#D5DCDA" stroke-width="1"/><text x="664.0" y="240" text-anchor="middle" font-size="12" fill="#66736F">100%</text><text x="176" y="38.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Branded</text><text x="176" y="55.0" text-anchor="end" font-size="12" fill="#66736F">54 of 54</text><rect x="190" y="30.0" width="474.0" height="20" rx="3" fill="#1F6F6B"><title>Branded: 100.0% (95% interval 93.4% to 100.0%)</title></rect><line x1="632.5" y1="40.0" x2="664.0" y2="40.0" stroke="#15282C" stroke-width="1.5"/><line x1="632.5" y1="34.0" x2="632.5" y2="46.0" stroke="#15282C" stroke-width="1.5"/><line x1="664.0" y1="34.0" x2="664.0" y2="46.0" stroke="#15282C" stroke-width="1.5"/><text x="674.0" y="45.0" font-size="15" font-weight="600" fill="#15282C">100%</text><text x="176" y="90.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Commercial</text><text x="176" y="107.0" text-anchor="end" font-size="12" fill="#66736F">355 of 1,080</text><rect x="190" y="82.0" width="155.8" height="20" rx="3" fill="#1F6F6B"><title>Commercial: 32.9% (95% interval 30.1% to 35.7%)</title></rect><line x1="332.8" y1="92.0" x2="359.4" y2="92.0" stroke="#15282C" stroke-width="1.5"/><line x1="332.8" y1="86.0" x2="332.8" y2="98.0" stroke="#15282C" stroke-width="1.5"/><line x1="359.4" y1="86.0" x2="359.4" y2="98.0" stroke="#15282C" stroke-width="1.5"/><text x="369.4" y="97.0" font-size="15" font-weight="600" fill="#15282C">32.9%</text><text x="176" y="142.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Transactional</text><text x="176" y="159.0" text-anchor="end" font-size="12" fill="#66736F">39 of 270</text><rect x="190" y="134.0" width="68.5" height="20" rx="3" fill="#1F6F6B"><title>Transactional: 14.4% (95% interval 10.7% to 19.1%)</title></rect><line x1="241.0" y1="144.0" x2="280.7" y2="144.0" stroke="#15282C" stroke-width="1.5"/><line x1="241.0" y1="138.0" x2="241.0" y2="150.0" stroke="#15282C" stroke-width="1.5"/><line x1="280.7" y1="138.0" x2="280.7" y2="150.0" stroke="#15282C" stroke-width="1.5"/><text x="290.7" y="149.0" font-size="15" font-weight="600" fill="#15282C">14.4%</text><text x="176" y="194.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Informational</text><text x="176" y="211.0" text-anchor="end" font-size="12" fill="#66736F">28 of 1,080</text><rect x="190" y="186.0" width="12.3" height="20" rx="3" fill="#1F6F6B"><title>Informational: 2.6% (95% interval 1.8% to 3.7%)</title></rect><line x1="198.5" y1="196.0" x2="207.6" y2="196.0" stroke="#15282C" stroke-width="1.5"/><line x1="198.5" y1="190.0" x2="198.5" y2="202.0" stroke="#15282C" stroke-width="1.5"/><line x1="207.6" y1="190.0" x2="207.6" y2="202.0" stroke="#15282C" stroke-width="1.5"/><text x="217.6" y="201.0" font-size="15" font-weight="600" fill="#15282C">2.6%</text></svg>
+  <figcaption>Ten coding bootcamps, three engines (Claude, ChatGPT, Perplexity),
+  270 answers. Each row checks every brand against every answer to a prompt of
+  that intent. Whiskers are 95% Wilson confidence intervals; no two rows overlap.</figcaption>
 </figure>
-<p class="pull">Put a brand&#x27;s name in the prompt and the answer names it back. Every time. Ask an open question and most brands disappear.</p>
 <table>
-  <thead><tr><th>Prompt type</th><th class="n">Rate</th>
-  <th class="n">Brand-answer pairs</th><th class="t">95% interval</th></tr></thead>
-  <tbody><tr><td>Names the brand<br><span class="ex">"Hack Reactor vs App Academy?"</span></td><td class="n">100%</td><td class="n">54 of 54</td><td class="t">93.4% to 100.0%</td></tr><tr><td>Commercial<br><span class="ex">"Best bootcamp for a career changer?"</span></td><td class="n">32.9%</td><td class="n">355 of 1,080</td><td class="t">30.1% to 35.7%</td></tr><tr><td>Transactional<br><span class="ex">"How do I pay for a bootcamp?"</span></td><td class="n">14.4%</td><td class="n">39 of 270</td><td class="t">10.7% to 19.1%</td></tr><tr><td>Informational<br><span class="ex">"Are bootcamps still worth it in 2026?"</span></td><td class="n">2.6%</td><td class="n">28 of 1,080</td><td class="t">1.8% to 3.7%</td></tr></tbody>
+  <thead><tr><th>Prompt intent</th><th>Example</th><th class="n">Answers naming a given brand</th></tr></thead>
+  <tbody><tr><td><b>Branded</b></td><td class="t">"Hack Reactor vs App Academy?"</td><td class="n"><b>100%</b> <span class="muted">(54 of 54)</span></td></tr><tr><td><b>Commercial</b></td><td class="t">"Best bootcamp for a career changer?"</td><td class="n"><b>32.9%</b> <span class="muted">(355 of 1,080)</span></td></tr><tr><td><b>Transactional</b></td><td class="t">"How do I pay for a bootcamp?"</td><td class="n"><b>14.4%</b> <span class="muted">(39 of 270)</span></td></tr><tr><td><b>Informational</b></td><td class="t">"Are bootcamps still worth it in 2026?"</td><td class="n"><b>2.6%</b> <span class="muted">(28 of 1,080)</span></td></tr></tbody>
 </table>
-<p>The mechanism is plain. Commercial questions get a shortlist: 95% of them name at least one of the ten schools. Informational questions get an essay: 85% name nobody. No engine answers &quot;are bootcamps worth it?&quot; with a recommendation, so on that prompt no brand is visible, and no content strategy changes that.</p>
-<p>Which makes a visibility score arithmetic. Take the share of prompts that name the brand and multiply by 100%. Take the share that don&#x27;t and multiply by the brand&#x27;s real rate on open questions. Add them. The first term belongs to whoever wrote the prompt list. Only the second belongs to the brand.</p>
+<p class="pull">So &quot;what share of AI answers mention us?&quot; has no single answer. It has one per prompt intent, and the mix of prompts in your panel decides which one you get.</p>
+</section>
+
+<section id="why">
+<h2>Why this is worth measuring carefully</h2>
+<p>There&#x27;s no agreed way to measure AI visibility yet. Prompts have no search volume the way keywords do, and the same prompt can return a different answer every time you run it. So anyone measuring visibility makes a few choices up front: which prompts go into the prompt panel (the fixed set of prompts you track), how many times to sample each one, and how to roll the answers up into a number.</p>
+<p>This study is my attempt to make those choices deliberately and show how much each one moves the result. Prompt selection is already part of the conversation in this field. What I wanted to add was a worked example: one real tracker taken apart, a test of whether the pattern holds across a whole category, and a method that comes out the other side.</p>
 </section>
 
 <section id="sixty-one">
-<h2>The 61%, taken apart</h2>
+<h2>Where the 61% came from</h2>
+<p>My first tracker ran a 30-prompt panel through Claude every week, sampling each prompt five times, and reported how often one bootcamp was named. It settled at 61%. That looked like a strong result until I split the panel by whether each prompt contained the brand&#x27;s name.</p>
 <figure>
-  <img src="monitor-before.png" alt="The original monitor's dashboard, reporting a 61% mention rate for one brand across 147 Claude answers." loading="lazy">
-  <figcaption>The dashboard that started this, as published in August 2026.</figcaption>
+  <img src="monitor-before.png" alt="The original tracker's dashboard, reporting a 61% mention rate for one brand across 147 Claude answers." loading="lazy">
+  <figcaption>The tracker's dashboard as published in August 2026.</figcaption>
 </figure>
-<p>This study exists because of that dashboard. I built it as a weekly monitor for one bootcamp&#x27;s marketing team, and it said the brand appeared in 61% of AI answers about its category. Twelve of its thirty prompts named the brand. Across six weekly runs, all 482 answers to those prompts named it back, because the question contained the name. On the other eighteen prompts, same engine, same week: 37%.</p>
 <table>
-  <thead><tr><th></th><th class="n">Prompts</th>
-  <th class="n">Answers</th><th class="n">Brand named</th></tr></thead>
-  <tbody><tr class="grp"><th colspan="4">The monitor, final weekly run (Claude, August 2026)</th></tr><tr><td><span>Prompts naming the brand</span></td><td class="n">12</td><td class="n">57</td><td class="n"><span>57 (100%)</span></td></tr><tr><td><span>Prompts that don&#x27;t</span></td><td class="n">18</td><td class="n">90</td><td class="n"><span>33 (37%)</span></td></tr><tr><td><b>As reported</b></td><td class="n">30</td><td class="n">147</td><td class="n"><b>90 (61%)</b></td></tr><tr class="grp"><th colspan="4">This study, same brand (Claude, ChatGPT, Perplexity, October 2026)</th></tr><tr><td><span>Prompts naming the brand</span></td><td class="n">2</td><td class="n">18</td><td class="n"><span>18 (100%)</span></td></tr><tr><td><span>Prompts that don&#x27;t</span></td><td class="n">28</td><td class="n">252</td><td class="n"><span>37 (15%)</span></td></tr><tr><td><b>All prompts</b></td><td class="n">30</td><td class="n">270</td><td class="n"><b>55 (20%)</b></td></tr></tbody>
+  <thead><tr><th>Tracker's final run (Claude, August 2026)</th><th class="n">Prompts</th>
+  <th class="n">Answers</th><th class="n">Answers naming the brand</th></tr></thead>
+  <tbody><tr><td><span>Branded prompts</span></td><td class="n">12</td><td class="n">57</td><td class="n"><span>57 (100%)</span></td></tr><tr><td><span>Unbranded prompts</span></td><td class="n">18</td><td class="n">90</td><td class="n"><span>33 (37%)</span></td></tr><tr><td><b>Full panel, as reported</b></td><td class="n">30</td><td class="n">147</td><td class="n"><b>90 (61%)</b></td></tr></tbody>
 </table>
-<p>The monitor&#x27;s 37% and this study&#x27;s 15% are different measurements: one engine in August on prompts written to watch one brand, against three engines in October on prompts written to survey a category. The gap between them is the ordinary noise of this kind of work. The gap between either of them and 61 is the panel.</p>
+<p>Across all six weekly runs, the tracker&#x27;s branded prompts returned 482 answers, and every one of them named the brand. That isn&#x27;t the engine choosing to recommend anyone. The brand was in the prompt.</p>
+<h3>The arithmetic, and why it holds</h3>
+<p>A score pooled across a panel is a weighted average. Each group of prompts counts in proportion to the number of answers it produced:</p>
+<pre class="eq">mention rate =
+    (share of answers from branded prompts)   × (rate on branded prompts)
+  + (share of answers from unbranded prompts) × (rate on unbranded prompts)</pre>
+<p>This is simply how an average over two groups works, so it holds exactly. What the data adds is the branded rate: 100%. Plugging in the tracker&#x27;s final run:</p>
+<table>
+  <thead><tr><th></th><th class="n">Share of answers</th><th class="n">× Rate</th><th class="n">= Points</th></tr></thead>
+  <tbody><tr><td>Branded prompts</td><td class="n">57 of 147 (38.8%)</td><td class="n">× 100%</td><td class="n"><b>38.8</b></td></tr><tr><td>Unbranded prompts</td><td class="n">90 of 147 (61.2%)</td><td class="n">× 36.7%</td><td class="n"><b>22.4</b></td></tr><tr><td><b>Reported mention rate</b></td><td></td><td></td><td class="n"><b>61.2</b></td></tr></tbody>
+</table>
+<p>Thirty-nine of the 61 points were set when the panel was written, before any engine answered. The other 22 tell you something about the brand.</p>
 </section>
 
-<section id="brands">
-<h2>Ten brands, one cluster</h2>
+<section id="category">
+<h2>Does it hold across a category?</h2>
+<p>One tracker could be a fluke, so I built a neutral panel and ran it across the whole category.</p>
+<table class="design">
+  <tbody><tr><td class="k">Brands</td><td>10 coding bootcamps, all treated as peers</td></tr><tr><td class="k">Prompt panel</td><td>30 prompts: 12 commercial, 12 informational, 3 transactional, 3 branded</td></tr><tr><td class="k">Branded prompts</td><td>Only the 3 head-to-head comparisons, kept in on purpose to measure the branded effect in the same run</td></tr><tr><td class="k">Engines</td><td>ChatGPT (gpt-5), Claude (claude-sonnet-5), Perplexity (sonar), each through its API with web search on</td></tr><tr><td class="k">Sampling</td><td>3 runs per prompt per engine, because answers vary from run to run</td></tr><tr><td class="k">Collection</td><td>1 October 2026: 360 answers, zero failures, about $20</td></tr><tr><td class="k">Uncertainty</td><td>95% Wilson intervals on every rate. This method stays accurate near 0% and 100%, where the textbook formula breaks down.</td></tr></tbody>
+</table>
+<p>The pattern held for every brand: 100% on branded prompts, then a steady decline through commercial, transactional and informational.</p>
+<p>The mechanism shows up when you count answers that named any of the ten brands:</p>
+<figure>
+  <svg viewBox="0 0 760 200" role="img" aria-label="Share of answers naming at least one tracked brand, by prompt intent" xmlns="http://www.w3.org/2000/svg"><line x1="190.0" y1="14" x2="190.0" y2="170" stroke="#D5DCDA" stroke-width="1"/><text x="190.0" y="188" text-anchor="middle" font-size="12" fill="#66736F">0%</text><line x1="308.5" y1="14" x2="308.5" y2="170" stroke="#D5DCDA" stroke-width="1"/><text x="308.5" y="188" text-anchor="middle" font-size="12" fill="#66736F">25%</text><line x1="427.0" y1="14" x2="427.0" y2="170" stroke="#D5DCDA" stroke-width="1"/><text x="427.0" y="188" text-anchor="middle" font-size="12" fill="#66736F">50%</text><line x1="545.5" y1="14" x2="545.5" y2="170" stroke="#D5DCDA" stroke-width="1"/><text x="545.5" y="188" text-anchor="middle" font-size="12" fill="#66736F">75%</text><line x1="664.0" y1="14" x2="664.0" y2="170" stroke="#D5DCDA" stroke-width="1"/><text x="664.0" y="188" text-anchor="middle" font-size="12" fill="#66736F">100%</text><text x="176" y="38.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Commercial</text><text x="176" y="55.0" text-anchor="end" font-size="12" fill="#66736F">103 of 108</text><rect x="190" y="30.0" width="452.1" height="20" rx="3" fill="#1F6F6B"><title>Commercial: 95.4%</title></rect><text x="652.1" y="45.0" font-size="15" font-weight="600" fill="#15282C">95.4%</text><text x="176" y="90.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Transactional</text><text x="176" y="107.0" text-anchor="end" font-size="12" fill="#66736F">16 of 27</text><rect x="190" y="82.0" width="280.9" height="20" rx="3" fill="#1F6F6B"><title>Transactional: 59.3%</title></rect><text x="480.9" y="97.0" font-size="15" font-weight="600" fill="#15282C">59.3%</text><text x="176" y="142.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Informational</text><text x="176" y="159.0" text-anchor="end" font-size="12" fill="#66736F">16 of 108</text><rect x="190" y="134.0" width="70.2" height="20" rx="3" fill="#1F6F6B"><title>Informational: 14.8%</title></rect><text x="270.2" y="149.0" font-size="15" font-weight="600" fill="#15282C">14.8%</text></svg>
+  <figcaption>Share of answers that named at least one of the ten brands, by prompt
+  intent. Comparative prompts are left out because they name brands by construction.</figcaption>
+</figure>
+<p>Commercial prompts get a shortlist. Informational prompts mostly get an explainer that recommends nobody. A low mention rate on informational prompts isn&#x27;t necessarily a gap to close: most of those answers don&#x27;t name any brand.</p>
+<p>Here is the same brand from the original tracker, measured both ways:</p>
+<table>
+  <thead><tr><th></th><th class="n">Prompts</th><th class="n">Answers</th><th class="n">Brand named</th></tr></thead>
+  <tbody><tr><td>Original tracker, full panel (Claude, August)</td><td class="n">30</td><td class="n">147</td><td class="n"><b>61%</b></td></tr><tr><td>Original tracker, unbranded prompts only</td><td class="n">18</td><td class="n">90</td><td class="n"><b>37%</b></td></tr><tr><td>This study, unbranded prompts only (Claude, ChatGPT, Perplexity, October)</td><td class="n">28</td><td class="n">252</td><td class="n"><b>15%</b></td></tr><tr><td>This study, full panel</td><td class="n">30</td><td class="n">270</td><td class="n"><b>20%</b></td></tr></tbody>
+</table>
+<p>The 37% and the 15% aren&#x27;t the same measurement. One is a single engine in August, on a panel written to monitor one brand. The other is three engines in October, on a panel written to survey the category. Both sit far below 61%. The distance down from 61% is the part the panel design was responsible for.</p>
+</section>
+
+<section id="intents">
+<h2>What each prompt intent actually measures</h2>
+<p>Every intent is useful, as long as you know what it&#x27;s measuring.</p>
+<table class="guide">
+  <thead><tr><th>Prompt intent</th><th>What it measures</th><th>Use it for</th></tr></thead>
+  <tbody><tr><td><b>Branded</b><br><span class="ex">"Is [brand] worth it?"</span></td><td>What engines say about you when someone already knows your name, and whether they get the facts right</td><td>Accuracy and reputation checks. Keep it out of your visibility score.</td></tr><tr><td><b>Commercial</b><br><span class="ex">"Best bootcamp for career changers?"</span></td><td>Whether you make the shortlist at the moment of choice</td><td><b>Your headline visibility metric</b></td></tr><tr><td><b>Transactional</b><br><span class="ex">"How do I pay for a bootcamp?"</span></td><td>Whether you come up as an example while someone plans a next step</td><td>A secondary visibility signal</td></tr><tr><td><b>Informational</b><br><span class="ex">"Are bootcamps still worth it?"</span></td><td>How engines frame the category, which rarely involves naming brands</td><td>Topic coverage, not brand tracking</td></tr></tbody>
+</table>
+</section>
+
+<section id="citation">
+<h2>A citation is not an endorsement</h2>
+<p>When an engine searches the web before answering, its API can return a list of sources. It&#x27;s tempting to read that list as the sources the answer used. For Perplexity and Claude, it&#x27;s actually what the search step retrieved, which isn&#x27;t the same as what the answer used.</p>
+<p>One answer made this obvious. The engine retrieved a bootcamp&#x27;s own page, then wrote an answer that never mentioned that bootcamp and focused entirely on a different school. It wasn&#x27;t an isolated case:</p>
+<table>
+  <tbody><tr><td>Answers where one brand&#x27;s site appeared in the retrieved sources</td><td class="n"><b>101</b></td></tr><tr><td>Answers that actually named that brand</td><td class="n"><b>50</b></td></tr></tbody>
+</table>
+<p class="pull">That makes a citation rate a retrieval rate. It tells you which pages the engine looked at, not which ones shaped the answer.</p>
+<table class="guide">
+  <thead><tr><th>A retrieval rate can tell you</th><th>It can't tell you</th></tr></thead>
+  <tbody><tr><td>Your pages are findable by the engine&#x27;s search step</td><td>Your pages influenced what the answer said</td></tr><tr><td>Which domains engines tend to pull up in your category</td><td>Which domains engines trust or agree with</td></tr><tr><td>Whether you&#x27;re in the pool of candidate sources</td><td>Whether you were recommended</td></tr></tbody>
+</table>
+<p>Some APIs do mark usage. Claude&#x27;s, for example, attaches citations to the specific sentences that draw on them, which makes it possible to separate retrieved sources from used ones. That&#x27;s the natural next version of this work. In the meantime, if your tool reports citations, the most useful question to ask is which of the two it&#x27;s counting.</p>
+</section>
+
+<section id="cluster">
+<h2>The brands form a cluster, not a ranking</h2>
 <p class="sub">Mention rate across every prompt, with its 95% confidence interval.</p>
 <figure>
   <svg viewBox="0 0 760 404" role="img" aria-label="Mention rate with 95% confidence intervals" xmlns="http://www.w3.org/2000/svg"><line x1="168.0" y1="22" x2="168.0" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="168.0" y="388" text-anchor="middle" font-size="12" fill="#66736F">0%</text><line x1="275.2" y1="22" x2="275.2" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="275.2" y="388" text-anchor="middle" font-size="12" fill="#66736F">10%</text><line x1="382.4" y1="22" x2="382.4" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="382.4" y="388" text-anchor="middle" font-size="12" fill="#66736F">20%</text><line x1="489.6" y1="22" x2="489.6" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="489.6" y="388" text-anchor="middle" font-size="12" fill="#66736F">30%</text><line x1="596.8" y1="22" x2="596.8" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="596.8" y="388" text-anchor="middle" font-size="12" fill="#66736F">40%</text><line x1="704.0" y1="22" x2="704.0" y2="370" stroke="#D5DCDA" stroke-width="1"/><text x="704.0" y="388" text-anchor="middle" font-size="12" fill="#66736F">50%</text><text x="154" y="51.0" text-anchor="end" font-size="14" fill="#15282C">Springboard</text><line x1="483.0" y1="47.0" x2="604.0" y2="47.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="541.2" y1="38.0" x2="541.2" y2="56.0" stroke="#1F6F6B" stroke-width="3"/><text x="614.0" y="51.0" font-size="13" fill="#66736F">35%</text><text x="154" y="85.0" text-anchor="end" font-size="14" fill="#15282C">App Academy</text><line x1="382.8" y1="81.0" x2="492.8" y2="81.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="434.0" y1="72.0" x2="434.0" y2="90.0" stroke="#1F6F6B" stroke-width="3"/><text x="502.8" y="85.0" font-size="13" fill="#66736F">25%</text><text x="154" y="119.0" text-anchor="end" font-size="14" fill="#15282C">General Assembly</text><line x1="379.2" y1="115.0" x2="488.6" y2="115.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="430.0" y1="106.0" x2="430.0" y2="124.0" stroke="#1F6F6B" stroke-width="3"/><text x="498.6" y="119.0" font-size="13" fill="#66736F">24%</text><text x="154" y="153.0" text-anchor="end" font-size="14" fill="#15282C">Hack Reactor</text><line x1="346.7" y1="149.0" x2="450.7" y2="149.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="394.3" y1="140.0" x2="394.3" y2="158.0" stroke="#1F6F6B" stroke-width="3"/><text x="460.7" y="153.0" font-size="13" fill="#66736F">21%</text><text x="154" y="187.0" text-anchor="end" font-size="14" fill="#15282C">Flatiron School</text><line x1="339.5" y1="183.0" x2="442.2" y2="183.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="386.4" y1="174.0" x2="386.4" y2="192.0" stroke="#1F6F6B" stroke-width="3"/><text x="452.2" y="187.0" font-size="13" fill="#66736F">20%</text><text x="154" y="221.0" text-anchor="end" font-size="14" fill="#15282C">Nucamp</text><line x1="321.7" y1="217.0" x2="420.8" y2="217.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="366.5" y1="208.0" x2="366.5" y2="226.0" stroke="#1F6F6B" stroke-width="3"/><text x="430.8" y="221.0" font-size="13" fill="#66736F">19%</text><text x="154" y="255.0" text-anchor="end" font-size="14" fill="#15282C">TripleTen</text><line x1="311.1" y1="251.0" x2="407.9" y2="251.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="354.6" y1="242.0" x2="354.6" y2="260.0" stroke="#1F6F6B" stroke-width="3"/><text x="417.9" y="255.0" font-size="13" fill="#66736F">17%</text><text x="154" y="289.0" text-anchor="end" font-size="14" fill="#15282C">Fullstack Academy</text><line x1="259.4" y1="285.0" x2="342.2" y2="285.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="295.1" y1="276.0" x2="295.1" y2="294.0" stroke="#1F6F6B" stroke-width="3"/><text x="352.2" y="289.0" font-size="13" fill="#66736F">12%</text><text x="154" y="323.0" text-anchor="end" font-size="14" fill="#15282C">BrainStation</text><line x1="189.7" y1="319.0" x2="239.6" y2="319.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="207.7" y1="310.0" x2="207.7" y2="328.0" stroke="#1F6F6B" stroke-width="3"/><text x="249.6" y="323.0" font-size="13" fill="#66736F">4%</text><text x="154" y="357.0" text-anchor="end" font-size="14" fill="#15282C">Codecademy</text><line x1="168.0" y1="353.0" x2="183.0" y2="353.0" stroke="#9CC4C0" stroke-width="10" stroke-linecap="round"/><line x1="168.0" y1="344.0" x2="168.0" y2="362.0" stroke="#1F6F6B" stroke-width="3"/><text x="193.0" y="357.0" font-size="13" fill="#66736F">0%</text></svg>
-  <figcaption>The bar is the range the true rate is very likely to fall in.
-  The tick is what was measured. Where two bars overlap, the difference between
-  those brands is not real at this sample size, however different the
-  percentages look.</figcaption>
+  <figcaption>The bar is the range the true rate is very likely to fall in. The tick
+  is what was measured. Where two bars overlap, the data can't say which brand is ahead.</figcaption>
 </figure>
-<p>Springboard is separable from Hack Reactor and every brand below it. Nothing else is separable from its neighbours. A ranked bar chart of this table would be asserting an order the data can&#x27;t support. My own dashboard drew it that way. Pairs you cannot separate: Springboard and App Academy, Springboard and General Assembly, App Academy and General Assembly, App Academy and Hack Reactor, App Academy and Flatiron School, App Academy and Nucamp.</p>
-<p>Codecademy&#x27;s zero is real, checked against the raw payloads: Perplexity retrieved Codecademy pages for three answers and used none of them. The matcher catches every spelling variant. I checked that too.</p>
-<h3>By prompt type, per brand</h3>
-<table>
-  <thead><tr><th>Prompt type</th><th class="n">Answers</th>
-  <th class="t">Most named</th></tr></thead>
-  <tbody><tr><td>commercial</td><td class="n">108</td><td class="t">Springboard 70%, General Assembly 46%, Nucamp 44%</td></tr><tr><td>comparative</td><td class="n">27</td><td class="t">Flatiron School 67%, Springboard 37%, App Academy 33%</td></tr><tr><td>informational</td><td class="n">108</td><td class="t">App Academy 8%, Springboard 5%, Hack Reactor 4%</td></tr><tr><td>transactional</td><td class="n">27</td><td class="t">Hack Reactor 41%, App Academy 30%, Flatiron School 26%</td></tr></tbody>
-</table>
+<p>Across 270 answers, most of the field sits inside overlapping intervals. The honest reading is a large group of brands at roughly the same level, with a few separated above and below it. A ranked bar chart of the same numbers would imply an order the sample can&#x27;t support. My first dashboard drew exactly that chart, which is part of why I rebuilt it.</p>
 </section>
 
-<section id="retrieved">
-<h2>Retrieved, not used</h2>
-<p class="sub">The fifteen websites the engines' search step returned most often.</p>
-<p>What Perplexity and Claude return as &quot;citations&quot; is what their search step retrieved, not what the answer used. One answer here retrieves a Nucamp page and then talks entirely about a different school. So a citation rate is a retrieval rate. Read this table as what the engines looked at, not what persuaded them.</p>
+<section id="engines">
+<h2>Which engine you ask matters too</h2>
+<p>The same brand, on unbranded prompts only:</p>
+<figure>
+  <svg viewBox="0 0 760 182" role="img" aria-label="One brand&#x27;s mention rate on unbranded prompts, by engine" xmlns="http://www.w3.org/2000/svg"><line x1="190.0" y1="14" x2="190.0" y2="152" stroke="#D5DCDA" stroke-width="1"/><text x="190.0" y="170" text-anchor="middle" font-size="12" fill="#66736F">0%</text><line x1="284.8" y1="14" x2="284.8" y2="152" stroke="#D5DCDA" stroke-width="1"/><text x="284.8" y="170" text-anchor="middle" font-size="12" fill="#66736F">10%</text><line x1="379.6" y1="14" x2="379.6" y2="152" stroke="#D5DCDA" stroke-width="1"/><text x="379.6" y="170" text-anchor="middle" font-size="12" fill="#66736F">20%</text><line x1="474.4" y1="14" x2="474.4" y2="152" stroke="#D5DCDA" stroke-width="1"/><text x="474.4" y="170" text-anchor="middle" font-size="12" fill="#66736F">30%</text><line x1="569.2" y1="14" x2="569.2" y2="152" stroke="#D5DCDA" stroke-width="1"/><text x="569.2" y="170" text-anchor="middle" font-size="12" fill="#66736F">40%</text><line x1="664.0" y1="14" x2="664.0" y2="152" stroke="#D5DCDA" stroke-width="1"/><text x="664.0" y="170" text-anchor="middle" font-size="12" fill="#66736F">50%</text><text x="176" y="35.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Claude</text><text x="176" y="52.0" text-anchor="end" font-size="12" fill="#66736F">19 of 84</text><rect x="190" y="27.0" width="214.4" height="20" rx="3" fill="#1F6F6B"><title>Claude: 22.6%</title></rect><text x="414.4" y="42.0" font-size="15" font-weight="600" fill="#15282C">22.6%</text><text x="176" y="81.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">Perplexity</text><text x="176" y="98.0" text-anchor="end" font-size="12" fill="#66736F">12 of 84</text><rect x="190" y="73.0" width="135.4" height="20" rx="3" fill="#1F6F6B"><title>Perplexity: 14.3%</title></rect><text x="335.4" y="88.0" font-size="15" font-weight="600" fill="#15282C">14.3%</text><text x="176" y="127.0" text-anchor="end" font-size="15" font-weight="600" fill="#15282C">ChatGPT</text><text x="176" y="144.0" text-anchor="end" font-size="12" fill="#66736F">6 of 84</text><rect x="190" y="119.0" width="67.7" height="20" rx="3" fill="#1F6F6B"><title>ChatGPT: 7.1%</title></rect><text x="267.7" y="134.0" font-size="15" font-weight="600" fill="#15282C">7.1%</text></svg>
+</figure>
+<p>The engines broadly agree on which brands belong in the category. For each prompt, I compared the set of brands each engine named using the Jaccard index: the brands both engines named, divided by all brands either one named. A score of 1.0 means identical sets.</p>
 <table>
-  <thead><tr><th>Domain</th><th class="n">Retrieved</th>
-  <th class="t">Type</th></tr></thead>
-  <tbody><tr><td>coursereport.com</td><td class="n">120</td><td class="t">Review sites and directories</td></tr><tr><td>hakia.com</td><td class="n">113</td><td class="t">Review sites and directories</td></tr><tr><td>nucamp.co</td><td class="n">101</td><td class="t">Brands&#x27; own websites</td></tr><tr><td>metana.io</td><td class="n">82</td><td class="t">Other vendors&#x27; content</td></tr><tr><td>tripleten.com</td><td class="n">74</td><td class="t">Brands&#x27; own websites</td></tr><tr><td>scrimba.com</td><td class="n">70</td><td class="t">Other vendors&#x27; content</td></tr><tr><td>careerkarma.com</td><td class="n">60</td><td class="t">Review sites and directories</td></tr><tr><td>forbes.com</td><td class="n">57</td><td class="t">News and editorial</td></tr><tr><td>cirr.org</td><td class="n">47</td><td class="t">Industry standards body</td></tr><tr><td>rockstardeveloperuniversity.com</td><td class="n">45</td><td class="t">Other vendors&#x27; content</td></tr><tr><td>assignmentdude.com</td><td class="n">40</td><td class="t">Paid essay services</td></tr><tr><td>springboard.com</td><td class="n">39</td><td class="t">Brands&#x27; own websites</td></tr><tr><td>bestcolleges.com</td><td class="n">36</td><td class="t">Review sites and directories</td></tr><tr><td>computerscience.org</td><td class="n">32</td><td class="t">News and editorial</td></tr><tr><td>en.wikipedia.org</td><td class="n">32</td><td class="t">News and editorial</td></tr></tbody>
+  <thead><tr><th>Engine pair</th><th class="n">Jaccard overlap</th></tr></thead>
+  <tbody><tr><td>Claude and ChatGPT</td><td class="n"><b>0.60</b></td></tr><tr><td>Claude and Perplexity</td><td class="n"><b>0.59</b></td></tr><tr><td>ChatGPT and Perplexity</td><td class="n"><b>0.53</b></td></tr></tbody>
 </table>
+<p>The engines largely agree on who is in the category, but each mentions those brands at a different rate. A single-engine number won&#x27;t stand in for the others.</p>
 </section>
 
 <section id="discarded">
-<h2>Five findings I threw out</h2>
-<p class="sub">A study that only shows what survived is hiding the method. Each of these looked publishable for about a day.</p>
-<ol class="list"><li><b>Content farms out-cite the brands&#x27; own sites.</b><span>A manual check of five flagged domains found a program-matching search tool, a paid tutoring service and a legitimate developer academy. The classification was a judgement, and it was wrong often enough that the number meant nothing.</span></li><li><b>Reddit barely registers.</b><span>Community sources were under 1% of retrieved sources. Reddit&#x27;s citation share in ChatGPT had already collapsed in August 2026, and that was widely covered. I had rediscovered a known event.</span></li><li><b>API results differ from what users see, so commercial tools measure the wrong thing.</b><span>Backwards. Commercial tools collect from the browser to avoid exactly that discrepancy. This study runs on APIs. The critique described my own limitation.</span></li><li><b>Perplexity grounds every answer; Gemini grounds almost none.</b><span>Perplexity was given an explicit search instruction during the run and Gemini was not. I had confounded the comparison with my own configuration.</span></li><li><b>Some brands are cited far more often than they are named.</b><span>Nucamp&#x27;s site appeared in the returned sources of 101 answers while its name appeared in about half as many. That is a fact about what &quot;citation&quot; means for these engines (retrieved, not used), not about Nucamp. It changed the README more than anything else did.</span></li></ol>
+<h2>5 findings that didn't survive</h2>
+<p class="sub">Each of these looked like a headline for about a day.</p>
+<ol class="list"><li><b>Content farms get cited more than brands&#x27; own sites</b><span>A manual check of five flagged domains found a program-matching tool, a tutoring service and a legitimate developer academy. Source labels like &quot;content farm&quot; are judgment calls, so they need spot-checking before you build a finding on them.</span></li><li><b>Reddit barely registers as a source</b><span>Community sites were under 1% of retrieved sources. That&#x27;s consistent with the widely reported drop in Reddit citations in ChatGPT since August 2026, and it shows the drop still visible here in October.</span></li><li><b>API answers miss what real users see</b><span>Nothing in this data tests that, because every answer came through an API. It belongs in the limits section, and it&#x27;s why some tracking tools collect from the chat interface instead.</span></li><li><b>Perplexity always searches; Gemini rarely does</b><span>Perplexity grounded 90 of 90 answers and Gemini 23 of 90, but my setup gave Perplexity an explicit search instruction and gave Gemini none. Anyone replicating this should configure every engine the same way before comparing grounding.</span></li><li><b>Some brands are cited far more often than they&#x27;re named</b><span>That gap is real, but it comes from what &quot;citation&quot; means. Those are retrieved sources, not used ones (see &quot;A citation is not an endorsement&quot;).</span></li></ol>
 </section>
 
 <section id="checks">
-<h2>Five checks before you trust a visibility score</h2>
-<p class="sub">Five things I&#x27;d check in any visibility tool before trusting its number, including the one I built.</p>
-<ol class="list checks"><li><b>Count the prompts that name you.</b><span>Divide by the total. That fraction is a floor under your score that has nothing to do with the engine.</span></li><li><b>Report branded and unbranded prompts separately.</b><span>Branded prompts measure accuracy and perception. They don&#x27;t measure visibility.</span></li><li><b>Tag every prompt with an intent and cut every rate by it.</b><span>Informational prompts read near zero for everyone. That isn&#x27;t a gap to close with content. It&#x27;s how the engines answer those questions.</span></li><li><b>Show counts and intervals, not bare percentages.</b><span>&quot;20% (55 of 270, 16% to 26%)&quot; tells a reader what they can conclude. &quot;20%&quot; invites them to rank.</span></li><li><b>Ask what &quot;citation&quot; means in your tool.</b><span>Retrieved, or used by the answer? They are different numbers. Find out which one your dashboard is showing.</span></li></ol>
+<h2>5 checks before you trust any AI visibility score</h2>
+<ol class="list checks"><li><b>Count your branded prompts, and track them separately</b><span>Each one adds a near-guaranteed mention. Branded prompts measure accuracy and reputation, not visibility.</span></li><li><b>Tag every prompt by intent, and make commercial your headline metric</b><span>One blended number hides a range from about 3% to 33%. Commercial prompts are where shortlists form.</span></li><li><b>Sample repeatedly, and report counts with intervals</b><span>&quot;20% (55 of 270, 16% to 26%)&quot; tells a reader what they can conclude. &quot;20%&quot; invites them to rank.</span></li><li><b>Report each engine separately</b><span>The same brand ranged from 7% to 23% across three engines.</span></li><li><b>Find out what &quot;citation&quot; means in your tool</b><span>Retrieved and used are different numbers. Until you can separate them, call it a retrieval rate.</span></li></ol>
 </section>
 
-<section id="gemini"><h2>Gemini, reported separately</h2><p>Gemini is left out of every figure above. It returned no grounding data at all for 67 of its 90 answers, which means it answered from training data rather than the live web, and its remaining sources arrive through a redirect host the parser does not yet resolve. Its answers stay in the database.</p></section>
-
 <div class="limits" id="limits">
-  <h2>What this can't tell you</h2>
-  <ul><li>270 answers, 10 brands, 30 prompts, one category, one day. Engines and their indexes move; this is a measurement of a moment.</li><li>Answers come from provider APIs with web search switched on, not from the chat interfaces people use. Commercial tools collect from the browser for that reason.</li><li>Every rate carries a 95% Wilson interval. Where two overlap, no ranking is claimed.</li><li>The brand-named row rests on three prompts and 54 pairs. The original monitor&#x27;s 482 of 482 is the stronger evidence for that effect, on one engine.</li><li>&quot;Retrieved&quot; sources are what the search step returned, not what the answer used. They overstate how much any one source shaped an answer.</li></ul>
+  <h2>What this study can't tell you</h2>
+  <table class="design"><tbody><tr><td class="k">API-based collection</td><td>People use the chat apps, which may retrieve and personalise differently.</td></tr><tr><td class="k">One category, one day</td><td>US coding bootcamps on 1 October 2026. Engines and their indexes keep changing.</td></tr><tr><td class="k">Small branded sample in the study</td><td>The 100% branded rate rests on 3 prompts (its interval runs 93% to 100%). The tracker&#x27;s 482 of 482 is stronger evidence, but it comes from one engine.</td></tr><tr><td class="k">Gemini excluded from the figures</td><td>It returned 67 of 90 answers without grounding, and its sources come back through a redirect format the parser doesn&#x27;t resolve yet.</td></tr><tr><td class="k">Retrieved, not used</td><td>Source counts overstate how much any one domain shaped an answer.</td></tr></tbody></table>
 </div>
 
 <footer>
-  <p>Flatiron School is one of the ten brands. I built the original monitor as Marketing Technology Lead there and left in September 2026. The monitor&#x27;s data was collected for them and is not published; the study&#x27;s data, collected afterwards with my own keys, is.<br>
-  <a href="https://github.com/tkaplish888-alt/ai-visibility-audit">Code, data and both prompt panels on GitHub</a>.
-  Generated 07 October 2026.</p>
+  <p>Everything is open: the code, the data and both prompt panels are on
+  <a href="https://github.com/tkaplish888-alt/ai-visibility-audit">GitHub</a>.
+  <code>config.yaml</code> is the original tracker's panel and
+  <code>config.study.yaml</code> is the neutral one. Put them side by side and
+  you can see the whole finding in a few seconds.<br>
+  Generated 08 October 2026.</p>
 </footer>
 
 </main>
@@ -283,11 +351,11 @@ brand checked against every answer, pooled across all ten.</p>
   </div>
   <div class="card toc">
     <h4>On this page</h4>
-    <ol><li><a href="#ask">Ask differently, get a different brand</a></li><li><a href="#sixty-one">The 61%, taken apart</a></li><li><a href="#brands">Ten brands, one cluster</a></li><li><a href="#retrieved">Retrieved, not used</a></li><li><a href="#discarded">Five findings I threw out</a></li><li><a href="#checks">Five checks before you trust a score</a></li><li><a href="#limits">What this can&#x27;t tell you</a></li></ol>
+    <ol><li><a href="#short">The short version</a></li><li><a href="#why">Why this is worth measuring carefully</a></li><li><a href="#sixty-one">Where the 61% came from</a></li><li><a href="#category">Does it hold across a category?</a></li><li><a href="#intents">What each prompt intent measures</a></li><li><a href="#citation">A citation is not an endorsement</a></li><li><a href="#cluster">A cluster, not a ranking</a></li><li><a href="#engines">Which engine you ask matters too</a></li><li><a href="#discarded">5 findings that didn&#x27;t survive</a></li><li><a href="#checks">5 checks before you trust a score</a></li><li><a href="#limits">What this study can&#x27;t tell you</a></li></ol>
   </div>
   <div class="card facts">
     <h4>This study</h4>
-    <dl><div><dt>Prompts</dt><dd>30, three of them naming a brand</dd></div><div><dt>Brands</dt><dd>10, as peers</dd></div><div><dt>Engines</dt><dd>ChatGPT, Claude, Perplexity</dd></div><div><dt>Samples</dt><dd>3 per prompt per engine</dd></div><div><dt>Collected</dt><dd>1 October 2026, provider APIs</dd></div><div><dt>Cost</dt><dd>about $20</dd></div></dl>
+    <dl><div><dt>Prompts</dt><dd>30, three of them branded</dd></div><div><dt>Brands</dt><dd>10, as peers</dd></div><div><dt>Engines</dt><dd>ChatGPT, Claude, Perplexity</dd></div><div><dt>Samples</dt><dd>3 per prompt per engine</dd></div><div><dt>Collected</dt><dd>1 October 2026, provider APIs</dd></div><div><dt>Cost</dt><dd>about $20</dd></div></dl>
   </div>
 </aside>
 </div>

@@ -20,9 +20,9 @@ gets from naming anyone, the less often any brand appears at all.
 Pooled across all ten brands and three engines (ChatGPT, Claude, Perplexity),
 holding collection window and sample size constant:
 
-| Prompt type | Example | Answers naming a given brand |
+| Prompt intent | Example | Answers naming a given brand |
 |---|---|---|
-| Names the brand | "Flatiron School vs General Assembly, which is better?" | 100% (54 of 54) |
+| Branded | "Hack Reactor vs App Academy for software engineering?" | 100% (54 of 54) |
 | Commercial | "Best coding bootcamp for a career changer?" | 32.9% (355 of 1,080) |
 | Transactional | "How do I pay for a bootcamp I can't afford upfront?" | 14.4% (39 of 270) |
 | Informational | "Are coding bootcamps still worth it in 2026?" | 2.6% (28 of 1,080) |
@@ -48,8 +48,10 @@ So a visibility score is roughly:
 The first term is a configuration choice. Only the second term is the brand.
 Audit the panel before trusting the number.
 
-Full results, intervals, the per-engine split, limitations, and the findings
-that were tested and discarded along the way: **[ai-visibility-audit-rho.vercel.app/study](https://ai-visibility-audit-rho.vercel.app/study/)**.
+Full write-up, with the arithmetic, the per-engine split, what a citation
+actually counts, limitations and the five findings that didn't survive:
+**[ai-visibility-audit-rho.vercel.app/study](https://ai-visibility-audit-rho.vercel.app/study/)**
+(also in [STUDY.md](STUDY.md)).
 
 Collection: 360 answers (30 prompts × 4 engines × 3 samples), zero failures
 after one resume, roughly $20 in API spend, 1 October 2026. Models:

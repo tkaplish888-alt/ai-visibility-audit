@@ -37,19 +37,22 @@ from aeo.stats import (_filters, brand_stats, by_intent,  # noqa: E402
 # =============================================================================
 # HAND-WRITTEN PAGE PROSE. NOT GENERATED FROM THE DATA.
 #
-# These strings are typed by the author. Where they quote a figure, it comes
-# from the run with Gemini excluded (270 answers across Claude, ChatGPT and
-# Perplexity) or from the original monitor (see MONITOR). If the data or the
-# engine set changes, re-check every number here by hand. Nothing updates them.
+# Where these strings quote a figure, it comes from the run with Gemini
+# excluded (270 answers across Claude, ChatGPT and Perplexity) or from the
+# original monitor (see MONITOR). If the data or the engine set changes,
+# re-check every number here by hand. Nothing updates them.
 # =============================================================================
-TITLE = "61% visible. 39 points of it were the prompt list."
-TITLE_HTML = "61% visible.<br>39 points of it were the prompt list."
+TITLE = ("Measuring AI Visibility in 2026: What Inflates the Score, What a "
+         "Citation Really Measures, and 5 Findings That Didn't Survive")
+TITLE_MAIN = "Measuring AI Visibility in 2026"
+TITLE_SUB = ("What inflates the score, what a citation really measures, "
+             "and 5 findings that didn't survive")
 
 STANDFIRST = (
-    "I built an AI visibility monitor for a coding bootcamp. It reported the "
-    "brand in 61% of AI answers about its category. Then I measured how much "
-    "of that number was the monitor, re-ran the question across ten brands and "
-    "three engines, and threw out five findings on the way. This is what held.")
+    "I set out to measure how often AI engines mention a brand. My first "
+    "tracker said 61%, and most of that number came from the prompts I'd "
+    "chosen. This is what I learned rebuilding it across ten brands and three "
+    "engines, and the method I'd use now.")
 
 AUTHOR = {
     "name": "Tonishqa Kaplish",
@@ -67,7 +70,7 @@ AUTHOR = {
 # The original monitor's database was collected for a former employer and is
 # not in this repository. These figures are typed from it by hand: the last of
 # its six weekly runs (31 Aug 2026, Claude only, 30 prompts, 147 answers), and
-# all six runs for the brand-named total.
+# all six runs for the branded total.
 MONITOR = {
     "brand": "Flatiron School",
     "named_prompts": 12, "total_prompts": 30,
@@ -77,111 +80,244 @@ MONITOR = {
     "all_runs_named": 482,
 }
 
-PULL = (
-    "Put a brand's name in the prompt and the answer names it back. Every "
-    "time. Ask an open question and most brands disappear.")
+SHORT_INTRO = (
+    "When a prompt names a brand, AI engines name it back. In this study that "
+    "happened every time. Take the brand's name out, and how often it shows "
+    "up depends on the prompt's intent: the kind of question being asked.")
 
-INTENT_PARA = (
-    "The mechanism is plain. Commercial questions get a shortlist: 95% of them "
-    "name at least one of the ten schools. Informational questions get an "
-    "essay: 85% name nobody. No engine answers \"are bootcamps worth it?\" with "
-    "a recommendation, so on that prompt no brand is visible, and no content "
-    "strategy changes that.")
+SHORT_OUTRO = (
+    "So \"what share of AI answers mention us?\" has no single answer. It has "
+    "one per prompt intent, and the mix of prompts in your panel decides "
+    "which one you get.")
 
-FORMULA_PARA = (
-    "Which makes a visibility score arithmetic. Take the share of prompts that "
-    "name the brand and multiply by 100%. Take the share that don't and "
-    "multiply by the brand's real rate on open questions. Add them. The first "
-    "term belongs to whoever wrote the prompt list. Only the second belongs to "
-    "the brand.")
+WHY_1 = (
+    "There's no agreed way to measure AI visibility yet. Prompts have no "
+    "search volume the way keywords do, and the same prompt can return a "
+    "different answer every time you run it. So anyone measuring visibility "
+    "makes a few choices up front: which prompts go into the prompt panel "
+    "(the fixed set of prompts you track), how many times to sample each one, "
+    "and how to roll the answers up into a number.")
 
-MONITOR_PARA = (
-    "This study exists because of that dashboard. I built it as a weekly "
-    "monitor for one bootcamp's marketing team, and it said the brand appeared "
-    "in 61% of AI answers about its category. Twelve of its thirty prompts "
-    "named the brand. Across six weekly runs, all 482 answers to those prompts "
-    "named it back, because the question contained the name. On the other "
-    "eighteen prompts, same engine, same week: 37%.")
+WHY_2 = (
+    "This study is my attempt to make those choices deliberately and show how "
+    "much each one moves the result. Prompt selection is already part of the "
+    "conversation in this field. What I wanted to add was a worked example: "
+    "one real tracker taken apart, a test of whether the pattern holds across "
+    "a whole category, and a method that comes out the other side.")
 
-MONITOR_CONTEXT = (
-    "The monitor's 37% and this study's {other} are different measurements: "
-    "one engine in August on prompts written to watch one brand, against "
-    "three engines in October on prompts written to survey a category. The "
-    "gap between them is the ordinary noise of this kind of work. The gap "
-    "between either of them and 61 is the panel.")
+SIXTY_ONE_1 = (
+    "My first tracker ran a 30-prompt panel through Claude every week, "
+    "sampling each prompt five times, and reported how often one bootcamp was "
+    "named. It settled at 61%. That looked like a strong result until I split "
+    "the panel by whether each prompt contained the brand's name.")
 
-BRAND_PARA = (
-    "Springboard is separable from Hack Reactor and every brand below it. "
-    "Nothing else is separable from its neighbours. A ranked bar chart of "
-    "this table would be asserting an order the data can't support. My own "
-    "dashboard drew it that way.")
+SIXTY_ONE_2 = (
+    "Across all six weekly runs, the tracker's branded prompts returned 482 "
+    "answers, and every one of them named the brand. That isn't the engine "
+    "choosing to recommend anyone. The brand was in the prompt.")
 
-CODECADEMY_NOTE = (
-    "Codecademy's zero is real, checked against the raw payloads: Perplexity "
-    "retrieved Codecademy pages for three answers and used none of them. The "
-    "matcher catches every spelling variant. I checked that too.")
+ARITH_1 = (
+    "A score pooled across a panel is a weighted average. Each group of "
+    "prompts counts in proportion to the number of answers it produced:")
 
-CITATION_NOTE = (
-    "What Perplexity and Claude return as \"citations\" is what their search "
-    "step retrieved, not what the answer used. One answer here retrieves a "
-    "Nucamp page and then talks entirely about a different school. So a "
-    "citation rate is a retrieval rate. Read this table as what the engines "
-    "looked at, not what persuaded them.")
+ARITH_2 = (
+    "This is simply how an average over two groups works, so it holds "
+    "exactly. What the data adds is the branded rate: 100%. Plugging in the "
+    "tracker's final run:")
 
-DISCARDED_INTRO = (
-    "A study that only shows what survived is hiding the method. Each of "
-    "these looked publishable for about a day.")
+ARITH_3 = (
+    "Thirty-nine of the 61 points were set when the panel was written, before "
+    "any engine answered. The other 22 tell you something about the brand.")
+
+CATEGORY_INTRO = (
+    "One tracker could be a fluke, so I built a neutral panel and ran it "
+    "across the whole category.")
+
+STUDY_DESIGN = [
+    ("Brands", "10 coding bootcamps, all treated as peers"),
+    ("Prompt panel", "30 prompts: 12 commercial, 12 informational, "
+                     "3 transactional, 3 branded"),
+    ("Branded prompts", "Only the 3 head-to-head comparisons, kept in on "
+                        "purpose to measure the branded effect in the same run"),
+    ("Engines", "ChatGPT (gpt-5), Claude (claude-sonnet-5), Perplexity "
+                "(sonar), each through its API with web search on"),
+    ("Sampling", "3 runs per prompt per engine, because answers vary from "
+                 "run to run"),
+    ("Collection", "1 October 2026: 360 answers, zero failures, about $20"),
+    ("Uncertainty", "95% Wilson intervals on every rate. This method stays "
+                    "accurate near 0% and 100%, where the textbook formula "
+                    "breaks down."),
+]
+
+CATEGORY_HELD = (
+    "The pattern held for every brand: 100% on branded prompts, then a steady "
+    "decline through commercial, transactional and informational.")
+
+CATEGORY_MECH_INTRO = (
+    "The mechanism shows up when you count answers that named any of the ten "
+    "brands:")
+
+CATEGORY_MECH = (
+    "Commercial prompts get a shortlist. Informational prompts mostly get an "
+    "explainer that recommends nobody. A low mention rate on informational "
+    "prompts isn't necessarily a gap to close: most of those answers don't "
+    "name any brand.")
+
+SAME_BRAND_INTRO = (
+    "Here is the same brand from the original tracker, measured both ways:")
+
+SAME_BRAND_OUTRO = (
+    "The 37% and the {other} aren't the same measurement. One is a single "
+    "engine in August, on a panel written to monitor one brand. The other is "
+    "three engines in October, on a panel written to survey the category. "
+    "Both sit far below 61%. The distance down from 61% is the part the panel "
+    "design was responsible for.")
+
+INTENT_GUIDE_INTRO = (
+    "Every intent is useful, as long as you know what it's measuring.")
+
+INTENT_GUIDE = [
+    ("Branded", "Is [brand] worth it?",
+     "What engines say about you when someone already knows your name, and "
+     "whether they get the facts right",
+     "Accuracy and reputation checks. Keep it out of your visibility score."),
+    ("Commercial", "Best bootcamp for career changers?",
+     "Whether you make the shortlist at the moment of choice",
+     "Your headline visibility metric"),
+    ("Transactional", "How do I pay for a bootcamp?",
+     "Whether you come up as an example while someone plans a next step",
+     "A secondary visibility signal"),
+    ("Informational", "Are bootcamps still worth it?",
+     "How engines frame the category, which rarely involves naming brands",
+     "Topic coverage, not brand tracking"),
+]
+
+CITATION_1 = (
+    "When an engine searches the web before answering, its API can return a "
+    "list of sources. It's tempting to read that list as the sources the "
+    "answer used. For Perplexity and Claude, it's actually what the search "
+    "step retrieved, which isn't the same as what the answer used.")
+
+CITATION_2 = (
+    "One answer made this obvious. The engine retrieved a bootcamp's own "
+    "page, then wrote an answer that never mentioned that bootcamp and "
+    "focused entirely on a different school. It wasn't an isolated case:")
+
+CITATION_GAP = [
+    ("Answers where one brand's site appeared in the retrieved sources", 101),
+    ("Answers that actually named that brand", 50),
+]
+
+CITATION_3 = (
+    "That makes a citation rate a retrieval rate. It tells you which pages "
+    "the engine looked at, not which ones shaped the answer.")
+
+RETRIEVAL_CAN = [
+    ("Your pages are findable by the engine's search step",
+     "Your pages influenced what the answer said"),
+    ("Which domains engines tend to pull up in your category",
+     "Which domains engines trust or agree with"),
+    ("Whether you're in the pool of candidate sources",
+     "Whether you were recommended"),
+]
+
+CITATION_4 = (
+    "Some APIs do mark usage. Claude's, for example, attaches citations to "
+    "the specific sentences that draw on them, which makes it possible to "
+    "separate retrieved sources from used ones. That's the natural next "
+    "version of this work. In the meantime, if your tool reports citations, "
+    "the most useful question to ask is which of the two it's counting.")
+
+CLUSTER_PARA = (
+    "Across 270 answers, most of the field sits inside overlapping intervals. "
+    "The honest reading is a large group of brands at roughly the same level, "
+    "with a few separated above and below it. A ranked bar chart of the same "
+    "numbers would imply an order the sample can't support. My first "
+    "dashboard drew exactly that chart, which is part of why I rebuilt it.")
+
+ENGINE_INTRO = "The same brand, on unbranded prompts only:"
+
+ENGINE_JACCARD_INTRO = (
+    "The engines broadly agree on which brands belong in the category. For "
+    "each prompt, I compared the set of brands each engine named using the "
+    "Jaccard index: the brands both engines named, divided by all brands "
+    "either one named. A score of 1.0 means identical sets.")
+
+ENGINE_OUTRO = (
+    "The engines largely agree on who is in the category, but each mentions "
+    "those brands at a different rate. A single-engine number won't stand in "
+    "for the others.")
+
+DISCARDED_INTRO = "Each of these looked like a headline for about a day."
 
 DISCARDED = [
-    ("Content farms out-cite the brands' own sites.",
-     "A manual check of five flagged domains found a program-matching search "
-     "tool, a paid tutoring service and a legitimate developer academy. The "
-     "classification was a judgement, and it was wrong often enough that the "
-     "number meant nothing."),
-    ("Reddit barely registers.",
-     "Community sources were under 1% of retrieved sources. Reddit's citation "
-     "share in ChatGPT had already collapsed in August 2026, and that was "
-     "widely covered. I had rediscovered a known event."),
-    ("API results differ from what users see, so commercial tools measure "
-     "the wrong thing.",
-     "Backwards. Commercial tools collect from the browser to avoid exactly "
-     "that discrepancy. This study runs on APIs. The critique described my "
-     "own limitation."),
-    ("Perplexity grounds every answer; Gemini grounds almost none.",
-     "Perplexity was given an explicit search instruction during the run and "
-     "Gemini was not. I had confounded the comparison with my own "
-     "configuration."),
-    ("Some brands are cited far more often than they are named.",
-     "Nucamp's site appeared in the returned sources of 101 answers while its "
-     "name appeared in about half as many. That is a fact about what "
-     "\"citation\" means for these engines (retrieved, not used), not about "
-     "Nucamp. It changed the README more than anything else did."),
+    ("Content farms get cited more than brands' own sites",
+     "A manual check of five flagged domains found a program-matching tool, "
+     "a tutoring service and a legitimate developer academy. Source labels "
+     "like \"content farm\" are judgment calls, so they need spot-checking "
+     "before you build a finding on them."),
+    ("Reddit barely registers as a source",
+     "Community sites were under 1% of retrieved sources. That's consistent "
+     "with the widely reported drop in Reddit citations in ChatGPT since "
+     "August 2026, and it shows the drop still visible here in October."),
+    ("API answers miss what real users see",
+     "Nothing in this data tests that, because every answer came through an "
+     "API. It belongs in the limits section, and it's why some tracking "
+     "tools collect from the chat interface instead."),
+    ("Perplexity always searches; Gemini rarely does",
+     "Perplexity grounded 90 of 90 answers and Gemini 23 of 90, but my setup "
+     "gave Perplexity an explicit search instruction and gave Gemini none. "
+     "Anyone replicating this should configure every engine the same way "
+     "before comparing grounding."),
+    ("Some brands are cited far more often than they're named",
+     "That gap is real, but it comes from what \"citation\" means. Those are "
+     "retrieved sources, not used ones (see \"A citation is not an "
+     "endorsement\")."),
 ]
-
-CHECKS_INTRO = (
-    "Five things I'd check in any visibility tool before trusting its number, "
-    "including the one I built.")
 
 CHECKS = [
-    ("Count the prompts that name you.",
-     "Divide by the total. That fraction is a floor under your score that has "
-     "nothing to do with the engine."),
-    ("Report branded and unbranded prompts separately.",
-     "Branded prompts measure accuracy and perception. They don't measure "
-     "visibility."),
-    ("Tag every prompt with an intent and cut every rate by it.",
-     "Informational prompts read near zero for everyone. That isn't a gap to "
-     "close with content. It's how the engines answer those questions."),
-    ("Show counts and intervals, not bare percentages.",
+    ("Count your branded prompts, and track them separately",
+     "Each one adds a near-guaranteed mention. Branded prompts measure "
+     "accuracy and reputation, not visibility."),
+    ("Tag every prompt by intent, and make commercial your headline metric",
+     "One blended number hides a range from about 3% to 33%. Commercial "
+     "prompts are where shortlists form."),
+    ("Sample repeatedly, and report counts with intervals",
      "\"20% (55 of 270, 16% to 26%)\" tells a reader what they can conclude. "
      "\"20%\" invites them to rank."),
-    ("Ask what \"citation\" means in your tool.",
-     "Retrieved, or used by the answer? They are different numbers. Find out "
-     "which one your dashboard is showing."),
+    ("Report each engine separately",
+     "The same brand ranged from 7% to 23% across three engines."),
+    ("Find out what \"citation\" means in your tool",
+     "Retrieved and used are different numbers. Until you can separate them, "
+     "call it a retrieval rate."),
 ]
 
+LIMITS = [
+    ("API-based collection",
+     "People use the chat apps, which may retrieve and personalise "
+     "differently."),
+    ("One category, one day",
+     "US coding bootcamps on 1 October 2026. Engines and their indexes keep "
+     "changing."),
+    ("Small branded sample in the study",
+     "The 100% branded rate rests on 3 prompts (its interval runs 93% to "
+     "100%). The tracker's 482 of 482 is stronger evidence, but it comes "
+     "from one engine."),
+    ("Gemini excluded from the figures",
+     "It returned 67 of 90 answers without grounding, and its sources come "
+     "back through a redirect format the parser doesn't resolve yet."),
+    ("Retrieved, not used",
+     "Source counts overstate how much any one domain shaped an answer."),
+]
+
+OPEN_NOTE = (
+    "Everything is open: the code, the data and both prompt panels are on "
+    "GitHub. config.yaml is the original tracker's panel and "
+    "config.study.yaml is the neutral one. Put them side by side and you can "
+    "see the whole finding in a few seconds.")
+
 FACTS = [
-    ("Prompts", "30, three of them naming a brand"),
+    ("Prompts", "30, three of them branded"),
     ("Brands", "10, as peers"),
     ("Engines", "ChatGPT, Claude, Perplexity"),
     ("Samples", "3 per prompt per engine"),
@@ -332,7 +468,7 @@ def _wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     return ((c - h) / d, (c + h) / d)
 
 
-INTENT_LABELS = {"named": "Names the brand", "commercial": "Commercial",
+INTENT_LABELS = {"named": "Branded", "commercial": "Commercial",
                  "transactional": "Transactional",
                  "informational": "Informational"}
 INTENT_EXAMPLES = {"named": "Hack Reactor vs App Academy?",
@@ -404,112 +540,101 @@ def brand_split(db: str, cfg, brand: str, **kw) -> dict:
 
 # --- page ------------------------------------------------------------------
 
-def build_html(d: dict) -> str:
-    rows = d["brands"]
-    disputed = [s for s in d["significance"] if not s["distinguishable"]][:6]
-    pooled = d["pooled_intent"]
-    m = d["monitor"]
-    sp = d["study_split"]
+def chart_bars(rows, width=760, row_h=52, aria="", scale_max=1.0,
+               ticks=(0, 0.25, 0.5, 0.75, 1.0), pad_l=190) -> str:
+    """Horizontal bars with optional interval whiskers. rows: dicts with
+    label, sub, rate, and optionally ci (lo, hi)."""
+    if not rows:
+        return ""
+    pad_r, pad_t, pad_b = 96, 14, 30
+    plot_w = width - pad_l - pad_r
+    height = pad_t + len(rows) * row_h + pad_b
+    x = lambda v: pad_l + (v / scale_max) * plot_w          # noqa: E731
+    p = [f'<svg viewBox="0 0 {width} {height}" role="img" '
+         f'aria-label="{esc(aria)}" xmlns="http://www.w3.org/2000/svg">']
+    for v in ticks:
+        gx = x(v)
+        p.append(f'<line x1="{gx:.1f}" y1="{pad_t}" x2="{gx:.1f}" '
+                 f'y2="{height - pad_b}" stroke="{C["rule"]}" stroke-width="1"/>')
+        p.append(f'<text x="{gx:.1f}" y="{height - pad_b + 18}" '
+                 f'text-anchor="middle" font-size="12" fill="{C["grey"]}">'
+                 f'{v:.0%}</text>')
+    for i, r in enumerate(rows):
+        y = pad_t + i * row_h + row_h / 2
+        p.append(f'<text x="{pad_l - 14}" y="{y - 2 if r.get("sub") else y + 5}" '
+                 f'text-anchor="end" font-size="15" font-weight="600" '
+                 f'fill="{C["ink"]}">{esc(r["label"])}</text>')
+        if r.get("sub"):
+            p.append(f'<text x="{pad_l - 14}" y="{y + 15}" text-anchor="end" '
+                     f'font-size="12" fill="{C["grey"]}">{esc(r["sub"])}</text>')
+        tip = f'{esc(r["label"])}: {r["rate"]:.1%}'
+        if r.get("ci"):
+            tip += f' (95% interval {r["ci"][0]:.1%} to {r["ci"][1]:.1%})'
+        p.append(f'<rect x="{pad_l}" y="{y - 10:.1f}" '
+                 f'width="{max(x(r["rate"]) - pad_l, 2):.1f}" height="20" '
+                 f'rx="3" fill="{C["teal"]}"><title>{tip}</title></rect>')
+        end = r["rate"]
+        if r.get("ci"):
+            lo, up = r["ci"]
+            end = up
+            p.append(f'<line x1="{x(lo):.1f}" y1="{y:.1f}" x2="{x(up):.1f}" '
+                     f'y2="{y:.1f}" stroke="{C["ink"]}" stroke-width="1.5"/>')
+            for xx in (lo, up):
+                p.append(f'<line x1="{x(xx):.1f}" y1="{y - 6:.1f}" '
+                         f'x2="{x(xx):.1f}" y2="{y + 6:.1f}" '
+                         f'stroke="{C["ink"]}" stroke-width="1.5"/>')
+        label = "100%" if r.get("k") is not None and r["k"] == r["n"] \
+            else f'{r["rate"]:.1%}'
+        p.append(f'<text x="{x(end) + 10:.1f}" y="{y + 5:.1f}" font-size="15" '
+                 f'font-weight="600" fill="{C["ink"]}">{label}</text>')
+    p.append("</svg>")
+    return "".join(p)
 
-    # --- hero split bar: the 61 points, decomposed ------------------------
-    named_pts = m["named_hits"] / m["total_answers"] * 100
-    other_pts = m["other_hits"] / m["total_answers"] * 100
-    total_pts = m["total_hits"] / m["total_answers"] * 100
 
-    # --- tables -----------------------------------------------------------
-    def _rate(r):
-        return "100%" if r["k"] == r["n"] else f"{r['rate']:.1%}"
-    pooled_rows = "".join(
-        f'<tr><td>{esc(r["label"])}<br><span class="ex">"{esc(r["example"])}"'
-        f'</span></td><td class="n">{_rate(r)}</td>'
-        f'<td class="n">{r["k"]:,} of {r["n"]:,}</td>'
-        f'<td class="t">{r["ci"][0]:.1%} to {r["ci"][1]:.1%}</td></tr>'
-        for r in pooled)
+def any_brand_by_intent(db: str, cfg, **kw) -> list[dict]:
+    """Share of answers that name at least one tracked brand, per intent,
+    leaving out the comparative prompts (which name brands by construction)."""
+    clause, params = _filters(**kw)
+    conn = sqlite3.connect(db)
+    q = (f"SELECT r.intent, COUNT(*), SUM(EXISTS(SELECT 1 FROM mentions m "
+         f"WHERE m.response_id = r.id AND m.count > 0)) FROM responses r "
+         f"WHERE {clause} GROUP BY r.intent")
+    got = {i: (n, k or 0) for i, n, k in conn.execute(q, params)}
+    conn.close()
+    out = []
+    for key in ("commercial", "transactional", "informational"):
+        if key in got:
+            n, k = got[key]
+            out.append({"key": key, "label": INTENT_LABELS[key], "k": k,
+                        "n": n, "rate": k / n if n else 0.0})
+    return out
 
-    def row(label, prompts, n, k, strong=False):
-        tag = "b" if strong else "span"
-        return (f'<tr><td><{tag}>{esc(label)}</{tag}></td><td class="n">{prompts}</td>'
-                f'<td class="n">{n}</td><td class="n"><{tag}>{k} '
-                f'({k / n:.0%})</{tag}></td></tr>')
-    split_rows = (
-        f'<tr class="grp"><th colspan="4">The monitor, final weekly run '
-        f'(Claude, August 2026)</th></tr>'
-        + row("Prompts naming the brand", m["named_prompts"], m["named_answers"], m["named_hits"])
-        + row("Prompts that don't", m["total_prompts"] - m["named_prompts"], m["other_answers"], m["other_hits"])
-        + row("As reported", m["total_prompts"], m["total_answers"], m["total_hits"], strong=True)
-        + f'<tr class="grp"><th colspan="4">This study, same brand '
-          f'({esc(d["engines_label"])}, October 2026)</th></tr>'
-        + row("Prompts naming the brand", sp["named_prompts"], sp["named"][1], sp["named"][0])
-        + row("Prompts that don't", sp["other_prompts"], sp["other"][1], sp["other"][0])
-        + row("All prompts", sp["named_prompts"] + sp["other_prompts"],
-              sp["named"][1] + sp["other"][1], sp["named"][0] + sp["other"][0], strong=True))
-    other_rate = sp["other"][0] / max(sp["other"][1], 1)
-    monitor_context = d["monitor_context"].format(other=f"{other_rate:.0%}")
 
-    domain_rows = "".join(
-        f'<tr><td>{esc(x["domain"])}</td>'
-        f'<td class="n">{x["n"]}</td>'
-        f'<td class="t">'
-        f'{esc(SOURCE_LABELS.get(x["source_type"] or "other", "Unclassified"))}'
-        f'</td></tr>' for x in d["top_domains"][:15])
+def engine_split(db: str, cfg, brand: str, **kw) -> list[dict]:
+    """One brand's mention rate on unbranded prompts, per engine."""
+    import re
+    ent = next(e for e in cfg.all_entities if e.name == brand)
+    names = {pr.id for pr in cfg.prompts
+             if any(re.search(rf"\b{re.escape(a)}\b", pr.text, re.I)
+                    for a in (ent.aliases or [ent.name]))}
+    clause, params = _filters(**kw)
+    conn = sqlite3.connect(db)
+    q = (f"SELECT r.engine, r.prompt_id, (m.count > 0) FROM mentions m "
+         f"JOIN responses r ON r.id = m.response_id WHERE m.entity = ? AND {clause}")
+    tally: dict[str, list[int]] = {}
+    for eng, pid, hit in conn.execute(q, [brand, *params]):
+        if pid in names:
+            continue
+        t = tally.setdefault(eng, [0, 0])
+        t[0] += int(hit); t[1] += 1
+    conn.close()
+    rows = [{"engine": e, "label": ENGINE_NAMES.get(e, e), "k": k, "n": n,
+             "rate": k / n if n else 0.0} for e, (k, n) in tally.items()]
+    rows.sort(key=lambda r: -r["rate"])
+    return rows
 
-    intent_rows = ""
-    for intent, brands in d["by_intent"].items():
-        lead = ", ".join(f'{esc(b["brand"])} {b["mention_rate"]:.0%}'
-                         for b in brands[:3])
-        intent_rows += (f'<tr><td>{esc(intent)}</td>'
-                        f'<td class="n">{brands[0]["n"] if brands else 0}</td>'
-                        f'<td class="t">{lead}</td></tr>')
 
-    overlaps = ", ".join(
-        f'{esc(s["a"])} and {esc(s["b"])}' for s in disputed)
-
-    discarded = "".join(f'<li><b>{esc(t)}</b><span>{esc(w)}</span></li>'
-                        for t, w in d["discarded"])
-    checks = "".join(f'<li><b>{esc(t)}</b><span>{esc(w)}</span></li>'
-                     for t, w in d["checks"])
-
-    separate = ""
-    for e in d.get("separate_engines", []):
-        name = ENGINE_NAMES.get(e["engine"], e["engine"])
-        separate += (
-            f'<section id="gemini"><h2>{esc(name)}, reported separately</h2>'
-            f'<p>{esc(name)} is left out of every figure above. It returned no '
-            f'grounding data at all for {e["ungrounded"]} of its {e["answers"]} '
-            f'answers, which means it answered from training data rather than '
-            f'the live web, and its remaining sources arrive through a redirect '
-            f'host the parser does not yet resolve. Its answers stay in the '
-            f'database.</p></section>')
-
-    links = "".join(
-        f'<li><a href="{esc(u)}">{esc(t)}</a></li>'
-        for t, u in d["author"]["links"])
-    facts = "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>'
-                    for k, v in d["facts"])
-    toc = [("ask", "Ask differently, get a different brand"),
-           ("sixty-one", "The 61%, taken apart"),
-           ("brands", "Ten brands, one cluster"),
-           ("retrieved", "Retrieved, not used"),
-           ("discarded", "Five findings I threw out"),
-           ("checks", "Five checks before you trust a score"),
-           ("limits", "What this can't tell you")]
-    toc_html = "".join(f'<li><a href="#{i}">{esc(t)}</a></li>' for i, t in toc)
-
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(d["title"])}</title>
-<meta name="description" content="How prompt wording sets AI visibility scores: {d["n"]} answers about coding bootcamps across three answer engines, with the arithmetic and the findings that were thrown out.">
-<meta property="og:title" content="{esc(d["title"])}">
-<meta property="og:description" content="{esc(d["standfirst"])}">
-<meta property="og:image" content="prompt-effect.png">
-<meta name="author" content="{esc(d["author"]["name"])}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
-<style>
+CSS = f"""<style>
   :root {{
     --ground:{C["ground"]}; --panel:{C["panel"]}; --ink:{C["ink"]};
     --teal:{C["teal"]}; --teal-soft:{C["teal_soft"]}; --plum:{C["plum"]};
@@ -533,7 +658,7 @@ def build_html(d: dict) -> str:
   .hero {{ padding:72px 0 44px; border-bottom:1px solid var(--rule); }}
   h1 {{
     font-size:clamp(36px,5.2vw,62px); line-height:1.0; font-weight:800;
-    letter-spacing:-0.035em; margin:0 0 22px; max-width:17ch; text-wrap:balance;
+    letter-spacing:-0.035em; margin:0 0 22px; max-width:14ch; text-wrap:balance;
   }}
   .standfirst {{ font-size:20px; line-height:1.5; margin:0; max-width:58ch; }}
   .split {{ margin:40px 0 0; max-width:720px; }}
@@ -635,6 +760,19 @@ def build_html(d: dict) -> str:
   .limits h2 {{ font-size:22px; margin-bottom:12px; }}
   .limits ul {{ margin:0; padding-left:20px; }}
   .limits li {{ margin-bottom:9px; font-size:15.5px; }}
+  .kicker {{ display:block; font-size:0.42em; font-weight:500; letter-spacing:-0.01em;
+             line-height:1.3; color:var(--grey); margin-top:16px; max-width:34ch; }}
+  .muted {{ color:var(--grey); font-weight:400; font-size:14px; }}
+  pre.eq {{ background:var(--panel); border:1px solid var(--rule); border-radius:6px;
+            padding:14px 16px; font-size:13px; line-height:1.5; overflow-x:auto; white-space:pre-wrap;
+            margin:0 0 18px; }}
+  code {{ font-size:0.9em; background:var(--panel); border:1px solid var(--rule);
+          border-radius:4px; padding:1px 5px; }}
+  table.design td.k {{ color:var(--grey); width:150px; }}
+  table.guide td {{ vertical-align:top; }}
+  .limits table {{ margin:0; }}
+  .limits td.k {{ width:200px; }}
+  footer code {{ font-size:0.85em; }}
   footer {{
     margin-top:56px; padding-top:18px; border-top:1px solid var(--rule);
     font-size:14.5px; color:var(--grey);
@@ -654,7 +792,151 @@ def build_html(d: dict) -> str:
     .pull {{ font-size:20px; }}
     section {{ padding-top:44px; }}
   }}
-</style>
+</style>"""
+
+
+def build_html(d: dict) -> str:
+    rows = d["brands"]
+    pooled = d["pooled_intent"]
+    m = d["monitor"]
+    sp = d["study_split"]
+
+    # --- hero split bar: the 61 points, decomposed ------------------------
+    named_share = m["named_answers"] / m["total_answers"]
+    other_share = m["other_answers"] / m["total_answers"]
+    named_rate = m["named_hits"] / m["named_answers"]
+    other_rate = m["other_hits"] / m["other_answers"]
+    named_pts = named_share * named_rate * 100
+    other_pts = other_share * other_rate * 100
+    total_pts = m["total_hits"] / m["total_answers"] * 100
+
+    def pct(r):
+        return "100%" if r["k"] == r["n"] else f'{r["rate"]:.1%}'
+
+    # --- the short version ------------------------------------------------
+    short_rows = "".join(
+        f'<tr><td><b>{esc(r["label"])}</b></td>'
+        f'<td class="t">"{esc(r["example"])}"</td>'
+        f'<td class="n"><b>{pct(r)}</b> <span class="muted">({r["k"]:,} of {r["n"]:,})</span></td></tr>'
+        for r in pooled)
+
+    # --- the 61% ----------------------------------------------------------
+    def row(label, prompts, n, k, strong=False):
+        tag = "b" if strong else "span"
+        return (f'<tr><td><{tag}>{esc(label)}</{tag}></td><td class="n">{prompts}</td>'
+                f'<td class="n">{n}</td><td class="n"><{tag}>{k} ({k / n:.0%})</{tag}></td></tr>')
+    monitor_rows = (
+        row("Branded prompts", m["named_prompts"], m["named_answers"], m["named_hits"])
+        + row("Unbranded prompts", m["total_prompts"] - m["named_prompts"], m["other_answers"], m["other_hits"])
+        + row("Full panel, as reported", m["total_prompts"], m["total_answers"], m["total_hits"], strong=True))
+    arith_rows = (
+        f'<tr><td>Branded prompts</td><td class="n">{m["named_answers"]} of {m["total_answers"]} ({named_share:.1%})</td>'
+        f'<td class="n">× {named_rate:.0%}</td><td class="n"><b>{named_pts:.1f}</b></td></tr>'
+        f'<tr><td>Unbranded prompts</td><td class="n">{m["other_answers"]} of {m["total_answers"]} ({other_share:.1%})</td>'
+        f'<td class="n">× {other_rate:.1%}</td><td class="n"><b>{other_pts:.1f}</b></td></tr>'
+        f'<tr><td><b>Reported mention rate</b></td><td></td><td></td><td class="n"><b>{total_pts:.1f}</b></td></tr>')
+
+    # --- across the category ---------------------------------------------
+    design_rows = "".join(f'<tr><td class="k">{esc(k)}</td><td>{esc(v)}</td></tr>'
+                          for k, v in d["study_design"])
+    anyb = d["any_brand"]
+    any_rows = "".join(
+        f'<tr><td>{esc(r["label"])}</td><td class="n"><b>{r["rate"]:.0%}</b> '
+        f'<span class="muted">({r["k"]} of {r["n"]})</span></td></tr>' for r in anyb)
+    study_other_rate = sp["other"][0] / max(sp["other"][1], 1)
+    study_all_rate = (sp["named"][0] + sp["other"][0]) / max(sp["named"][1] + sp["other"][1], 1)
+    same_rows = (
+        f'<tr><td>Original tracker, full panel (Claude, August)</td><td class="n">{m["total_prompts"]}</td>'
+        f'<td class="n">{m["total_answers"]}</td><td class="n"><b>{total_pts:.0f}%</b></td></tr>'
+        f'<tr><td>Original tracker, unbranded prompts only</td><td class="n">{m["total_prompts"] - m["named_prompts"]}</td>'
+        f'<td class="n">{m["other_answers"]}</td><td class="n"><b>{other_rate:.0%}</b></td></tr>'
+        f'<tr><td>This study, unbranded prompts only ({esc(d["engines_label"])}, October)</td>'
+        f'<td class="n">{sp["other_prompts"]}</td><td class="n">{sp["other"][1]}</td>'
+        f'<td class="n"><b>{study_other_rate:.0%}</b></td></tr>'
+        f'<tr><td>This study, full panel</td><td class="n">{sp["named_prompts"] + sp["other_prompts"]}</td>'
+        f'<td class="n">{sp["named"][1] + sp["other"][1]}</td><td class="n"><b>{study_all_rate:.0%}</b></td></tr>')
+    same_outro = d["same_brand_outro"].format(other=f"{study_other_rate:.0%}")
+
+    # --- intent guide -----------------------------------------------------
+    guide_rows = "".join(
+        f'<tr><td><b>{esc(a)}</b><br><span class="ex">"{esc(b)}"</span></td>'
+        f'<td>{esc(c)}</td><td>{("<b>" + esc(e) + "</b>") if a == "Commercial" else esc(e)}</td></tr>'
+        for a, b, c, e in d["intent_guide"])
+
+    # --- citation ---------------------------------------------------------
+    gap_rows = "".join(f'<tr><td>{esc(k)}</td><td class="n"><b>{v}</b></td></tr>'
+                       for k, v in d["citation_gap"])
+    can_rows = "".join(f'<tr><td>{esc(a)}</td><td>{esc(b)}</td></tr>'
+                       for a, b in d["retrieval_can"])
+
+    # --- engines ----------------------------------------------------------
+    eng = d["engine_split"]
+    eng_rows = "".join(
+        f'<tr><td>{esc(r["label"])}</td><td class="n"><b>{r["rate"]:.1%}</b> '
+        f'<span class="muted">({r["k"]} of {r["n"]})</span></td></tr>' for r in eng)
+    pair_names = {"anthropic|openai": "Claude and ChatGPT",
+                  "anthropic|perplexity": "Claude and Perplexity",
+                  "openai|perplexity": "ChatGPT and Perplexity"}
+    pairs = d["cross_model"].get("pairwise", {})
+    jac_rows = "".join(
+        f'<tr><td>{esc(pair_names.get(k, k))}</td><td class="n"><b>{v:.2f}</b></td></tr>'
+        for k, v in sorted(pairs.items(), key=lambda kv: -kv[1]))
+
+    # --- lists ------------------------------------------------------------
+    discarded = "".join(f'<li><b>{esc(t)}</b><span>{esc(w)}</span></li>'
+                        for t, w in d["discarded"])
+    checks = "".join(f'<li><b>{esc(t)}</b><span>{esc(w)}</span></li>'
+                     for t, w in d["checks"])
+    limits = "".join(f'<tr><td class="k">{esc(a)}</td><td>{esc(b)}</td></tr>'
+                     for a, b in d["limits"])
+
+    links = "".join(f'<li><a href="{esc(u)}">{esc(t)}</a></li>'
+                    for t, u in d["author"]["links"])
+    facts = "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>'
+                    for k, v in d["facts"])
+    toc = [("short", "The short version"),
+           ("why", "Why this is worth measuring carefully"),
+           ("sixty-one", "Where the 61% came from"),
+           ("category", "Does it hold across a category?"),
+           ("intents", "What each prompt intent measures"),
+           ("citation", "A citation is not an endorsement"),
+           ("cluster", "A cluster, not a ranking"),
+           ("engines", "Which engine you ask matters too"),
+           ("discarded", "5 findings that didn't survive"),
+           ("checks", "5 checks before you trust a score"),
+           ("limits", "What this study can't tell you")]
+    toc_html = "".join(f'<li><a href="#{i}">{esc(t)}</a></li>' for i, t in toc)
+
+    intent_chart = chart_bars(
+        [{"label": r["label"], "sub": f'{r["k"]:,} of {r["n"]:,}', "rate": r["rate"],
+          "ci": r["ci"], "k": r["k"], "n": r["n"]} for r in pooled],
+        aria="Share of answers naming a given brand, by prompt intent")
+    any_chart = chart_bars(
+        [{"label": r["label"], "sub": f'{r["k"]} of {r["n"]}', "rate": r["rate"],
+          "k": r["k"], "n": r["n"]} for r in anyb],
+        aria="Share of answers naming at least one tracked brand, by prompt intent")
+    engine_chart = chart_bars(
+        [{"label": r["label"], "sub": f'{r["k"]} of {r["n"]}', "rate": r["rate"],
+          "k": r["k"], "n": r["n"]} for r in eng],
+        aria="One brand's mention rate on unbranded prompts, by engine",
+        scale_max=0.5, ticks=(0, 0.1, 0.2, 0.3, 0.4, 0.5), row_h=46)
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(d["title"])}</title>
+<meta name="description" content="{esc(d["standfirst"])}">
+<meta property="og:title" content="{esc(d["title"])}">
+<meta property="og:description" content="{esc(d["standfirst"])}">
+<meta property="og:image" content="https://ai-visibility-audit-rho.vercel.app/study/prompt-effect.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="{esc(d["author"]["name"])}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+{CSS}
 </head>
 <body>
 <div class="shell">
@@ -662,7 +944,7 @@ def build_html(d: dict) -> str:
 <main>
 
 <header class="hero">
-  <h1>{d["title_html"]}</h1>
+  <h1>{esc(d["title_main"])}<span class="kicker">{esc(d["title_sub"])}</span></h1>
   <p class="standfirst">{esc(d["standfirst"])}</p>
   <figure class="split" aria-label="The reported 61% split into its two sources">
     <div class="track">
@@ -674,99 +956,153 @@ def build_html(d: dict) -> str:
       <li><i style="background:var(--plum)"></i><span><b>{named_pts:.0f} points</b> from prompts that named the brand</span></li>
       <li><i style="background:var(--teal)"></i><span><b>{other_pts:.0f} points</b> from the brand on every other prompt</span></li>
     </ul>
-    <figcaption>The monitor's final weekly run: {m["total_answers"]} answers,
+    <figcaption>My first tracker's final weekly run: {m["total_answers"]} answers,
     {m["total_prompts"]} prompts, {m["named_prompts"]} of them naming the brand.</figcaption>
   </figure>
   <ul class="links mobile-links">{links}</ul>
 </header>
 
-<section id="ask">
-<h2>Ask differently, get a different brand</h2>
-<p class="sub">Share of answers naming a given brand, by prompt type. Every
-brand checked against every answer, pooled across all ten.</p>
+<section id="short">
+<h2>The short version</h2>
+<p>{esc(d["short_intro"])}</p>
 <figure>
-  {chart_intent(pooled)}
-  <figcaption>Whiskers are 95% Wilson confidence intervals. No two rows
-  overlap.</figcaption>
+  {intent_chart}
+  <figcaption>Ten coding bootcamps, three engines ({esc(d["engines_label"])}),
+  {d["n"]} answers. Each row checks every brand against every answer to a prompt of
+  that intent. Whiskers are 95% Wilson confidence intervals; no two rows overlap.</figcaption>
 </figure>
-<p class="pull">{esc(d["pull"])}</p>
 <table>
-  <thead><tr><th>Prompt type</th><th class="n">Rate</th>
-  <th class="n">Brand-answer pairs</th><th class="t">95% interval</th></tr></thead>
-  <tbody>{pooled_rows}</tbody>
+  <thead><tr><th>Prompt intent</th><th>Example</th><th class="n">Answers naming a given brand</th></tr></thead>
+  <tbody>{short_rows}</tbody>
 </table>
-<p>{esc(d["intent_para"])}</p>
-<p>{esc(d["formula_para"])}</p>
+<p class="pull">{esc(d["short_outro"])}</p>
+</section>
+
+<section id="why">
+<h2>Why this is worth measuring carefully</h2>
+<p>{esc(d["why_1"])}</p>
+<p>{esc(d["why_2"])}</p>
 </section>
 
 <section id="sixty-one">
-<h2>The 61%, taken apart</h2>
+<h2>Where the 61% came from</h2>
+<p>{esc(d["sixty_one_1"])}</p>
 <figure>
-  <img src="monitor-before.png" alt="The original monitor's dashboard, reporting a 61% mention rate for one brand across 147 Claude answers." loading="lazy">
-  <figcaption>The dashboard that started this, as published in August 2026.</figcaption>
+  <img src="monitor-before.png" alt="The original tracker's dashboard, reporting a 61% mention rate for one brand across 147 Claude answers." loading="lazy">
+  <figcaption>The tracker's dashboard as published in August 2026.</figcaption>
 </figure>
-<p>{esc(d["monitor_para"])}</p>
 <table>
-  <thead><tr><th></th><th class="n">Prompts</th>
-  <th class="n">Answers</th><th class="n">Brand named</th></tr></thead>
-  <tbody>{split_rows}</tbody>
+  <thead><tr><th>Tracker's final run (Claude, August 2026)</th><th class="n">Prompts</th>
+  <th class="n">Answers</th><th class="n">Answers naming the brand</th></tr></thead>
+  <tbody>{monitor_rows}</tbody>
 </table>
-<p>{esc(monitor_context)}</p>
+<p>{esc(d["sixty_one_2"])}</p>
+<h3>The arithmetic, and why it holds</h3>
+<p>{esc(d["arith_1"])}</p>
+<pre class="eq">mention rate =
+    (share of answers from branded prompts)   × (rate on branded prompts)
+  + (share of answers from unbranded prompts) × (rate on unbranded prompts)</pre>
+<p>{esc(d["arith_2"])}</p>
+<table>
+  <thead><tr><th></th><th class="n">Share of answers</th><th class="n">× Rate</th><th class="n">= Points</th></tr></thead>
+  <tbody>{arith_rows}</tbody>
+</table>
+<p>{esc(d["arith_3"])}</p>
 </section>
 
-<section id="brands">
-<h2>Ten brands, one cluster</h2>
+<section id="category">
+<h2>Does it hold across a category?</h2>
+<p>{esc(d["category_intro"])}</p>
+<table class="design">
+  <tbody>{design_rows}</tbody>
+</table>
+<p>{esc(d["category_held"])}</p>
+<p>{esc(d["category_mech_intro"])}</p>
+<figure>
+  {any_chart}
+  <figcaption>Share of answers that named at least one of the ten brands, by prompt
+  intent. Comparative prompts are left out because they name brands by construction.</figcaption>
+</figure>
+<p>{esc(d["category_mech"])}</p>
+<p>{esc(d["same_brand_intro"])}</p>
+<table>
+  <thead><tr><th></th><th class="n">Prompts</th><th class="n">Answers</th><th class="n">Brand named</th></tr></thead>
+  <tbody>{same_rows}</tbody>
+</table>
+<p>{esc(same_outro)}</p>
+</section>
+
+<section id="intents">
+<h2>What each prompt intent actually measures</h2>
+<p>{esc(d["intent_guide_intro"])}</p>
+<table class="guide">
+  <thead><tr><th>Prompt intent</th><th>What it measures</th><th>Use it for</th></tr></thead>
+  <tbody>{guide_rows}</tbody>
+</table>
+</section>
+
+<section id="citation">
+<h2>A citation is not an endorsement</h2>
+<p>{esc(d["citation_1"])}</p>
+<p>{esc(d["citation_2"])}</p>
+<table>
+  <tbody>{gap_rows}</tbody>
+</table>
+<p class="pull">{esc(d["citation_3"])}</p>
+<table class="guide">
+  <thead><tr><th>A retrieval rate can tell you</th><th>It can't tell you</th></tr></thead>
+  <tbody>{can_rows}</tbody>
+</table>
+<p>{esc(d["citation_4"])}</p>
+</section>
+
+<section id="cluster">
+<h2>The brands form a cluster, not a ranking</h2>
 <p class="sub">Mention rate across every prompt, with its 95% confidence interval.</p>
 <figure>
   {chart_intervals(rows)}
-  <figcaption>The bar is the range the true rate is very likely to fall in.
-  The tick is what was measured. Where two bars overlap, the difference between
-  those brands is not real at this sample size, however different the
-  percentages look.</figcaption>
+  <figcaption>The bar is the range the true rate is very likely to fall in. The tick
+  is what was measured. Where two bars overlap, the data can't say which brand is ahead.</figcaption>
 </figure>
-<p>{esc(d["brand_para"])}{(" Pairs you cannot separate: " + overlaps + ".") if overlaps else ""}</p>
-<p>{esc(d["codecademy_note"])}</p>
-<h3>By prompt type, per brand</h3>
-<table>
-  <thead><tr><th>Prompt type</th><th class="n">Answers</th>
-  <th class="t">Most named</th></tr></thead>
-  <tbody>{intent_rows}</tbody>
-</table>
+<p>{esc(d["cluster_para"])}</p>
 </section>
 
-<section id="retrieved">
-<h2>Retrieved, not used</h2>
-<p class="sub">The fifteen websites the engines' search step returned most often.</p>
-<p>{esc(d["citation_note"])}</p>
+<section id="engines">
+<h2>Which engine you ask matters too</h2>
+<p>{esc(d["engine_intro"])}</p>
+<figure>
+  {engine_chart}
+</figure>
+<p>{esc(d["engine_jaccard_intro"])}</p>
 <table>
-  <thead><tr><th>Domain</th><th class="n">Retrieved</th>
-  <th class="t">Type</th></tr></thead>
-  <tbody>{domain_rows}</tbody>
+  <thead><tr><th>Engine pair</th><th class="n">Jaccard overlap</th></tr></thead>
+  <tbody>{jac_rows}</tbody>
 </table>
+<p>{esc(d["engine_outro"])}</p>
 </section>
 
 <section id="discarded">
-<h2>Five findings I threw out</h2>
+<h2>5 findings that didn't survive</h2>
 <p class="sub">{esc(d["discarded_intro"])}</p>
 <ol class="list">{discarded}</ol>
 </section>
 
 <section id="checks">
-<h2>Five checks before you trust a visibility score</h2>
-<p class="sub">{esc(d["checks_intro"])}</p>
+<h2>5 checks before you trust any AI visibility score</h2>
 <ol class="list checks">{checks}</ol>
 </section>
 
-{separate}
-
 <div class="limits" id="limits">
-  <h2>What this can't tell you</h2>
-  <ul>{"".join(f"<li>{esc(c)}</li>" for c in d["caveats"])}</ul>
+  <h2>What this study can't tell you</h2>
+  <table class="design"><tbody>{limits}</tbody></table>
 </div>
 
 <footer>
-  <p>{esc(d["footer"])}<br>
-  <a href="https://github.com/tkaplish888-alt/ai-visibility-audit">Code, data and both prompt panels on GitHub</a>.
+  <p>Everything is open: the code, the data and both prompt panels are on
+  <a href="https://github.com/tkaplish888-alt/ai-visibility-audit">GitHub</a>.
+  <code>config.yaml</code> is the original tracker's panel and
+  <code>config.study.yaml</code> is the neutral one. Put them side by side and
+  you can see the whole finding in a few seconds.<br>
   Generated {esc(d["generated"])}.</p>
 </footer>
 
@@ -806,8 +1142,6 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
         "owned_ratio": b.owned_ratio,
     } for b in brand_stats(db, **kw)]
 
-    # Header counts must use the same engine filter as the figures below, or
-    # the page claims more answers than its numbers are computed from.
     clause, params = _filters(**kw)
     conn = sqlite3.connect(db)
     n = conn.execute(
@@ -820,54 +1154,25 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
     lo, hi = (v or "" for v in conn.execute(
         f"SELECT MIN(r.run_ts), MAX(r.run_ts) FROM responses r WHERE {clause}",
         params).fetchone())
-    trunc = conn.execute(
-        f"SELECT COUNT(*) FROM responses r WHERE {clause} AND r.truncated=1",
-        params).fetchone()[0]
     n_prompts = conn.execute(
         f"SELECT COUNT(DISTINCT r.prompt_id) FROM responses r WHERE {clause}",
         params).fetchone()[0]
     conn.close()
 
     label = ", ".join(ENGINE_NAMES.get(e, e) for e in sorted(engines))
-    single = len(engines) == 1
-
-    caveats = [
-        f"{n} answers, {len({r['brand'] for r in rows})} brands, "
-        f"{len(cfg.prompts)} prompts, one category, one day. Engines and "
-        f"their indexes move; this is a measurement of a moment.",
-        "Answers come from provider APIs with web search switched on, not "
-        "from the chat interfaces people use. Commercial tools collect from "
-        "the browser for that reason.",
-        "Every rate carries a 95% Wilson interval. Where two overlap, no "
-        "ranking is claimed.",
-        "The brand-named row rests on three prompts and 54 pairs. The "
-        "original monitor's 482 of 482 is the stronger evidence for that "
-        "effect, on one engine.",
-        "\"Retrieved\" sources are what the search step returned, not what "
-        "the answer used. They overstate how much any one source shaped an "
-        "answer.",
-    ]
-    if single:
-        caveats.insert(0, f"One engine only ({label}). These findings may not "
-                          f"hold for other answer engines, and testing that is "
-                          f"the next stage of this work.")
-    if trunc:
-        caveats.append(
-            f"{trunc} of {n} answers ({trunc / max(n,1):.0%}) were cut off by a "
-            f"response-length limit since corrected. Brands named late in an "
-            f"answer are undercounted in this dataset.")
 
     return {
-        "title": TITLE, "title_html": TITLE_HTML, "standfirst": STANDFIRST,
-        "author": AUTHOR,
-        "facts": FACTS,
+        "title": TITLE, "title_main": TITLE_MAIN, "title_sub": TITLE_SUB,
+        "standfirst": STANDFIRST, "author": AUTHOR, "facts": FACTS,
         "n": n, "n_citations": ncit, "n_prompts": n_prompts or len(cfg.prompts),
         "engines": engines, "engines_label": label,
         "window": ((lo[:10] if lo[:10] == hi[:10] else f"{lo[:10]} to {hi[:10]}") if lo else ""),
         "brands": rows,
         "pooled_intent": pooled_by_intent(db, cfg, **kw),
+        "any_brand": any_brand_by_intent(db, cfg, **kw),
         "monitor": MONITOR,
         "study_split": brand_split(db, cfg, MONITOR["brand"], **kw),
+        "engine_split": engine_split(db, cfg, MONITOR["brand"], **kw),
         "top_domains": top_domains(db, limit=15, **kw),
         "by_intent": {k: [{"brand": b.brand, "n": b.n,
                            "mention_rate": b.mention_rate}
@@ -878,17 +1183,24 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
         "separate_engines": [
             e for x in (exclude_engines or [])
             for e in engine_summary(db, engine=x)],
-        "pull": PULL, "intent_para": INTENT_PARA,
-        "formula_para": FORMULA_PARA, "monitor_para": MONITOR_PARA,
-        "monitor_context": MONITOR_CONTEXT, "brand_para": BRAND_PARA,
-        "codecademy_note": CODECADEMY_NOTE, "citation_note": CITATION_NOTE,
+        "short_intro": SHORT_INTRO, "short_outro": SHORT_OUTRO,
+        "why_1": WHY_1, "why_2": WHY_2,
+        "sixty_one_1": SIXTY_ONE_1, "sixty_one_2": SIXTY_ONE_2,
+        "arith_1": ARITH_1, "arith_2": ARITH_2, "arith_3": ARITH_3,
+        "category_intro": CATEGORY_INTRO, "study_design": STUDY_DESIGN,
+        "category_held": CATEGORY_HELD,
+        "category_mech_intro": CATEGORY_MECH_INTRO,
+        "category_mech": CATEGORY_MECH,
+        "same_brand_intro": SAME_BRAND_INTRO, "same_brand_outro": SAME_BRAND_OUTRO,
+        "intent_guide_intro": INTENT_GUIDE_INTRO, "intent_guide": INTENT_GUIDE,
+        "citation_1": CITATION_1, "citation_2": CITATION_2,
+        "citation_gap": CITATION_GAP, "citation_3": CITATION_3,
+        "retrieval_can": RETRIEVAL_CAN, "citation_4": CITATION_4,
+        "cluster_para": CLUSTER_PARA,
+        "engine_intro": ENGINE_INTRO, "engine_jaccard_intro": ENGINE_JACCARD_INTRO,
+        "engine_outro": ENGINE_OUTRO,
         "discarded_intro": DISCARDED_INTRO, "discarded": DISCARDED,
-        "checks_intro": CHECKS_INTRO, "checks": CHECKS, "caveats": caveats,
-        "footer": ("Flatiron School is one of the ten brands. I built the "
-                   "original monitor as Marketing Technology Lead there and "
-                   "left in September 2026. The monitor's data was collected "
-                   "for them and is not published; the study's data, collected "
-                   "afterwards with my own keys, is."),
+        "checks": CHECKS, "limits": LIMITS, "open_note": OPEN_NOTE,
         "generated": datetime.now(timezone.utc).strftime("%d %B %Y"),
     }
 
