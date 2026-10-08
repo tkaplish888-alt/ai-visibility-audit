@@ -124,38 +124,34 @@ SIXTY_ONE_2 = (
     "answers, and every one of them named the brand. That isn't the engine "
     "choosing to recommend anyone. The brand was in the prompt.")
 
-ARITH_1 = (
-    "Two definitions first. A rate here is just a share: the number of answers "
-    "that named the brand, divided by the number of answers. The branded rate "
-    "is that share for prompts that contain the brand's name. The unbranded "
-    "rate is the same share for prompts that don't.")
+ARITH_1 = "It's one weighted average. Three terms to know first:"
+
+ARITH_TERMS = [
+    ("Rate", "the share of answers that named the brand (answers naming it, "
+             "divided by all answers)"),
+    ("Branded rate", "that share for prompts with the brand's name in them"),
+    ("Unbranded rate", "that share for prompts without it"),
+]
 
 ARITH_2 = (
-    "When a tracker reports one number for the whole panel, it combines those "
-    "two groups, and each group counts in proportion to how many answers it "
-    "produced. A group that produced 100 answers moves the overall number "
-    "twice as much as a group that produced 50. That is a weighted average, "
-    "and it is the only arithmetic involved:")
+    "The dashboard's single number blends the two groups, and each group "
+    "counts in proportion to how many answers it produced:")
 
-ARITH_3 = (
-    "This is how any average over two groups works, so it holds exactly. What "
-    "the data adds is the branded rate, which was 100%. Here it is with the "
-    "tracker's final run plugged in:")
+ARITH_3 = "Plugging in the tracker's final run:"
 
-ARITH_4 = (
-    "Read it row by row. Branded prompts produced 57 of the 147 answers, so "
-    "they carry 38.8% of the weight. Every one of those 57 answers named the "
-    "brand, so the group contributes its full weight: 38.8 points. Unbranded "
-    "prompts produced the other 90 answers, 61.2% of the weight, and named the "
-    "brand 36.7% of the time, so they contribute 61.2% × 36.7%, or 22.4 "
-    "points. Add the two and you get 61.2, the number on the dashboard.")
+ARITH_READ = [
+    "Branded prompts produced 57 of the 147 answers (38.8%), and all 57 named "
+    "the brand, so they add 38.8 points.",
+    "Unbranded prompts produced the other 90 answers (61.2%) and named the "
+    "brand 36.7% of the time, so they add 61.2% × 36.7% = 22.4 points.",
+    "Together that's 61.2, the number on the dashboard.",
+]
 
 ARITH_5 = (
-    "Because the branded rate is 100%, the first term is simply the share of "
-    "your answers that came from branded prompts. If half your panel names "
-    "you, half your score is spoken for before any engine answers. Thirty-nine "
-    "of these 61 points were set when the panel was written. The other 22 tell "
-    "you something about the brand.")
+    "Because branded prompts name the brand every time, their share of answers "
+    "goes straight into the score. If half your answers come from branded "
+    "prompts, half your score is set before any engine answers. Here, 39 of "
+    "the 61 points came from the prompt list. The other 22 reflect the brand.")
 
 CATEGORY_INTRO = (
     "One tracker could be a fluke, so I built a neutral panel and ran it "
@@ -690,6 +686,8 @@ CSS = f"""<style>
   }}
   .standfirst, .hook {{ font-size:19px; line-height:1.55; margin:0; max-width:60ch; color:var(--ink); }}
   .hook {{ margin-top:16px; }}
+  ul.bul {{ margin:0 0 18px; padding-left:20px; }}
+  ul.bul li {{ margin-bottom:6px; }}
   .split {{ margin:40px 0 0; max-width:720px; }}
   .split .track {{
     display:flex; height:34px; background:var(--panel);
@@ -1052,17 +1050,18 @@ def build_html(d: dict) -> str:
 <p>{esc(d["sixty_one_2"])}</p>
 <h3>The arithmetic, and why it holds</h3>
 <p>{esc(d["arith_1"])}</p>
+<ul class="bul">{"".join(f"<li><b>{esc(t)}</b>: {esc(x)}</li>" for t, x in d["arith_terms"])}</ul>
 <p>{esc(d["arith_2"])}</p>
 <pre class="eq">mention rate =
-    (share of answers from branded prompts)   × (rate on branded prompts)
-  + (share of answers from unbranded prompts) × (rate on unbranded prompts)</pre>
+    (share of answers from branded prompts)   × (branded rate)
+  + (share of answers from unbranded prompts) × (unbranded rate)</pre>
 <p>{esc(d["arith_3"])}</p>
 <table>
-  <thead><tr><th></th><th class="n">Share of answers (weight)</th><th class="n">× Rate</th><th class="n">= Points</th></tr></thead>
+  <thead><tr><th></th><th class="n">Share of answers</th><th class="n">× Rate</th><th class="n">= Points</th></tr></thead>
   <tbody>{arith_rows}</tbody>
 </table>
-<p>{esc(d["arith_4"])}</p>
-<p>{esc(d["arith_5"])}</p>
+<ul class="bul">{"".join(f"<li>{esc(x)}</li>" for x in d["arith_read"])}</ul>
+<p class="pull">{esc(d["arith_5"])}</p>
 </section>
 
 <section id="category">
@@ -1241,8 +1240,8 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
         "short_intro": SHORT_INTRO, "short_outro": SHORT_OUTRO,
         "why_1": WHY_1, "why_2": WHY_2,
         "sixty_one_1": SIXTY_ONE_1, "sixty_one_2": SIXTY_ONE_2,
-        "arith_1": ARITH_1, "arith_2": ARITH_2, "arith_3": ARITH_3,
-        "arith_4": ARITH_4, "arith_5": ARITH_5,
+        "arith_1": ARITH_1, "arith_terms": ARITH_TERMS, "arith_2": ARITH_2,
+        "arith_3": ARITH_3, "arith_read": ARITH_READ, "arith_5": ARITH_5,
         "category_intro": CATEGORY_INTRO, "study_design": STUDY_DESIGN,
         "category_held": CATEGORY_HELD,
         "category_mech_intro": CATEGORY_MECH_INTRO,

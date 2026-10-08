@@ -51,27 +51,33 @@ Across all six weekly runs, the tracker's branded prompts returned 482 answers, 
 
 ### The arithmetic, and why it holds
 
-Two definitions first. A **rate** here is just a share: the number of answers that named the brand, divided by the number of answers. The **branded rate** is that share for prompts that contain the brand's name. The **unbranded rate** is the same share for prompts that don't.
+It's one weighted average. Three terms to know first:
 
-When a tracker reports one number for the whole panel, it combines those two groups, and each group counts in proportion to how many answers it produced. A group that produced 100 answers moves the overall number twice as much as a group that produced 50. That is a weighted average, and it is the only arithmetic involved:
+- **Rate**: the share of answers that named the brand (answers naming it, divided by all answers)
+- **Branded rate**: that share for prompts with the brand's name in them
+- **Unbranded rate**: that share for prompts without it
+
+The dashboard's single number blends the two groups, and each group counts in proportion to how many answers it produced:
 
 ```
 mention rate =
-    (share of answers from branded prompts)   × (rate on branded prompts)
-  + (share of answers from unbranded prompts) × (rate on unbranded prompts)
+    (share of answers from branded prompts)   × (branded rate)
+  + (share of answers from unbranded prompts) × (unbranded rate)
 ```
 
-This is how any average over two groups works, so it holds exactly. What the data adds is the branded rate, which was 100%. Here it is with the tracker's final run plugged in:
+Plugging in the tracker's final run:
 
-| | Share of answers (weight) | × Rate | = Points |
+| | Share of answers | × Rate | = Points |
 |---|---|---|---|
 | Branded prompts | 57 of 147 (38.8%) | × 100% | **38.8** |
 | Unbranded prompts | 90 of 147 (61.2%) | × 36.7% | **22.4** |
 | **Reported mention rate** | | | **61.2** |
 
-Read it row by row. Branded prompts produced 57 of the 147 answers, so they carry 38.8% of the weight. Every one of those 57 answers named the brand, so the group contributes its full weight: 38.8 points. Unbranded prompts produced the other 90 answers, 61.2% of the weight, and named the brand 36.7% of the time, so they contribute 61.2% × 36.7%, or 22.4 points. Add the two and you get 61.2, the number on the dashboard.
+- Branded prompts produced 57 of the 147 answers (38.8%), and all 57 named the brand, so they add 38.8 points.
+- Unbranded prompts produced the other 90 answers (61.2%) and named the brand 36.7% of the time, so they add 61.2% × 36.7% = 22.4 points.
+- Together that's 61.2, the number on the dashboard.
 
-Because the branded rate is 100%, the first term is simply the share of your answers that came from branded prompts. If half your panel names you, half your score is spoken for before any engine answers. Thirty-nine of these 61 points were set when the panel was written. The other 22 tell you something about the brand.
+Because branded prompts name the brand every time, their share of answers goes straight into the score. If half your answers come from branded prompts, half your score is set before any engine answers. Here, 39 of the 61 points came from the prompt list. The other 22 reflect the brand.
 
 ---
 
