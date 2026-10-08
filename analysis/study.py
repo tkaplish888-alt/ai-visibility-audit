@@ -944,7 +944,7 @@ def build_html(d: dict) -> str:
 <main>
 
 <header class="hero">
-  <h1>{esc(d["title_main"])}<span class="kicker">{esc(d["title_sub"])}</span></h1>
+  <h1>{esc(d["title_main"])} <span class="kicker">{esc(d["title_sub"])}</span></h1>
   <p class="standfirst">{esc(d["standfirst"])}</p>
   <figure class="split" aria-label="The reported 61% split into its two sources">
     <div class="track">
