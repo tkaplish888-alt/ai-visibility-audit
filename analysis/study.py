@@ -42,9 +42,10 @@ from aeo.stats import (_filters, brand_stats, by_intent,  # noqa: E402
 # original monitor (see MONITOR). If the data or the engine set changes,
 # re-check every number here by hand. Nothing updates them.
 # =============================================================================
-TITLE = ("Measuring AI Visibility in 2026: What Inflates the Score, What a "
-         "Citation Really Measures, and 5 Findings That Didn't Survive")
-TITLE_MAIN = "Measuring AI Visibility in 2026"
+TITLE = ("Inside the AI Visibility Measurement Problem: What Inflates the "
+         "Score, What a Citation Really Measures, and 5 Findings That Didn't "
+         "Survive")
+TITLE_MAIN = "Inside the AI Visibility Measurement Problem:"
 TITLE_SUB = ("What inflates the score, what a citation really measures, "
              "and 5 findings that didn't survive")
 
@@ -657,8 +658,8 @@ CSS = f"""<style>
   /* hero */
   .hero {{ padding:72px 0 44px; border-bottom:1px solid var(--rule); }}
   h1 {{
-    font-size:clamp(36px,5.2vw,62px); line-height:1.0; font-weight:800;
-    letter-spacing:-0.035em; margin:0 0 22px; max-width:14ch; text-wrap:balance;
+    font-size:clamp(32px,4.4vw,52px); line-height:1.04; font-weight:800;
+    letter-spacing:-0.03em; margin:0 0 22px; max-width:22ch; text-wrap:balance;
   }}
   .standfirst {{ font-size:20px; line-height:1.5; margin:0; max-width:58ch; }}
   .split {{ margin:40px 0 0; max-width:720px; }}
@@ -685,8 +686,24 @@ CSS = f"""<style>
     column-gap:72px; justify-content:space-between;
   }}
   main {{ min-width:0; }}
-  aside {{ position:sticky; top:24px; align-self:start; margin-top:72px; }}
-  .links.mobile-links {{ display:none; margin-top:28px; }}
+  aside {{
+    position:-webkit-sticky; position:sticky; top:24px; align-self:start;
+    margin-top:72px; max-height:calc(100vh - 40px); overflow-y:auto;
+    scrollbar-width:thin; padding-right:2px;
+  }}
+  .mobile-bar {{
+    display:none; position:-webkit-sticky; position:sticky; top:0; z-index:5;
+    background:var(--ground); border-bottom:1px solid var(--rule);
+    margin:0 -18px; padding:10px 18px; overflow-x:auto; white-space:nowrap;
+    scrollbar-width:none;
+  }}
+  .mobile-bar::-webkit-scrollbar {{ display:none; }}
+  .mobile-bar b {{ margin-right:10px; font-size:14px; }}
+  .mobile-bar a {{
+    display:inline-block; padding:5px 10px; border:1px solid var(--rule);
+    border-radius:999px; font-size:13px; font-weight:500; text-decoration:none;
+    color:var(--ink); background:var(--panel); margin-right:6px;
+  }}
   .card {{
     background:var(--panel); border:1px solid var(--rule); border-radius:8px;
     padding:20px 22px; margin-bottom:18px;
@@ -703,7 +720,7 @@ CSS = f"""<style>
   .toc h4, .facts h4 {{ margin:0 0 8px; font-size:13px; font-weight:600;
                         color:var(--grey); }}
   .toc ol {{ list-style:none; margin:0; padding:0; }}
-  .toc li {{ padding:5px 0; border-top:1px solid var(--rule); font-size:14.5px; line-height:1.35; }}
+  .toc li {{ padding:4px 0; border-top:1px solid var(--rule); font-size:14px; line-height:1.3; }}
   .toc li:first-child {{ border-top:0; }}
   .toc a {{ color:var(--ink); text-decoration:none; }}
   .toc a:hover {{ color:var(--teal); }}
@@ -760,8 +777,8 @@ CSS = f"""<style>
   .limits h2 {{ font-size:22px; margin-bottom:12px; }}
   .limits ul {{ margin:0; padding-left:20px; }}
   .limits li {{ margin-bottom:9px; font-size:15.5px; }}
-  .kicker {{ display:block; font-size:0.42em; font-weight:500; letter-spacing:-0.01em;
-             line-height:1.3; color:var(--grey); margin-top:16px; max-width:34ch; }}
+  .kicker {{ display:block; font-size:0.5em; font-weight:500; letter-spacing:-0.01em;
+             line-height:1.3; color:var(--grey); margin-top:14px; max-width:36ch; }}
   .muted {{ color:var(--grey); font-weight:400; font-size:14px; }}
   pre.eq {{ background:var(--panel); border:1px solid var(--rule); border-radius:6px;
             padding:14px 16px; font-size:13px; line-height:1.5; overflow-x:auto; white-space:pre-wrap;
@@ -778,10 +795,15 @@ CSS = f"""<style>
     font-size:14.5px; color:var(--grey);
   }}
 
-  @media (max-width:940px) {{
+  @media (max-height:860px) {{ .facts {{ display:none; }} }}
+  @media (max-width:1040px) {{
+    .layout {{ grid-template-columns:minmax(0,1fr) 232px; column-gap:40px; }}
+  }}
+  @media (max-width:860px) {{
     .layout {{ grid-template-columns:1fr; }}
-    aside {{ position:static; margin-top:40px; }}
-    .links.mobile-links {{ display:flex; }}
+    aside {{ position:static; margin-top:40px; max-height:none; overflow:visible; }}
+    .facts {{ display:block; }}
+    .mobile-bar {{ display:block; }}
   }}
   @media (max-width:640px) {{
     body {{ font-size:16px; }}
@@ -892,6 +914,8 @@ def build_html(d: dict) -> str:
 
     links = "".join(f'<li><a href="{esc(u)}">{esc(t)}</a></li>'
                     for t, u in d["author"]["links"])
+    bar_links = "".join(f'<a href="{esc(u)}">{esc(t)}</a>'
+                        for t, u in d["author"]["links"])
     facts = "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>'
                     for k, v in d["facts"])
     toc = [("short", "The short version"),
@@ -942,6 +966,7 @@ def build_html(d: dict) -> str:
 <div class="shell">
 <div class="layout">
 <main>
+<div class="mobile-bar"><b>{esc(d["author"]["name"])}</b>{bar_links}</div>
 
 <header class="hero">
   <h1>{esc(d["title_main"])} <span class="kicker">{esc(d["title_sub"])}</span></h1>
@@ -959,7 +984,6 @@ def build_html(d: dict) -> str:
     <figcaption>My first tracker's final weekly run: {m["total_answers"]} answers,
     {m["total_prompts"]} prompts, {m["named_prompts"]} of them naming the brand.</figcaption>
   </figure>
-  <ul class="links mobile-links">{links}</ul>
 </header>
 
 <section id="short">

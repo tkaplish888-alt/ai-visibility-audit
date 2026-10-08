@@ -1,4 +1,4 @@
-# Measuring AI Visibility in 2026: What Inflates the Score, What a Citation Really Measures, and 5 Findings That Didn't Survive
+# Inside the AI Visibility Measurement Problem: What Inflates the Score, What a Citation Really Measures, and 5 Findings That Didn't Survive
 
 *I set out to measure how often AI engines mention a brand. My first tracker said 61%, and most of that number came from the prompts I'd chosen. This is what I learned rebuilding it across ten brands and three engines, and the method I'd use now.*
 
