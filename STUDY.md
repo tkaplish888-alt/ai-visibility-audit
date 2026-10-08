@@ -2,6 +2,8 @@
 
 *I set out to measure how often AI engines mention a brand. My first tracker said 61%, and most of that number came from the prompts I'd chosen. This is what I learned rebuilding it across ten brands and three engines, and the method I'd use now.*
 
+There's no agreed way to measure AI visibility yet. Prompts have no search volume the way keywords do, the same prompt can return a different answer every time you run it, and every score rests on choices made before the first query: which prompts to track, how often to sample them, how to roll the answers into one number. Those choices are easy to make without noticing. This study makes them on purpose, and shows how much each one moves the result.
+
 Tonishqa Kaplish · October 2026 · [Interactive version](https://ai-visibility-audit-rho.vercel.app/study/) · [Code and data](https://github.com/tkaplish888-alt/ai-visibility-audit)
 
 ---
@@ -27,9 +29,9 @@ So "what share of AI answers mention us?" has no single answer. It has one per p
 
 ## Why this is worth measuring carefully
 
-There's no agreed way to measure AI visibility yet. Prompts have no search volume the way keywords do, and the same prompt can return a different answer every time you run it. So anyone measuring visibility makes a few choices up front: which prompts go into the **prompt panel** (the fixed set of prompts you track), how many times to sample each one, and how to roll the answers up into a number.
+The **prompt panel** is the fixed set of prompts a tracker asks, and it is the first of those choices. Prompt selection is already part of the conversation in this field. What I wanted to add was a worked example: one real tracker taken apart, a test of whether the pattern holds across a whole category, and a method that comes out the other side.
 
-This study is my attempt to make those choices deliberately and show how much each one moves the result. Prompt selection is already part of the conversation in this field. What I wanted to add was a worked example: one real tracker taken apart, a test of whether the pattern holds across a whole category, and a method that comes out the other side.
+Everything below comes from two datasets. The first is the tracker I built and ran weekly for six weeks. The second is a neutral panel I designed afterwards and ran across ten brands and three engines. Both prompt lists are in the repository, side by side.
 
 ---
 
@@ -49,7 +51,9 @@ Across all six weekly runs, the tracker's branded prompts returned 482 answers, 
 
 ### The arithmetic, and why it holds
 
-A score pooled across a panel is a weighted average. Each group of prompts counts in proportion to the number of answers it produced:
+Two definitions first. A **rate** here is just a share: the number of answers that named the brand, divided by the number of answers. The **branded rate** is that share for prompts that contain the brand's name. The **unbranded rate** is the same share for prompts that don't.
+
+When a tracker reports one number for the whole panel, it combines those two groups, and each group counts in proportion to how many answers it produced. A group that produced 100 answers moves the overall number twice as much as a group that produced 50. That is a weighted average, and it is the only arithmetic involved:
 
 ```
 mention rate =
@@ -57,15 +61,17 @@ mention rate =
   + (share of answers from unbranded prompts) × (rate on unbranded prompts)
 ```
 
-This is simply how an average over two groups works, so it holds exactly. What the data adds is the branded rate: 100%. Plugging in the tracker's final run:
+This is how any average over two groups works, so it holds exactly. What the data adds is the branded rate, which was 100%. Here it is with the tracker's final run plugged in:
 
-| | Share of answers | × Rate | = Points |
+| | Share of answers (weight) | × Rate | = Points |
 |---|---|---|---|
 | Branded prompts | 57 of 147 (38.8%) | × 100% | **38.8** |
 | Unbranded prompts | 90 of 147 (61.2%) | × 36.7% | **22.4** |
 | **Reported mention rate** | | | **61.2** |
 
-Thirty-nine of the 61 points were set when the panel was written, before any engine answered. The other 22 tell you something about the brand.
+Read it row by row. Branded prompts produced 57 of the 147 answers, so they carry 38.8% of the weight. Every one of those 57 answers named the brand, so the group contributes its full weight: 38.8 points. Unbranded prompts produced the other 90 answers, 61.2% of the weight, and named the brand 36.7% of the time, so they contribute 61.2% × 36.7%, or 22.4 points. Add the two and you get 61.2, the number on the dashboard.
+
+Because the branded rate is 100%, the first term is simply the share of your answers that came from branded prompts. If half your panel names you, half your score is spoken for before any engine answers. Thirty-nine of these 61 points were set when the panel was written. The other 22 tell you something about the brand.
 
 ---
 

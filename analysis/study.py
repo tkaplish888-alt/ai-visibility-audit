@@ -55,10 +55,19 @@ STANDFIRST = (
     "chosen. This is what I learned rebuilding it across ten brands and three "
     "engines, and the method I'd use now.")
 
+HOOK = (
+    "There's no agreed way to measure AI visibility yet. Prompts have no "
+    "search volume the way keywords do, the same prompt can return a "
+    "different answer every time you run it, and every score rests on choices "
+    "made before the first query: which prompts to track, how often to sample "
+    "them, how to roll the answers into one number. Those choices are easy to "
+    "make without noticing. This study makes them on purpose, and shows how "
+    "much each one moves the result.")
+
 AUTHOR = {
     "name": "Tonishqa Kaplish",
-    "role": "Marketing technologist, Seattle. I build marketing data systems, "
-            "then check whether they're telling the truth.",
+    "role": "Marketing technologist in Seattle. Builds the attribution, AI "
+            "tooling and measurement systems behind go-to-market teams.",
     "links": [
         ("LinkedIn", "https://www.linkedin.com/in/tonishqa"),
         ("GitHub", "https://github.com/tkaplish888-alt/ai-visibility-audit"),
@@ -92,19 +101,17 @@ SHORT_OUTRO = (
     "which one you get.")
 
 WHY_1 = (
-    "There's no agreed way to measure AI visibility yet. Prompts have no "
-    "search volume the way keywords do, and the same prompt can return a "
-    "different answer every time you run it. So anyone measuring visibility "
-    "makes a few choices up front: which prompts go into the prompt panel "
-    "(the fixed set of prompts you track), how many times to sample each one, "
-    "and how to roll the answers up into a number.")
-
-WHY_2 = (
-    "This study is my attempt to make those choices deliberately and show how "
-    "much each one moves the result. Prompt selection is already part of the "
+    "The prompt panel is the fixed set of prompts a tracker asks, and it is "
+    "the first of those choices. Prompt selection is already part of the "
     "conversation in this field. What I wanted to add was a worked example: "
     "one real tracker taken apart, a test of whether the pattern holds across "
     "a whole category, and a method that comes out the other side.")
+
+WHY_2 = (
+    "Everything below comes from two datasets. The first is the tracker I "
+    "built and ran weekly for six weeks. The second is a neutral panel I "
+    "designed afterwards and ran across ten brands and three engines. Both "
+    "prompt lists are in the repository, side by side.")
 
 SIXTY_ONE_1 = (
     "My first tracker ran a 30-prompt panel through Claude every week, "
@@ -118,17 +125,37 @@ SIXTY_ONE_2 = (
     "choosing to recommend anyone. The brand was in the prompt.")
 
 ARITH_1 = (
-    "A score pooled across a panel is a weighted average. Each group of "
-    "prompts counts in proportion to the number of answers it produced:")
+    "Two definitions first. A rate here is just a share: the number of answers "
+    "that named the brand, divided by the number of answers. The branded rate "
+    "is that share for prompts that contain the brand's name. The unbranded "
+    "rate is the same share for prompts that don't.")
 
 ARITH_2 = (
-    "This is simply how an average over two groups works, so it holds "
-    "exactly. What the data adds is the branded rate: 100%. Plugging in the "
-    "tracker's final run:")
+    "When a tracker reports one number for the whole panel, it combines those "
+    "two groups, and each group counts in proportion to how many answers it "
+    "produced. A group that produced 100 answers moves the overall number "
+    "twice as much as a group that produced 50. That is a weighted average, "
+    "and it is the only arithmetic involved:")
 
 ARITH_3 = (
-    "Thirty-nine of the 61 points were set when the panel was written, before "
-    "any engine answered. The other 22 tell you something about the brand.")
+    "This is how any average over two groups works, so it holds exactly. What "
+    "the data adds is the branded rate, which was 100%. Here it is with the "
+    "tracker's final run plugged in:")
+
+ARITH_4 = (
+    "Read it row by row. Branded prompts produced 57 of the 147 answers, so "
+    "they carry 38.8% of the weight. Every one of those 57 answers named the "
+    "brand, so the group contributes its full weight: 38.8 points. Unbranded "
+    "prompts produced the other 90 answers, 61.2% of the weight, and named the "
+    "brand 36.7% of the time, so they contribute 61.2% × 36.7%, or 22.4 "
+    "points. Add the two and you get 61.2, the number on the dashboard.")
+
+ARITH_5 = (
+    "Because the branded rate is 100%, the first term is simply the share of "
+    "your answers that came from branded prompts. If half your panel names "
+    "you, half your score is spoken for before any engine answers. Thirty-nine "
+    "of these 61 points were set when the panel was written. The other 22 tell "
+    "you something about the brand.")
 
 CATEGORY_INTRO = (
     "One tracker could be a fluke, so I built a neutral panel and ran it "
@@ -662,6 +689,7 @@ CSS = f"""<style>
     letter-spacing:-0.03em; margin:0 0 22px; max-width:22ch; text-wrap:balance;
   }}
   .standfirst {{ font-size:20px; line-height:1.5; margin:0; max-width:58ch; }}
+  .hook {{ font-size:17px; line-height:1.6; margin:18px 0 0; max-width:62ch; color:var(--ink); }}
   .split {{ margin:40px 0 0; max-width:720px; }}
   .split .track {{
     display:flex; height:34px; background:var(--panel);
@@ -971,6 +999,7 @@ def build_html(d: dict) -> str:
 <header class="hero">
   <h1>{esc(d["title_main"])} <span class="kicker">{esc(d["title_sub"])}</span></h1>
   <p class="standfirst">{esc(d["standfirst"])}</p>
+  <p class="hook">{esc(d["hook"])}</p>
   <figure class="split" aria-label="The reported 61% split into its two sources">
     <div class="track">
       <span class="seg plum" style="width:{named_pts:.1f}%"></span>
@@ -1023,15 +1052,17 @@ def build_html(d: dict) -> str:
 <p>{esc(d["sixty_one_2"])}</p>
 <h3>The arithmetic, and why it holds</h3>
 <p>{esc(d["arith_1"])}</p>
+<p>{esc(d["arith_2"])}</p>
 <pre class="eq">mention rate =
     (share of answers from branded prompts)   × (rate on branded prompts)
   + (share of answers from unbranded prompts) × (rate on unbranded prompts)</pre>
-<p>{esc(d["arith_2"])}</p>
+<p>{esc(d["arith_3"])}</p>
 <table>
-  <thead><tr><th></th><th class="n">Share of answers</th><th class="n">× Rate</th><th class="n">= Points</th></tr></thead>
+  <thead><tr><th></th><th class="n">Share of answers (weight)</th><th class="n">× Rate</th><th class="n">= Points</th></tr></thead>
   <tbody>{arith_rows}</tbody>
 </table>
-<p>{esc(d["arith_3"])}</p>
+<p>{esc(d["arith_4"])}</p>
+<p>{esc(d["arith_5"])}</p>
 </section>
 
 <section id="category">
@@ -1187,7 +1218,7 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
 
     return {
         "title": TITLE, "title_main": TITLE_MAIN, "title_sub": TITLE_SUB,
-        "standfirst": STANDFIRST, "author": AUTHOR, "facts": FACTS,
+        "standfirst": STANDFIRST, "hook": HOOK, "author": AUTHOR, "facts": FACTS,
         "n": n, "n_citations": ncit, "n_prompts": n_prompts or len(cfg.prompts),
         "engines": engines, "engines_label": label,
         "window": ((lo[:10] if lo[:10] == hi[:10] else f"{lo[:10]} to {hi[:10]}") if lo else ""),
@@ -1211,6 +1242,7 @@ def collect(db: str, cfg, exclude_truncated: bool = False,
         "why_1": WHY_1, "why_2": WHY_2,
         "sixty_one_1": SIXTY_ONE_1, "sixty_one_2": SIXTY_ONE_2,
         "arith_1": ARITH_1, "arith_2": ARITH_2, "arith_3": ARITH_3,
+        "arith_4": ARITH_4, "arith_5": ARITH_5,
         "category_intro": CATEGORY_INTRO, "study_design": STUDY_DESIGN,
         "category_held": CATEGORY_HELD,
         "category_mech_intro": CATEGORY_MECH_INTRO,
