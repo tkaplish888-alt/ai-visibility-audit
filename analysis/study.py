@@ -688,8 +688,8 @@ CSS = f"""<style>
     font-size:clamp(32px,4.4vw,52px); line-height:1.04; font-weight:800;
     letter-spacing:-0.03em; margin:0 0 22px; max-width:22ch; text-wrap:balance;
   }}
-  .standfirst {{ font-size:20px; line-height:1.5; margin:0; max-width:58ch; }}
-  .hook {{ font-size:17px; line-height:1.6; margin:18px 0 0; max-width:62ch; color:var(--ink); }}
+  .standfirst, .hook {{ font-size:19px; line-height:1.55; margin:0; max-width:60ch; color:var(--ink); }}
+  .hook {{ margin-top:16px; }}
   .split {{ margin:40px 0 0; max-width:720px; }}
   .split .track {{
     display:flex; height:34px; background:var(--panel);
@@ -837,7 +837,7 @@ CSS = f"""<style>
     body {{ font-size:16px; }}
     .shell {{ padding:0 18px 72px; }}
     .hero {{ padding-top:40px; }}
-    .standfirst {{ font-size:18px; }}
+    .standfirst, .hook {{ font-size:17.5px; }}
     h2 {{ font-size:26px; }}
     .pull {{ font-size:20px; }}
     section {{ padding-top:44px; }}
